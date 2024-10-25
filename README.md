@@ -1,2 +1,2 @@
 # barbershopWebApp
-Aplicación web para pedir cita en una peluquería. El peluquero tendrá una cuenta de administrador con la que podrá acceder a la base de datos de citas solicitadas por los clientes, y realizar las gestiones necesarias.
+Software de gestión de citas y reservas para negocios locales, como peluquerías, salones de belleza, etc. Los clientes se crearán una cuenta y podrán reservar citas en los días y horas disponibles en el servicio.
