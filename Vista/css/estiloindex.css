@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: rgb(0, 107, 255);
+    width: 100%;
+    height: 200px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: -1;
+
+
+}
+
+.elementos-header1 {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+.seccion-principal {
+    width: 100%;
+    padding-top: 50px;
+    border-radius: 25px 25px 0 0;
+    background-color: #f4f4f4;
+    transform: translateY(-20px);
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-enlaces {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+h1 {
+    text-align: center;
+    margin: 50px;
+    font-size: 35px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.enlaces {
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    transition: all 0.3s ease;
+    background-color: white;
+    width: 250px;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+
+}
+
+.enlaces:hover {
+    transform: scale(1.1);
+}
+
+
+.contenedor-img {
+    background-color: #BFE8FF;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenedor-img img {
+    width: 40px;
+    height: 40px;
+}
+
+.contenedor-txt {
+    color: rgb(0, 107, 255);
+    font-weight: bold;
+    font-size: 23px;
+    margin-left: 10px;
+
+}
+
+@media (max-width: 600px) {
+
+    .elementos-header1,
+    .elementos-header2 {
+        padding: 0%;
+        transform: scale(0.6);
+
+    }
+
+    .contenedor-enlaces {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .enlaces {
+        transform: scale(0.5);
+        margin: 0px;
+    }
+
+    .enlaces:hover {
+        transform: none;
+    }
+}
