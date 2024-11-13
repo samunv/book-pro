@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: rgb(0, 107, 255);
+    width: 100%;
+    height: 200px;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: -1;
+}
+
+.elementos-header1 {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 35px;
+}
+
+.seccion-principal {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    border-radius: 25px 25px 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    transform: translateY(-20px);
+}
+
+#icono-accion{
+    cursor: pointer;
+}
+
+form {
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    padding: 35px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 10px;
+    font-size: 15px;
+
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+input:focus {
+    outline: none;
+}
+
+
+button {
+    width: 50%;
+    padding: 20px;
+    font-size: 15px;
+    background-color: rgb(0, 107, 255);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+}
+
+button:hover {
+    background-color: rgb(7, 88, 201);
+}
+
+#texto-autor {
+    text-align: center;
+    color: grey;
+    margin: 50px;
+}
+
+#texto-morado {
+    color: rgb(0, 107, 255);
+}
+
+
+#btn-cerrar-sesion {
+    background-color: black;
+    width: 30%;
+    margin: 10px;
+}
+
+#btn-eliminar {
+    background-color: red;
+    width: 30%;
+    margin: 10px;
+}
+
+#enlace-volver {
+    position: absolute;
+    right: 90%;
+    top: 50px;
+    z-index: 999;
+}
+
+.botones {
+    width: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+}

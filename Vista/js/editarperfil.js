@@ -1,6 +1,17 @@
 window.addEventListener("DOMContentLoaded", function () {
-  //Obtener el formulario
   comprobarSesion();
+
+
+  let tituloPagina = document.getElementById("titulo-pagina");
+  tituloPagina.innerHTML = "Editar Perfil";
+
+  let icono = document.getElementById("icono-accion");
+  icono.src = "img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
+  icono.addEventListener("click", function () {
+    window.location.href = "index.php";
+  });
+
+
   let formularioEditar = document.getElementById("formularioEditar");
 
   let nombre = document.getElementById("nombreEditar");
@@ -8,8 +19,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   let idUsuario = obtenerDatoTemporal("idUsuario");
 
-  nombreSesion = obtenerDatoTemporal("nombre");
-  telefonoSesion = obtenerDatoTemporal("telefono");
+  let nombreSesion = obtenerDatoTemporal("nombre");
+  let telefonoSesion = obtenerDatoTemporal("telefono");
 
   nombre.value = nombreSesion;
   telefono.value = telefonoSesion;

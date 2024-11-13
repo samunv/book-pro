@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/estilologin.css?v=<?php echo time() ?>">
-    <script src="js/login.js?v=<?php echo time() ?>"></script>
+    <script type="module" src="js/login.js?v=<?php echo time() ?>"></script>
 </head>
 
 <body>

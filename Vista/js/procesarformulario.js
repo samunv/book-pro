@@ -4,6 +4,16 @@ window.addEventListener("DOMContentLoaded", function () {
   let formularioHora = document.getElementById("formulario-hora");
   let cajaProfesionales = document.getElementById("profesionales");
 
+  let tituloPagina = document.getElementById("titulo-pagina");
+  tituloPagina.innerHTML = "Reservar";
+
+  let icono = document.getElementById("icono-accion");
+  icono.src = "img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
+  icono.addEventListener("click", function () {
+    window.location.href = "elegirservicio.php";
+  });
+
+  
   // Inicialmente desactivar el botón
   desactivarBoton(btnContinuar1);
 
@@ -91,22 +101,30 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Navegar al mes anterior
   function irAlMesAnterior() {
-    if (mesActual === 0) {
+    if (comprobarMesActual()) {
+      return;
+    } else if (mesActual === 0) {
       mesActual = 11;
       añoActual--;
     } else {
       mesActual--;
     }
+
     llenarCalendario();
   }
 
+  function comprobarMesActual() {
+    // Comprobar si estamos en el mes y año actual para evitar retroceder
+    if (añoActual === fecha.getFullYear() && mesActual === fecha.getMonth()) {
+      return true;
+    }
+  }
+
   // Agregar eventos a los botones de navegación
-  document
-    .getElementById("mes-anterior")
-    .addEventListener("click", irAlMesAnterior);
-  document
-    .getElementById("mes-siguiente")
-    .addEventListener("click", irAlMesSiguiente);
+  let btnMesAnterior = document.getElementById("mes-anterior")
+  btnMesAnterior.addEventListener("click", irAlMesAnterior);
+  let btnMesSiguiente = document.getElementById("mes-siguiente")
+  btnMesSiguiente.addEventListener("click", irAlMesSiguiente);
 
   llenarCalendario();
 
@@ -178,9 +196,6 @@ window.addEventListener("DOMContentLoaded", function () {
   function obtenerDatoTemporal(clave) {
     return sessionStorage.getItem(clave);
   }
-
-  let idUsuario = obtenerDatoTemporal("idUsuario");
-  let idProfesional = obtenerDatoTemporal("idProfesional");
 
   // Obtener horas disponibles para el día seleccionado
   function obtenerHorasDisponibles(dia, mes, año, idProfesional) {

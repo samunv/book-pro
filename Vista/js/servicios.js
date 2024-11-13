@@ -2,6 +2,17 @@ window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
   let seccionServicios = document.getElementById("seccion-servicios");
 
+  let tituloPagina = document.getElementById("titulo-pagina");
+  tituloPagina.innerHTML = "Servicios";
+
+  let icono = document.getElementById("icono-accion");
+  icono.src = "img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
+  icono.addEventListener("click", function () {
+    borrarDatos();
+    alert("Has cancelado tu reserva.");
+    window.location.href = "index.php";
+  });
+
   obtenerServicios();
   function obtenerServicios() {
     fetch("./../Controlador/obtenerservicios.php")
@@ -58,6 +69,25 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function guardarDatoTemporal(clave, valor) {
     sessionStorage.setItem(clave, valor);
+  }
+
+  function borrarDatos() {
+    // Remover cada dato temporal almacenado en sessionStorage
+    removerDatoTemporal("nombreServicio");
+    removerDatoTemporal("duracion");
+    removerDatoTemporal("precio");
+    removerDatoTemporal("idProfesional");
+    removerDatoTemporal("idUsuario");
+    removerDatoTemporal("idServicio");
+    removerDatoTemporal("hora");
+    removerDatoTemporal("dia");
+    removerDatoTemporal("mes");
+    removerDatoTemporal("año");
+    removerDatoTemporal("nombreProfesional");
+  }
+
+  function removerDatoTemporal(clave) {
+    sessionStorage.removeItem(clave);
   }
 
   function comprobarSesion() {

@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", function () {
   //Obtener el formulario
-  comprobarSesion(); 
+  comprobarSesion();
   let formularioLogin = document.getElementById("formularioLogin");
 
   formularioLogin.addEventListener("submit", function (e) {
@@ -10,30 +10,25 @@ window.addEventListener("DOMContentLoaded", function () {
     //Crear un objeto datos de la clase FormData con los datos del formulario como parámetro
     let datos = new FormData(formularioLogin);
 
-    //Enviar los datos al controlador mediante Post
     fetch("./../Controlador/procesarlogin.php", {
       method: "POST",
       body: datos,
     })
-      .then((respuesta) => respuesta.json())
+      .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        if (data.error) {
-          alert(data.error);
-        } else {
-          window.location.href = "index.php";
-        }
+        console.log(data[0]);
+        window.location.href="index.php";
+
       });
   });
 
-  function comprobarSesion(){
+  function comprobarSesion() {
     fetch("./../Controlador/procesarsesion.php")
-        .then((response) => response.json())
-        .then((data) => {
-          
-          if(data.sesion){
-            window.location.href = "index.php"; 
-          }
-        });
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.sesion) {
+          window.location.href = "index.php";
+        }
+      });
   }
 });

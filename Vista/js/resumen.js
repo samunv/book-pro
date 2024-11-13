@@ -1,5 +1,20 @@
 window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
+
+
+  let tituloPagina = document.getElementById("titulo-pagina");
+  tituloPagina.innerHTML = "Resumen de mi Reserva";
+
+  let icono = document.getElementById("icono-accion");
+  icono.src = "img/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
+  icono.addEventListener("click", function () {
+    borrarDatos();
+    alert("Has cancelado tu reserva.");
+    window.location.href = "index.php";
+  });
+
+
+
   let listaDatos = document.getElementById("lista-datos");
   let nombreServicio = obtenerDatoTemporal("nombreServicio");
   let duracion = obtenerDatoTemporal("duracion");

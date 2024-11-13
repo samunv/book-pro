@@ -10,26 +10,20 @@
 </head>
 
 <body>
-    <header>
-        <div class="elementos-header1">
-            <a href="index.php"><img src="img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="AtrasCita" height="45" width="45"></a>
-            <h1>Ver Mis Citas</h1>
-        </div>
-        <div class="elementos-header2">
-            <img src="img/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" height="45" width="45">
-        </div>
-    </header>
+    <?php
+    include "header.php"
+    ?>
     <section class="seccion-principal">
         <div id="lista-citas"></div>
     </section>
 
     <div id="ventana-eliminar">
-        <h1>¿Estás seguro de que quieres eliminar la cita?</h1>
+        <h2>¿Estás seguro de que quieres eliminar la cita del <span id="span-fecha"></span>?</h2>
         <div class="caja-botones">
-        <button id="btn-cancelar" type="button">Cancelar</button>
-        <button id="btn-eliminar" type="button">Eliminar</button>
+            <button id="btn-cancelar" type="button">Cancelar</button>
+            <button id="btn-eliminar" type="button">Eliminar</button>
         </div>
-        
+
 
     </div>
 

@@ -11,27 +11,21 @@
 </head>
 
 <body>
-    <header>
-        <div class="elementos-header1">
-            <a href="elegirservicio.php"><img src="img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="AtrasCita" height="45" width="45"></a>
-            <h1>Reservar Día</h1>
-        </div>
-        <div class="elementos-header2">
-            <img src="img/menu_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" height="45" width="45">
-        </div>
-
-    </header>
+    <?php
+        include "header.php";
+    ?>
 
     <section class="resto-body">
 
-        <section class="seccion-formularios" >
+        <section class="seccion-formularios">
             <div class="profesionales" id="profesionales">
             </div>
+
             <div class="formularios">
                 <div class="navegacion-meses">
-                    <img src="img/arrow_back_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="mes-anterior"/>
+                    <img src="img/arrow_back_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="mes-anterior" />
                     <div id="mes-año" class="mes-año"></div>
-                    <img src="img/arrow_forward_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="mes-siguiente"/>
+                    <img src="img/arrow_forward_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="mes-siguiente" />
                 </div>
                 <div class="semana">
                     <div class="dia">D</div>

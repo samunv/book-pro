@@ -88,6 +88,10 @@ h1 {
 
 }
 
+#icono-accion{
+    cursor: pointer;
+}
+
 @media  (max-width: 600px) {
     .elementos-header1, .elementos-header2{
         padding: 0%;

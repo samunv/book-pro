@@ -241,6 +241,11 @@
 
         }
 
+        #icono-accion{
+            cursor: pointer;
+        }
+        
+
         .profesional {
             height: 90px;
             width: 90px;
