@@ -3,9 +3,7 @@ require_once "../Modelo/Sesion.php";
 
 $sesion = new Sesion(); 
 
-
 $array = array();
-
 
 if(isset($_SESSION["nombre"])){
     $usuario = $sesion->getUsuario(); 

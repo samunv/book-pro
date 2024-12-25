@@ -10,18 +10,23 @@
 </head>
 
 <body>
-    <h1>Iniciar Sesión</h1>
+    <h1>BarberPro</h1>
     <form class="formulario" id="formularioLogin">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombreLogin" required /><br />
+
+        <label for="correo">Correo</label>
+        <input type="email" name="correo" id="correo" required maxlength="40" >
+
+
         <label for="contrasena">Contraseña</label>
-        <input type="password" id="contrasena" name="contrasenaLogin" required /><br />
+        <input type="password" id="contrasena" name="contrasenaLogin" required maxlength="15" /><br />
+
+
         </div>
         <button type="submit" class="btn-registrarse">Continuar</button>
     </form>
 
     <a href="registro.php" id="enlace-registro">¿No tienes una cuenta? Registrate aquí.</a>
-    <p id="texto-autor">Desarrollado por <span id="texto-morado">Navas</span></p>
+    <p id="texto-autor">Desarrollado por <span id="texto-morado">Samuel Navasardyan</span></p>
 </body>
 
 </html>

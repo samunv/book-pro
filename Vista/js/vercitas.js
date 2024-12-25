@@ -1,6 +1,8 @@
 window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
 
+  let url = "./../Controlador/vercitascontrolador.php";
+
   let tituloPagina = document.getElementById("titulo-pagina");
   tituloPagina.innerHTML = "Mis Citas";
 
@@ -10,6 +12,14 @@ window.addEventListener("DOMContentLoaded", function () {
     window.location.href = "index.php";
   });
 
+  let imgFoto = document.getElementById("img-foto");
+  imgFoto.src = obtenerDatoTemporal("foto");
+
+  let nombreUsuario = document.getElementById("nombre-usuario");
+  nombreUsuario.innerHTML = "" + obtenerDatoTemporal("nombre");
+
+  let correoUsuario = document.getElementById("correo-usuario");
+  correoUsuario.innerHTML = "" + obtenerDatoTemporal("correo");
 
   let listaCitas = document.getElementById("lista-citas");
   let idUsuario = obtenerDatoTemporal("idUsuario");
@@ -22,11 +32,75 @@ window.addEventListener("DOMContentLoaded", function () {
   obtenerCitas(idUsuario);
 
   function obtenerCitas(idUsuario) {
-    fetch("./../Controlador/obtenercitasusuario.php?idUsuario=" + idUsuario)
+    fetch(url + "?idUsuario=" + idUsuario)
       .then((response) => response.json())
       .then((data) => {
         imprimirCitas(data);
       });
+  }
+
+  obtenerProfesionales();
+  function obtenerProfesionales() {
+    fetch(url + "?obtenerProfesional=true")
+      .then((response) => response.json())
+      .then((profesionales) => {
+        imprimirNombreProfesional(profesionales); // Envía el array completo
+      });
+  }
+
+
+  function imprimirNombreProfesional(profesionales) {
+    let selectProfesional = document.getElementById("profesional");
+    let option = "";
+
+    // Verifica si el array no está vacío antes de procesarlo
+    if (profesionales && profesionales.length > 0) {
+      for (let i = 0; i < profesionales.length; i++) {
+        option +=
+          "<option value='" +
+          profesionales[i].nombreProfesional + 
+          "'>" +
+          profesionales[i].nombreProfesional +
+          "</option>";
+      }
+    } else {
+      console.error("No se encontraron profesionales.");
+    }
+
+    selectProfesional.innerHTML = option;
+  }
+
+
+
+  obtenerServicios();
+  function obtenerServicios() {
+    fetch(url + "?obtenerServicio=true")
+      .then((response) => response.json())
+      .then((servicios) => {
+        imprimirNombreServicio(servicios); // Envía el array completo
+      });
+  }
+
+
+  function imprimirNombreServicio(servicios) {
+    let selectServicio = document.getElementById("servicios");
+    let option = "";
+
+    // Verifica si el array no está vacío antes de procesarlo
+    if (servicios && servicios.length > 0) {
+      for (let i = 0; i < servicios.length; i++) {
+        option +=
+          "<option value='" +
+          servicios[i].nombreServicio + 
+          "'>" +
+          servicios[i].nombreServicio +
+          "</option>";
+      }
+    } else {
+      console.error("No se encontraron servicios.");
+    }
+
+    selectServicio.innerHTML = option;
   }
 
   function imprimirCitas(citas) {
@@ -34,32 +108,49 @@ window.addEventListener("DOMContentLoaded", function () {
     if (citas.length > 0) {
       // Mejor verificación
       for (let i = 0; i < citas.length; i++) {
-        if (comprobarFechaActual(citas[i].fecha, citas[i].mes, citas[i].año)) {
+        if (
+          comprobarFechaActual(
+            citas[i].fecha,
+            citas[i].mes,
+            citas[i].año,
+            citas[i].hora
+          )
+        ) {
           html += "<div class='contenedor-cita'>";
+
+          html += "<div class='conjunto-foto-texto'>";
+          html += "<img src='" + citas[i].imagen + "' class='foto-servicio'>";
+
+          html += "<div class='apartado-texto'>";
           html +=
-            "<p class='fecha-negrita'> Día: " +
+            "<h3>" +
+            citas[i].nombreServicio +
+            " - " +
             citas[i].fecha +
             " de " +
             citas[i].mes +
             " de " +
             citas[i].año +
-            "</p>";
+            "</h3>";
 
           html += "<p> Hora: " + citas[i].hora.substring(0, 5) + "</p>";
           html +=
-            "<p> Servicio: " +
-            citas[i].nombreServicio +
-            " / " +
+            "<p> Detalles: " +
+            "<span id='span-precio'>" +
             citas[i].precio +
-            "€ / " +
+            "€</span>" +
+            " - " +
             citas[i].duracion +
             "min.</p>";
           html += "<p> Profesional: " + citas[i].nombreProfesional + "</p>";
+          html += "</div>";
+          html += "</div>";
           html += "<div class='contenedor-papelera'>";
           html +=
             "<img src='img/delete_24dp_EA3323_FILL0_wght400_GRAD0_opsz24.png' width='30' height='30' id='" +
             citas[i].idCita +
             "' class='papelera'>";
+
           html += "</div>";
           html += "</div>";
         }
@@ -102,9 +193,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   async function obtenerFechaPorIdCita(idCita) {
     try {
-      const response = await fetch(
-        "./../Controlador/obtenercita.php?idCita=" + idCita
-      );
+      const response = await fetch(url + "?idCita=" + idCita);
       const data = await response.json();
       return `${data[0].fecha} de ${data[0].mes} de ${data[0].año} a las ${data[0].hora}`;
     } catch (error) {
@@ -113,7 +202,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function eliminarCita(idCita) {
-    fetch("./../Controlador/eliminarcita.php?idCita=" + idCita)
+    fetch(url + "?idCitaEliminar=" + idCita)
       .then((response) => response.json())
       .then((data) => {
         alert(data);
@@ -121,8 +210,6 @@ window.addEventListener("DOMContentLoaded", function () {
         obtenerCitas(idUsuario);
       });
   }
-
-  let fechaActual = new Date();
 
   const meses = [
     "Enero",
@@ -139,18 +226,38 @@ window.addEventListener("DOMContentLoaded", function () {
     "Diciembre",
   ];
 
-  function comprobarFechaActual(dia, mes, año) {
+  function comprobarFechaActual(dia, mes, año, horaCita) {
     let fechaCita = new Date(año, meses.indexOf(mes), dia);
-    return fechaCita >= fechaActual;
+    let fechaActual = new Date();
+
+    // Comparar fechas
+    if (fechaCita > fechaActual) {
+      return true; // Fecha futura
+    }
+
+    // Si es el mismo día, comprobar la hora
+    if (
+      fechaCita.getDate() === fechaActual.getDate() &&
+      fechaCita.getMonth() === fechaActual.getMonth() &&
+      fechaCita.getFullYear() === fechaActual.getFullYear()
+    ) {
+      let [horas, minutos] = horaCita.split(":").map(Number);
+      let horaCompletaCita = new Date(
+        año,
+        meses.indexOf(mes),
+        dia,
+        horas,
+        minutos
+      );
+      return horaCompletaCita >= fechaActual;
+    }
+
+    return false; // Fecha pasada
   }
 
   // Función para recuperar un dato de sessionStorage
   function obtenerDatoTemporal(clave) {
     return sessionStorage.getItem(clave);
-  }
-
-  function guardarDatoTemporal(clave, valor) {
-    sessionStorage.setItem(clave, valor);
   }
 
   function comprobarSesion() {

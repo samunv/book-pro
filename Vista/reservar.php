@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar cita</title>
-    <script src="js/procesarformulario.js?v=<?php echo time() ?>"></script>
-    <link rel="stylesheet" href="css/estiloformulario.css?v=<?php echo time() ?>">
+    <script src="js/reservar.js?v=<?php echo time() ?>"></script>
+    <link rel="stylesheet" href="css/reservar.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
     <link rel="icon" href="img/pngtree-barbershop-pole-decoration-png-image_6115703.png">
 </head>
 
 <body>
     <?php
-        include "header.php";
+    include "header.php";
     ?>
 
-    <section class="resto-body">
+    <section class="seccion-principal">
 
         <section class="seccion-formularios">
             <div class="profesionales" id="profesionales">

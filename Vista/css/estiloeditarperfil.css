@@ -1,9 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
+
 
 header {
     background-color: rgb(0, 107, 255);
@@ -27,6 +22,21 @@ h1 {
     font-size: 35px;
 }
 
+.elementos-header2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+#nombre-usuario {
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
 .seccion-principal {
     width: 100%;
     padding-top: 40px;
@@ -39,37 +49,32 @@ h1 {
     transform: translateY(-20px);
 }
 
-#icono-accion{
+#icono-accion {
     cursor: pointer;
 }
 
 form {
-    width: 25%;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 30px;
     background-color: #fff;
     padding: 35px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    align-content: center;
     align-items: center;
+    z-index: 997;
 }
 
-label {
-    display: block;
-    margin: 10px 0 10px;
-    font-size: 15px;
-
-}
 
 input {
-    width: 80%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 9px;
     border: 1px solid #ccc;
-    border-radius: 10px;
+    border-top-right-radius: none;
+    border-bottom-right-radius: none;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     font-size: 15px;
 }
 
@@ -79,17 +84,17 @@ input:focus {
 
 
 button {
-    width: 50%;
-    padding: 20px;
+    padding: 10px;
     font-size: 15px;
-    background-color: rgb(0, 107, 255);
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: none;
+    border-bottom-left-radius: none;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: bold;
-    margin-top: 20px;
     display: flex;
     justify-content: center;
 
@@ -110,17 +115,7 @@ button:hover {
 }
 
 
-#btn-cerrar-sesion {
-    background-color: black;
-    width: 30%;
-    margin: 10px;
-}
 
-#btn-eliminar {
-    background-color: red;
-    width: 30%;
-    margin: 10px;
-}
 
 #enlace-volver {
     position: absolute;
@@ -138,4 +133,134 @@ button:hover {
     padding: 25px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.botones button {
+    background-color: transparent;
+    width: 30%;
+    margin: 10px;
+    font-weight: bolder;
+    transition: all 0.3s ease;
+}
+
+.botones button:hover {
+    opacity: 0.5;
+}
+
+.botones button:nth-child(1) {
+    color: black;
+}
+
+.botones button:nth-child(2) {
+    color: red;
+}
+
+.contenedores-actualizar {
+    width: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+
+}
+
+#fotoDePerfil {
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px white solid;
+    transition: all 0.3s ease;
+    object-fit: cover;
+}
+
+#ventana-editarfoto-oculta {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    z-index: 999;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#ventana-editarfoto-oculta h3{
+    padding: 20px;
+}
+
+#ventana-editarfoto-oculta .botones-editar-foto{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+#ventana-editarfoto-oculta .botones-editar-foto button {
+    background-color: black;
+    padding: 10px;
+    font-size: 15px;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    margin: 10px;
+
+}
+
+#ventana-editarfoto-oculta .botones-editar-foto button:nth-child(2){
+    background-color: rgb(0, 107, 255);
+}
+
+#fotoDePerfil:hover {
+    border: 3px rgb(0, 107, 255) solid;
+}
+
+.contendor-foto {
+    margin: 10px;
+    position: static;
+}
+
+#archivo-foto{
+    border-radius: 10px;
+}
+
+.contenedor-editar{
+    background-color: rgb(0, 107, 255);
+    border-radius: 50%;
+    width: 30px;height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 989;
+    position: absolute;
+    transform: translate(70px, 70px);
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    /* Fijo en la pantalla */
+    top: 0;
+    /* Arriba */
+    left: 0;
+    /* Izquierda */
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Alto completo */
+    background-color: rgba(0, 0, 0, 0.7);
+    /* Fondo oscuro con transparencia */
+    z-index: 998;
+    /* Asegurarse de que esté detrás de la ventana */
+}
+
+@media (max-width:500) {
+    form {
+        transform: scale(-1);
+    }
+
+
 }

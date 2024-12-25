@@ -11,8 +11,10 @@ class Conexion
 
     private $conexion;
     private $servidor = "localhost";
-    private $usuario = "samu2";
-    private $contrasena_bd = "123ABC=e";
+    //private $usuario = "samu2";
+    private $usuario = "root";
+    //private $contrasena_bd = "123ABC=e";
+    private $contrasena_bd = "";
     private $nombre_bd = "barbershop";
 
     public function __construct()

@@ -7,6 +7,8 @@
     <title>Mis citas</title>
     <link rel="stylesheet" href="css/estilocitas.css?v=<?php echo time() ?>">
     <script src="js/vercitas.js?v=<?php echo time() ?>"></script>
+    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
 </head>
 
 <body>
@@ -14,11 +16,14 @@
     include "header.php"
     ?>
     <section class="seccion-principal">
+        <div class="filtros-citas">
+            <select name="servicios" id="servicios"></select>
+        </div>
         <div id="lista-citas"></div>
     </section>
 
     <div id="ventana-eliminar">
-        <h2>¿Estás seguro de que quieres eliminar la cita del <span id="span-fecha"></span>?</h2>
+        <h2>¿Estás seguro de que quieres cancelar la cita del <span id="span-fecha"></span>?</h2>
         <div class="caja-botones">
             <button id="btn-cancelar" type="button">Cancelar</button>
             <button id="btn-eliminar" type="button">Eliminar</button>

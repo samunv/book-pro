@@ -7,6 +7,8 @@
     <title>Empresa</title>
     <link rel="stylesheet" href="css/empresa.css?v=<?php echo time() ?>">
     <script type="module" src="js/empresa.js?v=<?php echo time() ?>"></script>
+    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
 </head>
 
 <body>

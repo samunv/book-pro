@@ -7,6 +7,8 @@
     <title>Resumen</title>
     <link rel="stylesheet" href="css/estiloresumen.css?v=<?php echo time() ?>">
     <script src="js/resumen.js?v=<?php echo time() ?>"></script>
+    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
 </head>
 
 <body>

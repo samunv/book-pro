@@ -1,9 +1,25 @@
 window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
+
+  let url = "./../Controlador/servicioscontrolador.php";
   let seccionServicios = document.getElementById("seccion-servicios");
 
   let tituloPagina = document.getElementById("titulo-pagina");
   tituloPagina.innerHTML = "Servicios";
+
+  function obtenerDatoTemporal(clave) {
+    return sessionStorage.getItem(clave);
+  }
+
+  let imgFoto = document.getElementById("img-foto");
+  imgFoto.src = obtenerDatoTemporal("foto");
+
+  let nombreUsuario = document.getElementById("nombre-usuario");
+  nombreUsuario.innerHTML = "" + obtenerDatoTemporal("nombre");
+
+  let correoUsuario = document.getElementById("correo-usuario");
+  correoUsuario.innerHTML = "" + obtenerDatoTemporal("correo");
+  
 
   let icono = document.getElementById("icono-accion");
   icono.src = "img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
@@ -15,7 +31,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
   obtenerServicios();
   function obtenerServicios() {
-    fetch("./../Controlador/obtenerservicios.php")
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         imprimirServicios(data);
@@ -76,8 +92,7 @@ window.addEventListener("DOMContentLoaded", function () {
     removerDatoTemporal("nombreServicio");
     removerDatoTemporal("duracion");
     removerDatoTemporal("precio");
-    removerDatoTemporal("idProfesional");
-    removerDatoTemporal("idUsuario");
+    removerDatoTemporal("idProfesionalSeleccionado");
     removerDatoTemporal("idServicio");
     removerDatoTemporal("hora");
     removerDatoTemporal("dia");

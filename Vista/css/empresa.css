@@ -1,14 +1,4 @@
-* {
-    margin: 0%;
-    padding: 0%;
-}
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-}
 
 header {
     background-color: rgb(0, 107, 255);
@@ -60,8 +50,10 @@ h1 {
     margin: 25px;
 }
 
+
 #contenedor-datos iframe {
     width: 50%;
+    border-radius: 5px;
 
 }
 
@@ -73,22 +65,27 @@ h1 {
     color: #4E4E4E;
     font-size: 16px;
 }
-#contenedor-info h3{
-    padding-top: 20px;
-    padding-bottom: 7px;
+
+#contenedor-info h3 {
+
+    color: black;
+}
+
+
+#contenedor-info img {
+    border-radius:5px;
 }
 
 
 
-.lista{
+.lista {
     list-style: none;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-top: 7px;
-    padding-bottom: 7px;
+
 }
 
-.lista img{
+.lista img {
     padding-right: 5px;
 }

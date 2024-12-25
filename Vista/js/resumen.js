@@ -1,9 +1,10 @@
 window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
 
+  let url = "./../Controlador/resumencontrolador.php";
 
   let tituloPagina = document.getElementById("titulo-pagina");
-  tituloPagina.innerHTML = "Resumen de mi Reserva";
+  tituloPagina.innerHTML = "Resumen";
 
   let icono = document.getElementById("icono-accion");
   icono.src = "img/close_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
@@ -13,47 +14,52 @@ window.addEventListener("DOMContentLoaded", function () {
     window.location.href = "index.php";
   });
 
+  let imgFoto = document.getElementById("img-foto");
+  imgFoto.src = obtenerDatoTemporal("foto");
 
+  let nombreUsuario = document.getElementById("nombre-usuario");
+  nombreUsuario.innerHTML = "" + obtenerDatoTemporal("nombre");
+
+  let correoUsuario = document.getElementById("correo-usuario");
+  correoUsuario.innerHTML = "" + obtenerDatoTemporal("correo");
 
   let listaDatos = document.getElementById("lista-datos");
   let nombreServicio = obtenerDatoTemporal("nombreServicio");
   let duracion = obtenerDatoTemporal("duracion");
   let precio = obtenerDatoTemporal("precio");
-  let idProfesional = obtenerDatoTemporal("idProfesional");
+  let idProfesional = obtenerDatoTemporal("idProfesionalSeleccionado");
   let idUsuario = obtenerDatoTemporal("idUsuario");
   let idServicio = obtenerDatoTemporal("idServicio");
   let horaFinal = obtenerDatoTemporal("hora");
   let diaFinal = obtenerDatoTemporal("dia");
   let mesFinal = obtenerDatoTemporal("mes");
   let añoFinal = obtenerDatoTemporal("año");
+  let correo = obtenerDatoTemporal("correo");
+
   let nombreProfesional = null;
 
   // Depuración: Verificar valores obtenidos
   console.log("ID Profesional:", idProfesional);
 
   obtenerNombreProfesional(idProfesional);
-  
-    function obtenerNombreProfesional(idProfesional) {
-      fetch(
-        "./../Controlador/obtenerprofesionalporid.php?idProfesional=" +
-          idProfesional
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.length > 0) {
-            const nombre = data[0].nombre;
-            guardarDatoTemporal("nombreProfesional", nombre);
-          } else {
-            console.error("No se encontró el profesional con ID:", idProfesional);
-            guardarDatoTemporal("nombreProfesional", "No disponible");
-          }
-          // Ahora que tenemos el nombre del profesional, podemos imprimir los datos.
-          imprimirDatos();
-        })
-        .catch((error) => console.error("Error al obtener profesional:", error));
-    }
-  
-  
+
+  function obtenerNombreProfesional(idProfesional) {
+    fetch(url + "?idProfesionalParaNombre=" + idProfesional)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data && data.length > 0) {
+          const nombre = data[0].nombre;
+          guardarDatoTemporal("nombreProfesional", nombre);
+        } else {
+          console.error("No se encontró el profesional con ID:", idProfesional);
+          guardarDatoTemporal("nombreProfesional", "No disponible");
+        }
+        // Ahora que tenemos el nombre del profesional, podemos imprimir los datos.
+        imprimirDatos();
+      })
+      .catch((error) => console.error("Error al obtener profesional:", error));
+  }
+
   function imprimirDatos() {
     // Comprobar si cita está definida y tiene propiedades válidas
     nombreProfesional = obtenerDatoTemporal("nombreProfesional");
@@ -97,19 +103,60 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   let btnAceptar = document.getElementById("btn-aceptar");
-  btnAceptar.addEventListener("click", function (e) {
+  btnAceptar.addEventListener("click", async function (e) {
     e.preventDefault();
-    enviarDatos(
+
+    // Comprobar si existe una cita duplicada
+    const existeCita = await verificarCitaExistente(
       diaFinal,
       horaFinal,
-      idUsuario,
       idProfesional,
       mesFinal,
       añoFinal,
       idServicio
     );
-    window.location.href = "index.php";
+
+    if (existeCita) {
+      alert("Ya existe una cita en esta fecha y hora.");
+    } else {
+      enviarDatos(
+        diaFinal,
+        horaFinal,
+        idUsuario,
+        idProfesional,
+        mesFinal,
+        añoFinal,
+        idServicio, 
+        correo
+      );
+      alert("Reserva confirmada.");
+      window.location.href = "index.php";
+    }
   });
+
+  async function verificarCitaExistente(
+    dia,
+    hora,
+    idProfesional,
+    mes,
+    año,
+    idServicio
+  ) {
+    try {
+      const response = await fetch(
+        `${url}?verificarCita=true&diaVer=${dia}&horaVer=${hora}&idProfesionalVer=${idProfesional}&mesVer=${mes}&añoVer=${año}&idServicioVer=${idServicio}`
+      );
+      const data = await response.json();
+      if (data == true) {
+        return true;
+      } else if (data == false) {
+        return false;
+      }
+    } catch (error) {
+      console.error("Error al verificar cita:", error);
+      return false;
+    }
+  }
 
   function enviarDatos(
     dia,
@@ -118,10 +165,13 @@ window.addEventListener("DOMContentLoaded", function () {
     idProfesional,
     mes,
     año,
-    idServicio
+    idServicio,
+    correo
   ) {
+    console.log(dia + hora + idUsuario + mes + año + idServicio);
     fetch(
-      "./../Controlador/procesarformulario.php?dia=" +
+      url +
+        "?dia=" +
         dia +
         "&hora=" +
         hora +
@@ -134,12 +184,13 @@ window.addEventListener("DOMContentLoaded", function () {
         "&año=" +
         año +
         "&idServicio=" +
-        idServicio
+        idServicio +
+        "&correo=" +
+        correo
     )
       .then((response) => response.json())
       .then((data) => {
         guardarDatoTemporal("idCita", data);
-       window.location.href = "resumen.php";
       });
   }
 
@@ -163,8 +214,7 @@ window.addEventListener("DOMContentLoaded", function () {
     removerDatoTemporal("nombreServicio");
     removerDatoTemporal("duracion");
     removerDatoTemporal("precio");
-    removerDatoTemporal("idProfesional");
-    removerDatoTemporal("idUsuario");
+    removerDatoTemporal("idProfesionalSeleccionado");
     removerDatoTemporal("idServicio");
     removerDatoTemporal("hora");
     removerDatoTemporal("dia");

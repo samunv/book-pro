@@ -16,6 +16,8 @@
         <input type="text" id="nombre" name="nombre" required maxlength="15" minlength="5"  placeholder="Ej: Rodrigo"/><br />
         <label for="contrasena">Contraseña (8 caracteres mínimo)</label>
         <input type="password" id="contrasena" name="contrasena" required maxlength="15" minlength="8" /><br />
+        <label for="correo">Correo</label>
+        <input type="email" name="correo" id="correo" required maxlength="40" placeholder="usuario@email.com">
         <label for="telefono">Teléfono</label>
         <div id="caja-telefono">
         <img src="img/Bandera_de_España_(sin_escudo).svg.png" alt="" id='bandera'>
@@ -23,7 +25,7 @@
         </div>
         <button type="submit" class="btn-registrarse">Registrarse</button>
     </form>
-    <p id="texto-autor">Desarrollado por <span id="texto-morado">Navas</span></p>
+    <p id="texto-autor">Desarrollado por <span id="texto-morado">Samuel Navasardyan</span></p>
 </body>
 
 </html>

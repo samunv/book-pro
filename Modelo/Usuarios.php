@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class Usuarios
  *
@@ -32,6 +33,16 @@ class Usuarios
     private $contrasena;
 
     /**
+     * @var string
+     */
+    private $foto;
+
+    /**
+     * @var string
+     */
+    private $correo;
+
+    /**
      * Constructor de la clase Usuarios.
      *
      * @param int $idUsuario
@@ -40,12 +51,14 @@ class Usuarios
      * @param string $telefono
      * @param string $contrasena
      */
-    public function __construct($nombre, $permisos, $telefono, $contrasena)
+    public function __construct($nombre, $permisos, $telefono, $contrasena, $foto, $correo)
     {
         $this->nombre = $nombre;
         $this->permisos = $permisos;
         $this->telefono = $telefono;
         $this->contrasena = $contrasena;
+        $this->foto = $foto;
+        $this->correo = $correo;
     }
 
     /**
@@ -146,5 +159,49 @@ class Usuarios
     public function setContrasena($contrasena)
     {
         $this->contrasena = $contrasena;
+    }
+
+    /**
+     * Get the value of foto
+     */
+    public function getFoto()
+    {
+        return $this->foto;
+    }
+
+    /**
+     * Set the value of foto
+     *
+     * @return  self
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of correo
+     *
+     * @return  string
+     */ 
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    /**
+     * Set the value of correo
+     *
+     * @param  string  $correo
+     *
+     * @return  self
+     */ 
+    public function setCorreo(string $correo)
+    {
+        $this->correo = $correo;
+
+        return $this;
     }
 }
