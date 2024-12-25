@@ -4,6 +4,7 @@ require_once "../Modelo/UsuariosDao.php";
 require_once "./../Modelo/CitaDao.php";
 require_once "../Modelo/ProfesionalesDao.php";
 require_once "../Modelo/Sesion.php";
+require_once "../Modelo/ServicioDao.php";
 
 if ((isset($_GET['cerrarSesionBoolean']) && $_GET['cerrarSesionBoolean'] === 'true')) {
     // Si se recibe el parámetro de cerrarSesionBoolean (booleano) como true:
@@ -37,6 +38,12 @@ if (isset($_GET['idUsuarioParaIdProfesional'])) {
 if (isset($_GET["idProfesionalParaCitas"])) {
     $daoCitas = new CitaDao();
     $idProfesionalParaCitas = $_GET["idProfesionalParaCitas"];
-    $citasDelProfesional= $daoCitas->leerCitas($idProfesionalParaCitas);
+    $citasDelProfesional = $daoCitas->leerCitas($idProfesionalParaCitas);
     echo json_encode($citasDelProfesional);
+}
+
+if (isset($_GET["obtenerServicio"]) && $_GET["obtenerServicio"] === "true" && isset($_GET["idProfesionalParaServicios"])) {
+    $daoServ = new ServicioDao();
+    $respuesta = $daoServ->leerServiciosDeIdProfesional($_GET["idProfesionalParaServicios"]);
+    echo json_encode($respuesta);
 }

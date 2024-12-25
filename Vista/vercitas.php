@@ -16,9 +16,6 @@
     include "header.php"
     ?>
     <section class="seccion-principal">
-        <div class="filtros-citas">
-            <select name="servicios" id="servicios"></select>
-        </div>
         <div id="lista-citas"></div>
     </section>
 

@@ -17,12 +17,4 @@ if (isset($_GET["idUsuario"])) {
     $idCitaEliminar = $_GET['idCitaEliminar'];
     $resultadoEliminar = $daoCitas->eliminarCita($idCitaEliminar);
     echo json_encode($resultadoEliminar);
-} else if (isset($_GET["obtenerProfesional"]) && $_GET["obtenerProfesional"] === "true") {
-    $daoProf = new ProfesionalesDao();
-    $respuesta = $daoProf->leerProfesionales();
-    echo json_encode($respuesta);
-} else if (isset($_GET["obtenerServicio"]) && $_GET["obtenerServicio"] === "true") {
-    $daoServ = new ServicioDao();
-    $respuesta = $daoServ->leerServicios();
-    echo json_encode($respuesta);
 }

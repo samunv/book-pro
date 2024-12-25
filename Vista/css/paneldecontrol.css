@@ -90,9 +90,6 @@ table tr td:first-child {
     border-radius: 50%;
 }
 
-.nombre-cliente{
-    margin-left: 10px;
-}
 
 
 table tr td:last-child {
@@ -114,3 +111,18 @@ table tr {
     background-color: white;
 }
 
+.info-cliente{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+.info-cliente p{
+    margin: 0px;
+}
+
+.telefono-contacto{
+    color: grey;
+    font-size: small;
+}

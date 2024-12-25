@@ -3,7 +3,7 @@ require_once "./../Modelo/HorariosDao.php";
 require_once "../Modelo/ProfesionalesDao.php";
 
 
-if (isset($_GET['diaParaHorario']) && isset($_GET['idProfesionalParaHorario']) && isset($_GET['añoParaHorario']) && isset($_GET['mesParaHorario'])) {
+if (isset($_GET['diaParaHorario']) && isset($_GET['idProfesionalParaHorario']) && isset($_GET['añoParaHorario']) && isset($_GET['mesParaHorario']) && isset($_GET['idServicioParaHorario'])) {
 
     // Si se reciben esos parámetros, obtener los horarios disponibles
 
@@ -13,8 +13,9 @@ if (isset($_GET['diaParaHorario']) && isset($_GET['idProfesionalParaHorario']) &
     $idProfesionalParaHorario = $_GET['idProfesionalParaHorario'];
     $añoParaHorario = $_GET['añoParaHorario'];
     $mesParaHorario = $_GET['mesParaHorario'];
+    $idServicioParaHorario = $_GET['idServicioParaHorario'];
 
-    $horasDisponibles = $daoHorario->leerHorasLibres($diaParaHorario, $mesParaHorario, $añoParaHorario, $idProfesionalParaHorario);
+    $horasDisponibles = $daoHorario->leerHorasLibres($diaParaHorario, $mesParaHorario, $añoParaHorario, $idProfesionalParaHorario, $idServicioParaHorario);
 
     echo $horasDisponibles;
 }

@@ -17,9 +17,9 @@
     ?>
 
     <section class="seccion-principal">
-        <section class="seccion-filtros">
-
-        </section>
+        <div class="filtros-citas">
+            <select name="servicios" id="servicios"></select>
+        </div>
         <table id="tabla-citas"></table>
     </section>
 

@@ -15,7 +15,7 @@ class Correo
         $this->mail = new PHPMailer(true);
     }
 
-    public function enviarCorreo($correo, $asunto, $mensaje)
+    public function enviarCorreo($destinatario, $asunto, $mensaje)
     {
         try {
             $mail = $this->mail;
@@ -31,7 +31,7 @@ class Correo
 
             // Configuración del correo
             $mail->setFrom('sur00044@gmail.com', 'BarberPro');
-            $mail->addAddress($correo);
+            $mail->addAddress($destinatario);
             $mail->Subject = $asunto;
             $mail->Body = $mensaje;
 

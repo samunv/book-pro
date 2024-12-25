@@ -139,7 +139,7 @@ window.addEventListener("DOMContentLoaded", function () {
     const diaActual = momento.getDate();
     const mesActual = momento.getMonth();
     const añoActual = momento.getFullYear();
-  
+
     // Comprobar si el día, mes y año seleccionados coinciden con el día actual
     if (
       diaSeleccionado === diaActual &&
@@ -148,7 +148,7 @@ window.addEventListener("DOMContentLoaded", function () {
     ) {
       // Separar hora y minutos de la hora proporcionada
       const [horas, minutos] = horaString.split(":").map(Number);
-  
+
       // Comparar las horas y minutos
       if (
         horas < horaActual ||
@@ -157,10 +157,9 @@ window.addEventListener("DOMContentLoaded", function () {
         return false; // La hora es pasada
       }
     }
-  
+
     return true; // La hora es válida
   }
-  
 
   // Agregar eventos a los botones de navegación
   let btnMesAnterior = document.getElementById("mes-anterior");
@@ -201,7 +200,8 @@ window.addEventListener("DOMContentLoaded", function () {
       dia,
       mesSeleccionado,
       añoSeleccionado,
-      profesionalSeleccionado
+      profesionalSeleccionado,
+      idServicio
     ); // Obtener horas disponibles para el día seleccionado
   }
 
@@ -242,7 +242,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   // Obtener horas disponibles para el día seleccionado
-  function obtenerHorasDisponibles(dia, mes, año, idProfesional) {
+  function obtenerHorasDisponibles(dia, mes, año, idProfesional, idServicio) {
     fetch(
       url +
         "?diaParaHorario=" +
@@ -252,7 +252,9 @@ window.addEventListener("DOMContentLoaded", function () {
         "&añoParaHorario=" +
         año +
         "&idProfesionalParaHorario=" +
-        idProfesional
+        idProfesional +
+        "&idServicioParaHorario=" +
+        idServicio
     )
       .then((response) => response.json())
       .then((data) => {
@@ -276,13 +278,10 @@ window.addEventListener("DOMContentLoaded", function () {
         hayHorasDisponibles = true;
       }
       if (!hayHorasDisponibles) {
-      
-       html =
-        "<p id='texto-no-horas'>No hay horas disponibles en el día seleccionado.<p>";
+        html =
+          "<p id='texto-no-horas'>No hay horas disponibles en el día seleccionado.<p>";
       }
     });
-
-    
 
     listaHorarios.innerHTML = html;
   }
@@ -383,7 +382,13 @@ window.addEventListener("DOMContentLoaded", function () {
       let dia = obtenerDatoTemporal("dia");
 
       if (diaSeleccionado !== null) {
-        obtenerHorasDisponibles(dia, mesSeleccionado, añoSeleccionado, id);
+        obtenerHorasDisponibles(
+          dia,
+          mesSeleccionado,
+          añoSeleccionado,
+          id,
+          idServicio
+        );
       }
 
       if (profesionalSeleccionado !== null) {

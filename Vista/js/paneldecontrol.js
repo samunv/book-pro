@@ -47,14 +47,18 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch(url + "?idUsuarioParaIdProfesional=" + idUsuario)
       .then((response) => response.json())
       .then((data) => {
-        obtenerDatos(data);
+        guardarDatoTemporal("idUsuarioProfesional", data);
       });
   }
+
+  let idUsuarioProfesional = obtenerDatoTemporal("idUsuarioProfesional");
+
+  obtenerDatos(idUsuarioProfesional);
 
   let tabla = document.getElementById("tabla-citas");
 
   function obtenerDatos(idProfesional) {
-    fetch(url+"?idProfesionalParaCitas=" + idProfesional)
+    fetch(url + "?idProfesionalParaCitas=" + idProfesional)
       .then((response) => response.json())
       .then((data) => {
         imprimirTabla(data);
@@ -66,7 +70,7 @@ window.addEventListener("DOMContentLoaded", function () {
     // Fila de encabezado
     html += "<tr id='encabezado-tabla'>";
     html += "<td>Cliente</td>";
-    html += "<td>Teléfono</td>";
+
     html += "<td>Fecha</td>";
     html += "<td>Hora</td>";
     html += "<td>Servicio</td>";
@@ -79,10 +83,20 @@ window.addEventListener("DOMContentLoaded", function () {
         html +=
           "<td class='columna-foto'><img src='" +
           datos[i].foto +
-          "' width='40' height='40'/ class='foto-cliente'><p class='nombre-cliente'>"+ datos[i].nombre +"</p></td>";
-      
-        html += "<td>" + datos[i].telefono + "</td>";
-        html += "<td>" + datos[i].fecha + " de "+datos[i].mes+" de "+ datos[i].año+ "</td>";
+          "' width='40' height='40'/ class='foto-cliente'><div class='info-cliente'><p class='nombre-cliente'>" +
+          datos[i].nombre +
+          "</p><p class='telefono-contacto'>" +
+          datos[i].telefono +
+          "</p></div></td>";
+
+        html +=
+          "<td>" +
+          datos[i].fecha +
+          " de " +
+          datos[i].mes +
+          " de " +
+          datos[i].año +
+          "</td>";
         html += "<td>" + datos[i].hora + "</td>";
         html += "<td>" + datos[i].nombreServicio + "</td>";
         html += "</tr>";
@@ -117,5 +131,41 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function obtenerDatoTemporal(clave) {
     return sessionStorage.getItem(clave);
+  }
+
+  function guardarDatoTemporal(clave, valor) {
+    sessionStorage.setItem(clave, valor);
+  }
+
+  obtenerServicios(idUsuarioProfesional);
+  function obtenerServicios(idProfesional) {
+    fetch(
+      url + "?obtenerServicio=true&idProfesionalParaServicios=" + idProfesional
+    )
+      .then((response) => response.json())
+      .then((servicios) => {
+        imprimirNombreServicio(servicios); // Envía el array completo
+      });
+  }
+
+  function imprimirNombreServicio(servicios) {
+    let selectServicio = document.getElementById("servicios");
+    let option = "";
+
+    // Verifica si el array no está vacío antes de procesarlo
+    if (servicios && servicios.length > 0) {
+      for (let i = 0; i < servicios.length; i++) {
+        option +=
+          "<option value='" +
+          servicios[i].nombreServicio +
+          "'>" +
+          servicios[i].nombreServicio +
+          "</option>";
+      }
+    } else {
+      console.error("No se encontraron servicios.");
+    }
+
+    selectServicio.innerHTML = option;
   }
 });

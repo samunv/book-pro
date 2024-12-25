@@ -39,69 +39,7 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  obtenerProfesionales();
-  function obtenerProfesionales() {
-    fetch(url + "?obtenerProfesional=true")
-      .then((response) => response.json())
-      .then((profesionales) => {
-        imprimirNombreProfesional(profesionales); // Envía el array completo
-      });
-  }
 
-
-  function imprimirNombreProfesional(profesionales) {
-    let selectProfesional = document.getElementById("profesional");
-    let option = "";
-
-    // Verifica si el array no está vacío antes de procesarlo
-    if (profesionales && profesionales.length > 0) {
-      for (let i = 0; i < profesionales.length; i++) {
-        option +=
-          "<option value='" +
-          profesionales[i].nombreProfesional + 
-          "'>" +
-          profesionales[i].nombreProfesional +
-          "</option>";
-      }
-    } else {
-      console.error("No se encontraron profesionales.");
-    }
-
-    selectProfesional.innerHTML = option;
-  }
-
-
-
-  obtenerServicios();
-  function obtenerServicios() {
-    fetch(url + "?obtenerServicio=true")
-      .then((response) => response.json())
-      .then((servicios) => {
-        imprimirNombreServicio(servicios); // Envía el array completo
-      });
-  }
-
-
-  function imprimirNombreServicio(servicios) {
-    let selectServicio = document.getElementById("servicios");
-    let option = "";
-
-    // Verifica si el array no está vacío antes de procesarlo
-    if (servicios && servicios.length > 0) {
-      for (let i = 0; i < servicios.length; i++) {
-        option +=
-          "<option value='" +
-          servicios[i].nombreServicio + 
-          "'>" +
-          servicios[i].nombreServicio +
-          "</option>";
-      }
-    } else {
-      console.error("No se encontraron servicios.");
-    }
-
-    selectServicio.innerHTML = option;
-  }
 
   function imprimirCitas(citas) {
     let html = "";

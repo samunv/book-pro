@@ -31,7 +31,7 @@ if (isset($_SESSION["nombre"])) {
     if (!empty($usuarioVerificado)) {
         // Iniciar sesión y enviar correo
         $sesion->setUsuario($inputCorreo);
-        enviarCorreo($inputCorreo);
+        //enviarCorreo($inputCorreo);
         // Devolver los datos del usuario
         $response["usuario"] = $usuarioVerificado[0];
     } else {
