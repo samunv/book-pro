@@ -35,7 +35,6 @@ window.addEventListener("DOMContentLoaded", function () {
   let ventanaEditarFoto = document.getElementById("ventana-editarfoto-oculta");
   let overlay = document.getElementById("overlay");
 
-
   // Funciones para activar/desactivar botones
   function desactivarBoton(boton) {
     boton.style.backgroundColor = "grey";
@@ -56,10 +55,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Validación del campo de nombre
   nombre.addEventListener("input", function () {
-    this.value = this.value.replace(/[^A-Za-z]/g, "_").replace(/\s/g, "_");
-
-    // Evitar más de dos guiones bajos consecutivos
-    this.value = this.value.replace(/_{3,}/g, "__");
+     // Elimina caracteres no permitidos y reemplaza múltiples espacios por uno solo
+     this.value = this.value.replace(/[^A-Za-z0-9\s]/g, "");
+     this.value = this.value.replace(/\s{3,}/g, "  "); // Limita los espacios consecutivos a un máximo de dos
+     this.value = this.value.replace(/^\s+/g, ""); // Elimina los espacios al inicio
 
     if (nombre.value.length >= 5 && nombre.value.length <= 15) {
       activarBoton(btnActualizarNombre);
@@ -138,26 +137,29 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  let iconoEditar = this.document.getElementById("icono-editar");
+  iconoEditar.addEventListener("click", function () {
+    activarVentana(ventanaEditarFoto, overlay);
+  });
+
+  let btnCancelar = document.getElementById("btn-cancelar");
+  let btnConfirmar = document.getElementById("btn-confirmar");
+
   fotoDePerfil.addEventListener("click", function () {
     activarVentana(ventanaEditarFoto, overlay);
+  });
 
-    let btnCancelar = document.getElementById("btn-cancelar");
-    let btnConfirmar = document.getElementById("btn-confirmar");
-    
+  btnCancelar.addEventListener("click", function () {
+    desactivarVentana(ventanaEditarFoto, overlay);
+  });
 
-    btnCancelar.addEventListener("click", function () {
-      desactivarVentana(ventanaEditarFoto, overlay);
-    });
+  btnConfirmar.addEventListener("click", function () {
+    let archivoFoto = document.getElementById("archivo-foto");
+    const fotoSeleccionada = obtenerFotoSeleccionada(archivoFoto);
 
-    btnConfirmar.addEventListener("click", function () {
-      let archivoFoto = document.getElementById("archivo-foto");
-      const fotoSeleccionada = obtenerFotoSeleccionada(archivoFoto);
-
-
-      if (fotoSeleccionada != null) {
-        enviarFotoSeleccionada(fotoSeleccionada);
-      }
-    });
+    if (fotoSeleccionada != null) {
+      enviarFotoSeleccionada(fotoSeleccionada);
+    }
   });
 
   function obtenerFotoSeleccionada(archivoFoto) {

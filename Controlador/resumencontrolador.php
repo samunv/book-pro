@@ -1,8 +1,11 @@
 <?php
-require_once "../Modelo/ProfesionalesDao.php";
+require_once "./../Modelo/ProfesionalesDao.php";
 require_once "./../Modelo/CitaDao.php";
 require_once "./../Modelo/Cita.php";
 require_once "./../Modelo/Correo.php";
+require_once "./../Modelo/Notificacion.php";
+require_once "./../Modelo/NotificacionDao.php";
+
 
 if (isset($_GET["idProfesionalParaNombre"])) {
     $daoProf = new ProfesionalesDao();
@@ -22,20 +25,43 @@ if (isset($_GET["idProfesionalParaNombre"])) {
 
     $daoCita = new CitaDao();
     $cita = new Cita($idUsuario, $fecha, $hora, $idProfesional, $mes, $año, $idServicio);
+    $fechaCita = $fecha . " de " .  $mes . " de " . $año . " a las " . $hora;
+
+    $notificacion = new Notificacion("Reserva de Cita", "Has reservado una cita el $fechaCita.", $correo, "");
+    enviarNotificacion($notificacion);
 
     $reservaCompletada = $daoCita->crearCita($cita);
 
-    $fechaCita = $fecha . " de " .  $mes . " de " . $año . " a las " . $hora;
-
-    enviarCorreo($correo, $fechaCita);
 
     echo json_encode($reservaCompletada);
-} 
+} else if (isset($_GET["correoDestinatario"]) && isset($_GET["cliente"]) && isset($_GET["hora"]) && isset($_GET["fecha"]) && isset($_GET["mes"]) && isset($_GET["año"]) && isset($_GET["servicio"])) {
+
+    $destinatario = $_GET["correoDestinatario"];
+    $cliente = $_GET["cliente"];
+    $servicio = $_GET["servicio"];
+    $hora = $_GET["hora"];
+    $fecha = $_GET["fecha"];
+    $mes = $_GET["mes"];
+    $año = $_GET["año"];
+
+    $fechaCita = $fecha . " de " .  $mes . " de " . $año . " a las " . $hora;
+
+    $notificacion = new Notificacion("Reserva de Cita", "$cliente ha reservado una cita de $servicio el $fechaCita.", $destinatario, "");
+    enviarNotificacion($notificacion);
+    echo json_encode("Notificación enviada al destinatario.");
+}
+
+// Función para enviar notificación
+function enviarNotificacion($notificacion)
+{
+    $daoNotificacion = new NotificacionDAO();
+    $daoNotificacion->crearNotificacion($notificacion);
+    $notificacion->enviarNotificacionCorreo($notificacion);
+}
 
 // Función para enviar correo
 function enviarCorreo($correo, $fecha)
 {
-    $c = new Correo();
-    $c->enviarCorreo($correo, "Cita Reservada", "Tu cita de $fecha ha sido reservada con éxito. Para más información mira la página de Mis citas en la aplicación.");
+    $c = new Correo($correo, "Cita Reservada", "Tu cita de $fecha ha sido reservada con éxito. Para más información mira la página de Mis citas en la aplicación.");
+    $c->enviarCorreo();
 }
-

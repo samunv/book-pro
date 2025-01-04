@@ -2,7 +2,6 @@
 require_once "./../Modelo/Usuarios.php";
 require_once "../Modelo/UsuariosDao.php";
 require_once "../Modelo/Sesion.php";
-require_once "../Modelo/Correo.php";
 
 
 $usuarioDAO = new UsuariosDao();
@@ -31,7 +30,6 @@ if (isset($_SESSION["nombre"])) {
     if (!empty($usuarioVerificado)) {
         // Iniciar sesión y enviar correo
         $sesion->setUsuario($inputCorreo);
-        //enviarCorreo($inputCorreo);
         // Devolver los datos del usuario
         $response["usuario"] = $usuarioVerificado[0];
     } else {
@@ -41,9 +39,3 @@ if (isset($_SESSION["nombre"])) {
 
 echo json_encode($response);  // Enviar una única respuesta JSON
 
-// Función para enviar correo
-function enviarCorreo($correo)
-{
-    $c = new Correo();
-    $c->enviarCorreo($correo, "Inicio de Sesion", "Hola, has iniciado sesión en nuestra aplicación. Esperemos que disfrutes de tu experiencia como usuario. Gracias por confiar en nosotros.");
-}

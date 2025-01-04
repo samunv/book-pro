@@ -4,15 +4,20 @@
         <h1 id="titulo-pagina"></h1>
     </div>
 
+    <a href="editarperfil.php">
+        <div class="elementos-header2">
 
-    <div class="elementos-header2">
-        <img src="" alt="" id="img-foto" width="50" height="50">
-        <div class="nombre-correo-usuario">
-            <p id="nombre-usuario"></p>
-            <p id="correo-usuario"></p>
+            <img src="" alt="" id="img-foto" width="50" height="50">
+
+            <div class="nombre-correo-usuario">
+                <p id="nombre-usuario"></p>
+                <p id="correo-usuario"></p>
+            </div>
+
+
+
         </div>
-
-    </div>
+    </a>
 
 
 

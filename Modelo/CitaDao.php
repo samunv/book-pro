@@ -23,6 +23,8 @@ class CitaDao
             usuarios.telefono, 
             usuarios.nombre, 
             usuarios.foto,
+            usuarios.color1,
+            usuarios.color2,
             servicios.*
         FROM citas
         INNER JOIN usuarios ON citas.idUsuario = usuarios.idUsuario

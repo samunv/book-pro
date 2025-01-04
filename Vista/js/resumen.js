@@ -21,7 +21,9 @@ window.addEventListener("DOMContentLoaded", function () {
   nombreUsuario.innerHTML = "" + obtenerDatoTemporal("nombre");
 
   let correoUsuario = document.getElementById("correo-usuario");
-  correoUsuario.innerHTML = "" + obtenerDatoTemporal("correo");
+  let correo = obtenerDatoTemporal("correo");
+  correoUsuario.textContent =
+    correo.length > 20 ? correo.substring(0, 20) + "..." : correo;
 
   let listaDatos = document.getElementById("lista-datos");
   let nombreServicio = obtenerDatoTemporal("nombreServicio");
@@ -34,7 +36,10 @@ window.addEventListener("DOMContentLoaded", function () {
   let diaFinal = obtenerDatoTemporal("dia");
   let mesFinal = obtenerDatoTemporal("mes");
   let añoFinal = obtenerDatoTemporal("año");
-  let correo = obtenerDatoTemporal("correo");
+  let correoProfesional = obtenerDatoTemporal("correoProfesional");
+  let nombreCliente = obtenerDatoTemporal("nombre");
+
+  console.log(correoProfesional);
 
   let nombreProfesional = null;
 
@@ -62,11 +67,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function imprimirDatos() {
     // Comprobar si cita está definida y tiene propiedades válidas
+    // Comprobar si cita está definida y tiene propiedades válidas
     nombreProfesional = obtenerDatoTemporal("nombreProfesional");
     let html = "";
 
     html +=
-      "<div class='filas'><img src='img/calendar_month_24dp_000000_FILL0_wght400_GRAD0_opsz24.png''/><p>" +
+      "<div class='filas'><img src='img/calendar_month_24dp_000000_FILL0_wght400_GRAD0_opsz24.png'/><p>" +
       diaFinal +
       " de " +
       mesFinal +
@@ -80,7 +86,7 @@ window.addEventListener("DOMContentLoaded", function () {
       "</p></div>";
 
     html +=
-      "<div class='filas'><img src='img/assignment_24dp_000000_FILL0_wght400_GRAD0_opsz24.png'/><p>" +
+      "<div class='filas'><img src='img/content_cut_24dp_000000_FILL0_wght300_GRAD0_opsz24.png'/><p>" +
       nombreServicio +
       "</p></div>";
 
@@ -107,55 +113,63 @@ window.addEventListener("DOMContentLoaded", function () {
     e.preventDefault();
 
     // Comprobar si existe una cita duplicada
-    const existeCita = await verificarCitaExistente(
+
+    enviarDatos(
       diaFinal,
       horaFinal,
+      idUsuario,
       idProfesional,
       mesFinal,
       añoFinal,
-      idServicio
+      idServicio,
+      correo
     );
 
-    if (existeCita) {
-      alert("Ya existe una cita en esta fecha y hora.");
-    } else {
-      enviarDatos(
-        diaFinal,
-        horaFinal,
-        idUsuario,
-        idProfesional,
-        mesFinal,
-        añoFinal,
-        idServicio, 
-        correo
-      );
-      alert("Reserva confirmada.");
-      window.location.href = "index.php";
-    }
+    enviarNotificacion(
+      correoProfesional,
+      nombreCliente,
+      nombreServicio,
+      horaFinal,
+      diaFinal,
+      mesFinal,
+      añoFinal,
+      nombreServicio
+    );
   });
 
-  async function verificarCitaExistente(
-    dia,
+  function enviarNotificacion(
+    destinatario,
+    cliente,
+    servicio,
     hora,
-    idProfesional,
+    fecha,
     mes,
     año,
-    idServicio
+    servicio
   ) {
-    try {
-      const response = await fetch(
-        `${url}?verificarCita=true&diaVer=${dia}&horaVer=${hora}&idProfesionalVer=${idProfesional}&mesVer=${mes}&añoVer=${año}&idServicioVer=${idServicio}`
-      );
-      const data = await response.json();
-      if (data == true) {
-        return true;
-      } else if (data == false) {
-        return false;
-      }
-    } catch (error) {
-      console.error("Error al verificar cita:", error);
-      return false;
-    }
+    fetch(
+      url +
+        "?correoDestinatario=" +
+        destinatario +
+        "&cliente=" +
+        cliente +
+        "&servicio=" +
+        servicio +
+        "&hora=" +
+        hora +
+        "&fecha=" +
+        fecha +
+        "&mes=" +
+        mes +
+        "&año=" +
+        año +
+        "&servicio=" +
+        servicio
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data);
+      });
   }
 
   function enviarDatos(
@@ -190,7 +204,9 @@ window.addEventListener("DOMContentLoaded", function () {
     )
       .then((response) => response.json())
       .then((data) => {
+        alert("Reserva realizada con éxito.");
         guardarDatoTemporal("idCita", data);
+        window.location.href = "index.php";
       });
   }
 
@@ -202,7 +218,7 @@ window.addEventListener("DOMContentLoaded", function () {
   function guardarDatoTemporal(clave, valor) {
     sessionStorage.setItem(clave, valor);
   }
-  let btnCancelar = document.getElementById("img-cancelar");
+  let btnCancelar = document.getElementById("icono-accion");
   btnCancelar.addEventListener("click", function () {
     borrarDatos();
     alert("Has cancelado tu reserva.");
@@ -221,6 +237,7 @@ window.addEventListener("DOMContentLoaded", function () {
     removerDatoTemporal("mes");
     removerDatoTemporal("año");
     removerDatoTemporal("nombreProfesional");
+    removerDatoTemporal("correoProfesional");
   }
 
   function removerDatoTemporal(clave) {

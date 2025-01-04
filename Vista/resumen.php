@@ -20,7 +20,7 @@
         <button id="btn-aceptar">Confirmar <img src="img/check_circle_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" width="35" height="35"></button>
         <p id="info">Puedes cancelar Tu Reserva pinchando en la X de arriba. También puedes hacerlo en cualquier momento desde Ver Mis Citas.</p>
     </section>
-    
+
 
 </body>
 

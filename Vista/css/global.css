@@ -3,6 +3,10 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
+}
+*{
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 600px) {

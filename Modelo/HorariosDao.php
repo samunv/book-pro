@@ -9,7 +9,21 @@ class HorariosDao
         return $this->conexion = new Conexion();
     }
 
-    public function leerHorasLibres($fecha, $mes, $año, $idProfesional, $idServicio)
+    public function leerHorarios()
+    {
+        $consulta = mysqli_query(
+            $this->conexion->getConexion(),
+            "SELECT hora FROM horarios"
+        ) or die("Error en consulta: " . mysqli_error($this->conexion->getConexion()));
+
+        $datosArray = array();
+        while ($reg = mysqli_fetch_array($consulta)) {
+            $datosArray[] = $reg;
+        }
+        return $datosArray;
+    }
+
+    public function leerHorasLibres($fecha, $mes, $año, $idProfesional)
     {
         $consulta = mysqli_query(
             $this->conexion->getConexion(),
@@ -25,7 +39,6 @@ class HorariosDao
         AND c.mes = '$mes'
         AND c.idProfesional = '$idProfesional'
         AND c.año = '$año'
-        AND c.idServicio = '$idServicio'
     WHERE 
         c.hora IS NULL
     ORDER BY 

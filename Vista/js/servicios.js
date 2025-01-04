@@ -18,7 +18,9 @@ window.addEventListener("DOMContentLoaded", function () {
   nombreUsuario.innerHTML = "" + obtenerDatoTemporal("nombre");
 
   let correoUsuario = document.getElementById("correo-usuario");
-  correoUsuario.innerHTML = "" + obtenerDatoTemporal("correo");
+      let correo = obtenerDatoTemporal("correo");
+    correoUsuario.textContent =
+      correo.length > 20 ? correo.substring(0, 20)+"..." : correo;
   
 
   let icono = document.getElementById("icono-accion");

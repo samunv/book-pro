@@ -43,6 +43,21 @@ class Usuarios
     private $correo;
 
     /**
+     * @var string
+     */
+    private $token;
+
+    /**
+     * @var string
+     */
+    private $color1;
+
+    /**
+     * @var string
+     */
+    private $color2;
+
+    /**
      * Constructor de la clase Usuarios.
      *
      * @param int $idUsuario
@@ -50,8 +65,11 @@ class Usuarios
      * @param string $permisos
      * @param string $telefono
      * @param string $contrasena
+     * @param String $foto
+     * @param String $correo
+     * @param String $token
      */
-    public function __construct($nombre, $permisos, $telefono, $contrasena, $foto, $correo)
+    public function __construct($nombre, $permisos, $telefono, $contrasena, $foto, $correo, $token)
     {
         $this->nombre = $nombre;
         $this->permisos = $permisos;
@@ -59,6 +77,8 @@ class Usuarios
         $this->contrasena = $contrasena;
         $this->foto = $foto;
         $this->correo = $correo;
+        $this->token = $token;
+        $this->setColors();
     }
 
     /**
@@ -185,7 +205,7 @@ class Usuarios
      * Get the value of correo
      *
      * @return  string
-     */ 
+     */
     public function getCorreo()
     {
         return $this->correo;
@@ -197,11 +217,66 @@ class Usuarios
      * @param  string  $correo
      *
      * @return  self
-     */ 
+     */
     public function setCorreo(string $correo)
     {
         $this->correo = $correo;
 
         return $this;
+    }
+
+    /**
+     * Get the value of token
+     *
+     * @return  string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * Set the value of token
+     *
+     * @param  string  $token
+     *
+     * @return  self
+     */
+    public function setToken(string $token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of color1
+     *
+     * @return  string
+     */
+    public function getColor1()
+    {
+        return $this->color1;
+    }
+
+    /**
+     * Get the value of color2
+     *
+     * @return  string
+     */
+    public function getColor2()
+    {
+        return $this->color2;
+    }
+
+    public function setColors()
+    {
+        $colores1 = ["#BFE8FF", "#d5ffdb", "#ffd4fe", "#ffeeda", "#ffe8e8", "#e3ffe6", "#f0f4ff", "#fff5e3", "#fde4ff", "#e7fff8"];
+        $colores2 = ["#006bff", "#00a317", "#d600d3", "#ff8a00", "#ff0000", "#009933", "#001eff", "#ff9100", "#cc00cc", "#00c8a0"];
+
+        // Asegurar que el índice sea válido para ambos arrays
+        $indice = array_rand($colores1);
+        $this->color1 = $colores1[$indice];
+        $this->color2 = $colores2[$indice];
     }
 }

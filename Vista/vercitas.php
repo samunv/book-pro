@@ -19,7 +19,7 @@
         <div id="lista-citas"></div>
     </section>
 
-    <div id="ventana-eliminar">
+    <div id="ventana-eliminar" class="ventanas">
         <h2>¿Estás seguro de que quieres cancelar la cita del <span id="span-fecha"></span>?</h2>
         <div class="caja-botones">
             <button id="btn-cancelar" type="button">Cancelar</button>

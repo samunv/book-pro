@@ -8,6 +8,8 @@
     <script type="module" src="js/editarperfil.js?v=<?php echo time() ?>"></script>
     <link rel="stylesheet" href="css/estiloeditarperfil.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
+    
 </head>
 
 <body>
@@ -21,7 +23,7 @@
         <form class="formulario" id="formularioEditar">
 
             <div class="contendor-foto">
-                <div class="contenedor-editar">
+                <div class="contenedor-editar" id="icono-editar">
                     <img src="img/edit_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" width="20" height="20">
                 </div>
 

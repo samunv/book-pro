@@ -41,7 +41,19 @@ class UsuariosDao
         return $datosArray;
     }
 
-    public function leerUsuarioPorNombre($correo)
+    public function leerUsuarioPorNombre($nombre)
+    {
+        $consulta = mysqli_query($this->conexion->getConexion(), "SELECT * FROM usuarios WHERE nombre='$nombre'") or die("Error en consulta: " . mysqli_error($this->conexion->getConexion()));
+        $datosArray = array();
+        while ($reg = mysqli_fetch_array($consulta)) {
+            $datosArray[] = $reg;
+        }
+
+        return $datosArray;
+    }
+
+
+    public function leerUsuarioPorCorreo($correo)
     {
         $consulta = mysqli_query($this->conexion->getConexion(), "SELECT * FROM usuarios WHERE correo='$correo'") or die("Error en consulta: " . mysqli_error($this->conexion->getConexion()));
         $datosArray = array();
@@ -68,7 +80,7 @@ class UsuariosDao
 
     public function crearUsuario(Usuarios $u)
     {
-        $sql = "INSERT INTO usuarios(nombre, permisos, telefono, contrasena, foto, correo) VALUES(?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO usuarios(nombre, permisos, telefono, contrasena, foto, correo, token, color1, color2) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $consulta = $this->conexion->getConexion()->prepare($sql);
         if ($consulta) {
             $nombre = $u->getNombre();
@@ -77,12 +89,15 @@ class UsuariosDao
             $contrasena = $u->getContrasena();
             $foto = $u->getFoto();
             $correo = $u->getCorreo();
+            $token = $u->getToken();
+            $color1 = $u->getColor1();
+            $color2 = $u->getColor2();
 
-            $consulta->bind_param("sissss", $nombre, $permisos, $telefono, $contrasena, $foto, $correo);
+            $consulta->bind_param("sisssssss", $nombre, $permisos, $telefono, $contrasena, $foto, $correo, $token, $color1, $color2);
 
             $resultado = $consulta->execute();  // Verificar si la ejecución tuvo éxito
             if ($resultado) {
-                return "Se ha registrado el usuario '$nombre'.";
+                return "Se ha registrado el usuario '$correo'.";
             } else {
                 return "Error al registrarse.";
             }
@@ -160,6 +175,37 @@ class UsuariosDao
                 return "Se ha actualizado la foto de perfil.";
             } else {
                 return "Error al actualizar.";
+            }
+        } else {
+            // Si la preparación falla, devolver un mensaje de error
+            return "Error al preparar la consulta";
+        }
+    }
+
+    public function buscarToken($token, $correo)
+    {
+        $consulta = mysqli_query($this->conexion->getConexion(), "SELECT * FROM usuarios WHERE token='$token' AND correo='$correo'") or die("Error en consulta: " . mysqli_error($this->conexion->getConexion()));
+        $datosArray = array();
+        while ($reg = mysqli_fetch_array($consulta)) {
+            $datosArray[] = $reg;
+        }
+
+        return $datosArray;
+    }
+
+
+    public function eliminarUsuario($correo)
+    {
+        $sql = "DELETE FROM usuarios WHERE correo=?";
+        $consulta = $this->conexion->getConexion()->prepare($sql);
+        if ($consulta) {
+            $consulta->bind_param("s", $correo);
+
+            $resultado = $consulta->execute();  // Verificar si la ejecución tuvo éxito
+            if ($resultado) {
+                return "Se ha eliminado el usuario.";
+            } else {
+                return "Error al eliminar.";
             }
         } else {
             // Si la preparación falla, devolver un mensaje de error

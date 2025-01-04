@@ -6,6 +6,12 @@ window.addEventListener("DOMContentLoaded", function () {
   let formularioHora = document.getElementById("formulario-hora");
   let cajaProfesionales = document.getElementById("profesionales");
 
+  let horaFinal = obtenerDatoTemporal("hora");
+  let diaFinal = obtenerDatoTemporal("dia");
+  let idServicio = obtenerDatoTemporal("idServicio");
+  let mesFinal = obtenerDatoTemporal("mes");
+  let añoFinal = obtenerDatoTemporal("año");
+
   let tituloPagina = document.getElementById("titulo-pagina");
   tituloPagina.innerHTML = "Reservar";
 
@@ -16,7 +22,9 @@ window.addEventListener("DOMContentLoaded", function () {
   nombreUsuario.innerHTML = "" + obtenerDatoTemporal("nombre");
 
   let correoUsuario = document.getElementById("correo-usuario");
-  correoUsuario.innerHTML = "" + obtenerDatoTemporal("correo");
+  let correo = obtenerDatoTemporal("correo");
+  correoUsuario.textContent =
+    correo.length > 20 ? correo.substring(0, 20) + "..." : correo;
 
   let icono = document.getElementById("icono-accion");
   icono.src = "img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
@@ -161,7 +169,6 @@ window.addEventListener("DOMContentLoaded", function () {
     return true; // La hora es válida
   }
 
-  // Agregar eventos a los botones de navegación
   let btnMesAnterior = document.getElementById("mes-anterior");
   btnMesAnterior.addEventListener("click", irAlMesAnterior);
   let btnMesSiguiente = document.getElementById("mes-siguiente");
@@ -200,8 +207,7 @@ window.addEventListener("DOMContentLoaded", function () {
       dia,
       mesSeleccionado,
       añoSeleccionado,
-      profesionalSeleccionado,
-      idServicio
+      profesionalSeleccionado
     ); // Obtener horas disponibles para el día seleccionado
   }
 
@@ -242,7 +248,7 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   // Obtener horas disponibles para el día seleccionado
-  function obtenerHorasDisponibles(dia, mes, año, idProfesional, idServicio) {
+  function obtenerHorasDisponibles(dia, mes, año, idProfesional) {
     fetch(
       url +
         "?diaParaHorario=" +
@@ -252,9 +258,7 @@ window.addEventListener("DOMContentLoaded", function () {
         "&añoParaHorario=" +
         año +
         "&idProfesionalParaHorario=" +
-        idProfesional +
-        "&idServicioParaHorario=" +
-        idServicio
+        idProfesional
     )
       .then((response) => response.json())
       .then((data) => {
@@ -266,23 +270,33 @@ window.addEventListener("DOMContentLoaded", function () {
   function mostrarHoras(horas) {
     let html = "";
     let hayHorasDisponibles = false;
+    const numeroDeCaracteres = 5;
 
+    // Verificar si hay horas disponibles antes de recorrer las horas
+    if (horas.length > 0) {
+      hayHorasDisponibles = true;
+    }else{
+      hayHorasDisponibles = false;
+    }
+
+    // Recorrer las horas y mostrar las disponibles
     horas.forEach((hora) => {
-      const numeroDeCaracteres = 5;
       if (hora.hora && comprobarHoraActual(hora.hora, diaSeleccionado)) {
         // Verificar si la hora no está vacía
         html += `<li id='${hora.hora}'>${hora.hora.substring(
           0,
           numeroDeCaracteres
         )}</li>`;
-        hayHorasDisponibles = true;
-      }
-      if (!hayHorasDisponibles) {
-        html =
-          "<p id='texto-no-horas'>No hay horas disponibles en el día seleccionado.<p>";
       }
     });
 
+    // Si no hay horas disponibles, mostrar el mensaje correspondiente
+    if (!hayHorasDisponibles) {
+      html =
+        "<p id='texto-no-horas'>No hay horas disponibles en el día seleccionado.<p>";
+    }
+
+    // Insertar el HTML generado en el contenedor de la lista de horarios
     listaHorarios.innerHTML = html;
   }
 
@@ -325,12 +339,6 @@ window.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  let horaFinal = obtenerDatoTemporal("hora");
-  let diaFinal = obtenerDatoTemporal("dia");
-  let idServicio = obtenerDatoTemporal("idServicio");
-  let mesFinal = obtenerDatoTemporal("mes");
-  let añoFinal = obtenerDatoTemporal("año");
-
   btnContinuar1.addEventListener("click", function () {
     horaFinal = obtenerDatoTemporal("hora"); // Asegurarse de que se obtenga la hora más actualizada
     diaFinal = obtenerDatoTemporal("dia"); // Asegurarse de que se obtenga el día más actual
@@ -346,8 +354,8 @@ window.addEventListener("DOMContentLoaded", function () {
   function enviarIdServicio(idServicio) {
     fetch(url + "?idServicioParaProfesionales=" + idServicio)
       .then((response) => response.json())
-      .then((data) => {
-        imprimirProfesionales(data);
+      .then((profesionales) => {
+        imprimirProfesionales(profesionales);
       });
   }
   let profesionalSeleccionado = null;
@@ -356,7 +364,7 @@ window.addEventListener("DOMContentLoaded", function () {
     let html = "";
     profesionales.forEach((profesional) => {
       html += `<div class='caja-profesional'>
-           <div class='profesional' id='${profesional.idProfesional}'>
+           <div class='profesional' id='${profesional.idProfesional}' data-correo='${profesional.correo}'>
              <img src='${profesional.foto}' alt='' width='120' height='120'>
            </div>
            <p class='nombre'>${profesional.nombre}</p>
@@ -382,22 +390,24 @@ window.addEventListener("DOMContentLoaded", function () {
       let dia = obtenerDatoTemporal("dia");
 
       if (diaSeleccionado !== null) {
-        obtenerHorasDisponibles(
-          dia,
-          mesSeleccionado,
-          añoSeleccionado,
-          id,
-          idServicio
-        );
+        obtenerHorasDisponibles(dia, mesSeleccionado, añoSeleccionado, id);
       }
 
       if (profesionalSeleccionado !== null) {
         actualizarEstiloProfesional(profesionalSeleccionado, false); // Deseleccionar el profesional previo
       }
 
+      // Obtener el correo del profesional seleccionado
+      let correoProfesional = document
+        .getElementById(id)
+        .getAttribute("data-correo");
+
       actualizarEstiloProfesional(id, true); // Actualizar el estilo del nuevo profesional seleccionado
       profesionalSeleccionado = id; // Guardar profesional seleccionado
       guardarDatoTemporal("idProfesionalSeleccionado", id); // Guardar en sessionStorage
+
+      // Guardar el correo del profesional en sessionStorage
+      guardarDatoTemporal("correoProfesional", correoProfesional);
     }
   }
 

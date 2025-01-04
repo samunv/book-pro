@@ -13,7 +13,6 @@ if (isset($_GET["idUsuario"])) {
             if (empty($verificarNombre)) {
                 $mensaje = $daoUs->actualizarNombre($_GET["nombre"], $_GET["idUsuario"]);
                 // Actualizar el nombre de la sesión al nombre actualizado
-                $sesion->setUsuario($_GET["nombre"]);
                 echo json_encode($mensaje);
             } else {
                 echo json_encode("No se puede actualizar el nombre a " . $_GET["nombre"] . ", porque ya está en uso.");

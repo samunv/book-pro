@@ -1,3 +1,28 @@
+#contenido{
+    display: none;
+}
+/* #loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    background-color: #f4f4f4;
+} */
+
+#loader {
+    margin-top: 100px;
+    width: 120px;
+    height: 20px;
+    border-radius: 10px;
+    background:
+     linear-gradient(#000000 0 0) 0/0% no-repeat
+     #ddd;
+    animation: l1 0.6s infinite linear;
+  }
+  @keyframes l1 {
+      100% {background-size:100%}
+  }
+
 
 .contenedor-enlaces {
     display: flex;
@@ -68,4 +93,8 @@ h1 {
 #texto-gris {
     color: grey;
     text-align: center;
+}
+
+#contenedor-oculto {
+    display: none;
 }

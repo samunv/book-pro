@@ -16,46 +16,62 @@
     include "header.php"
     ?>
 
-    <section class="seccion-principal">
 
-        <section class="contenedor-enlaces">
-            <a href="elegirservicio.php" class="enlaces">
+
+    <section class="seccion-principal" id="seccion-principal">
+
+        <div class="contenedor-loader">
+            <div id="loader"></div>
+        </div>
+
+
+        <section class="contenedor-enlaces" id="contenido">
+            <a href="elegirservicio.php" class="enlaces" id="reservar-cita">
                 <div class="contenedor-img"><img src="img/calendar_month_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
                 <div class="contenedor-txt">
                     <p>Reservar Cita</p>
                 </div>
             </a>
-            <a href="vercitas.php" class="enlaces">
+            <a href="vercitas.php" class="enlaces" id="ver-citas">
                 <div class="contenedor-img"><img src="img/event_note_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
                 <div class="contenedor-txt">
                     <p>Mis Citas</p>
                 </div>
             </a>
+            <a href="paneldecontrol2.php" class="enlaces" id="contenedor-oculto">
+                <div class="contenedor-img"><img src="img/event_note_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
+                <div class="contenedor-txt">
+                    <p>Mi Agenda</p>
+                </div>
+            </a>
+
             <a href="editarperfil.php" class="enlaces">
                 <div class="contenedor-img"><img src="img/account_circle_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
                 <div class="contenedor-txt">
                     <p>Editar Perfil</p>
                 </div>
             </a>
-           
+
             <a href="empresa.php" class="enlaces">
-                <div class="contenedor-img"><img src="img/apartment_24dp_016BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
+                <div class="contenedor-img"><img src="img/location_on_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
                 <div class="contenedor-txt">
                     <p>Empresa</p>
                 </div>
             </a>
-            <a href="" class="enlaces">
+            <a href="notificaciones.php" class="enlaces">
                 <div class="contenedor-img"><img src="img/notifications_24dp_016BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
                 <div class="contenedor-txt">
                     <p>Notificaciones</p>
                 </div>
             </a>
-    
+
+
+
 
         </section>
 
     </section>
-    
+
 
 </body>
 
