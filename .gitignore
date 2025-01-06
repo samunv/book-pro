@@ -1,3 +1,5 @@
 Recursos/
 Modelo/Correo.php
 .codegpt
+Controlador/pagos-stripe-controlador.php
+Vista/js/pagar.js

@@ -46,4 +46,31 @@ window.addEventListener("DOMContentLoaded", function () {
   function obtenerDatoTemporal(clave) {
     return sessionStorage.getItem(clave);
   }
+
+  let btnRecordarContrasena = document.getElementById("recordar-contrasena");
+  let ventanaRecordarContrasena = document.getElementById(
+    "ventana-recordar-contrasena"
+  );
+  let overlay = document.getElementById("overlay");
+  let btnEnviar = document.getElementById("btn-enviar");
+  let inputCorreoRecuperar = document.getElementById("input-correo-recuperar");
+
+  btnRecordarContrasena.addEventListener("click", function () {
+    ventanaRecordarContrasena.style.display = "flex";
+    overlay.style.display = "block";
+  });
+
+  btnEnviar.addEventListener("click", function () {
+    enviarCorreo(inputCorreoRecuperar.value);
+  });
+
+  function enviarCorreo(correo) {
+    fetch(`./../Controlador/procesarlogin.php?correoRecuperar=${correo}`)
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data);
+        ventanaRecordarContrasena.style.display = "none";
+        overlay.style.display = "none";
+      });
+  }
 });

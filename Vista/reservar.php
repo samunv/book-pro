@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservar cita</title>
     <script src="js/reservar.js?v=<?php echo time() ?>"></script>
+    <script type="text/javascript" src="js/header.js?v=<?php echo time() ?>"></script>
     <link rel="stylesheet" href="css/reservar.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
@@ -46,7 +47,7 @@
             </div>
         </section>
 
-        <button type="submit" id="btn-continuar-1">Continuar<img src="img/chevron_right_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt="" width="35" height="35"></button>
+        <button type="submit" id="btn-continuar-1">Continuar</button>
 
     </section>
 

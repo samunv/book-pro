@@ -41,6 +41,16 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const correo = data.correo || "";
       guardarDatoTemporal("correo", correo);
+      obtenerNotificaciones(correo);
+
+      const enlaceCitas = document.getElementById("ver-citas");
+      const enlacePerfil = document.getElementById("editar-perfil");
+      const enlaceNotificaciones = document.getElementById("notificaciones");
+
+      const nuevoParametro = "?correo=" + correo;
+      enlaceCitas.href += nuevoParametro;
+      enlacePerfil.href += nuevoParametro;
+      enlaceNotificaciones.href += nuevoParametro;
 
       // Actualizar interfaz con los datos del usuario
       actualizarInterfazUsuario(data);
@@ -50,6 +60,26 @@ window.addEventListener("DOMContentLoaded", function () {
       console.error("Error al obtener usuario:", error);
       return null;
     }
+  }
+
+  function obtenerNotificaciones(correo) {
+    fetch(URL_USUARIO + "?correoNotificaciones=" + correo)
+      .then((response) => response.json())
+      .then((notificaciones) => {
+        imprimirCuentaDeNotificaciones(notificaciones.length);
+      });
+  }
+
+  let cuentaNotificaciones = this.document.getElementById(
+    "cuenta-notificaciones"
+  );
+  function imprimirCuentaDeNotificaciones(longitudNotificaciones) {
+    if(longitudNotificaciones>0){
+      cuentaNotificaciones.innerHTML = "" + longitudNotificaciones;
+    }else{
+      cuentaNotificaciones.style.display = "none";
+    }
+    
   }
 
   // Actualizar elementos de la interfaz con los datos del usuario

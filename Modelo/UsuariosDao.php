@@ -163,6 +163,25 @@ class UsuariosDao
         }
     }
 
+    public function actualizarContrasena($contrasena, $correo)
+    {
+        $sql = "UPDATE usuarios SET contrasena=? WHERE correo=?";
+        $consulta = $this->conexion->getConexion()->prepare($sql);
+        if ($consulta) {
+            $consulta->bind_param("ss", $contrasena, $correo);
+
+            $resultado = $consulta->execute();  // Verificar si la ejecución tuvo éxito
+            if ($resultado) {
+                return "Se ha actualizado la contraseña correctamente.";
+            } else {
+                return "Error al actualizar.";
+            }
+        } else {
+            // Si la preparación falla, devolver un mensaje de error
+            return "Error al preparar la consulta";
+        }
+    }
+
     public function actualizarFoto($foto, $id)
     {
         $sql = "UPDATE usuarios SET foto=? WHERE idUsuario=?";

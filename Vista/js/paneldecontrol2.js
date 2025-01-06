@@ -25,7 +25,6 @@ window.addEventListener("DOMContentLoaded", function () {
   correoUsuario.textContent =
     correo.length > 20 ? correo.substring(0, 20) + "..." : correo;
 
-  // Mapeo de los meses numéricos a sus nombres en español
   const meses = [
     "enero",
     "febrero",
@@ -41,7 +40,6 @@ window.addEventListener("DOMContentLoaded", function () {
     "diciembre",
   ];
 
-  // Obtener la fecha actual y formatearla a día, mes, año
   let fechaSeleccionada = new Date();
   let dia = fechaSeleccionada.getDate();
   let mes = fechaSeleccionada.getMonth();
@@ -55,30 +53,23 @@ window.addEventListener("DOMContentLoaded", function () {
   let mesString = meses[mes];
 
   function irAlDiaSiguiente() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1); // Aumenta un día
-
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() + 1);
     dia = fechaSeleccionada.getDate();
     mes = fechaSeleccionada.getMonth();
     año = fechaSeleccionada.getFullYear();
-
-    mesString = meses[mes]; // Obtener el mes actualizado
-
-    imprimirFecha(dia, mesString, año); // Actualizar la fecha
-    main(); // Recargar los datos correspondientes al nuevo día
+    mesString = meses[mes];
+    imprimirFecha(dia, mesString, año);
+    main();
   }
 
-  // Función para ir al día anterior
   function irAlDiaAnterior() {
-    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1); // Disminuye un día
-
+    fechaSeleccionada.setDate(fechaSeleccionada.getDate() - 1);
     dia = fechaSeleccionada.getDate();
     mes = fechaSeleccionada.getMonth();
     año = fechaSeleccionada.getFullYear();
-
-    mesString = meses[mes]; // Obtener el mes actualizado
-
-    imprimirFecha(dia, mesString, año); // Actualizar la fecha
-    main(); // Recargar los datos correspondientes al nuevo día
+    mesString = meses[mes];
+    imprimirFecha(dia, mesString, año);
+    main();
   }
 
   comprobarPermisos(permisos);
@@ -93,6 +84,7 @@ window.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.exito) {
+          sessionStorage.clear();
           alert(data.exito);
           window.location.href = "login.php";
         } else if (data.error) {
@@ -113,57 +105,63 @@ window.addEventListener("DOMContentLoaded", function () {
   let idUsuarioProfesional = obtenerDatoTemporal("idUsuarioProfesional");
   let tabla = document.getElementById("tabla-citas");
 
-  async function obtenerHorarios() {
-    try {
-      let response = await fetch(url + "?obtenerHorarios=true");
-      let horariosObtenidos = await response.json();
-      return horariosObtenidos;
-    } catch (error) {
-      console.error("Error al obtener horarios:", error);
-      return [];
-    }
+  function obtenerHorarios() {
+    return fetch(url + "?obtenerHorarios=true")
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error("Error al obtener horarios:", error);
+        return [];
+      });
   }
 
-  async function obtenerCitas(idProfesional) {
-    try {
-      let response = await fetch(
-        url + "?idProfesionalParaCitas=" + idProfesional
-      );
-      let citasObtenidas = await response.json();
-      return citasObtenidas;
-    } catch (error) {
-      console.error("Error al obtener citas:", error);
-      return [];
-    }
+  function obtenerCitas(idProfesional) {
+    return fetch(url + "?idProfesionalParaCitas=" + idProfesional)
+      .then((response) => response.json())
+      .catch((error) => {
+        console.error("Error al obtener citas:", error);
+        return [];
+      });
   }
 
-  async function main() {
-    const horarios = await obtenerHorarios();
-    const citas = await obtenerCitas(idUsuarioProfesional);
-    console.log("Horarios obtenidos:", horarios);
-    console.log("Citas: ", citas);
+  function main() {
+    Promise.all([obtenerHorarios(), obtenerCitas(idUsuarioProfesional)])
+      .then(([horarios, citas]) => {
+        console.log("Horarios obtenidos:", horarios);
+        console.log("Citas: ", citas);
 
-    // Llamada a la función para imprimir la tabla con la fecha seleccionada
-    imprimirTabla(horarios, citas, dia, mesString, año);
-    imprimirFecha(dia, mesString, año);
-
+        imprimirTabla(horarios, citas, dia, mesString, año);
+        imprimirFecha(dia, mesString, año);
+      })
+      .catch((error) => {
+        console.error("Error en main:", error);
+      });
   }
 
   function imprimirFecha(dia, mes, año) {
-    let fechaCitas = document.getElementById("fecha-citas");
-    fechaCitas.innerHTML = dia + " de " + mes + " de " + año;
+    const fechaCitas = document.getElementById("fecha-citas");
+    let textoFecha = `${dia} de ${mes} de ${año}`;
+    if (comprobarDiaActual(dia, mes, año)) {
+      textoFecha += " (hoy)";
+    }
+    fechaCitas.innerHTML = textoFecha;
   }
 
-  async function imprimirTabla(
-    horarios,
-    citas,
-    diaSeleccionado,
-    mesSeleccionado,
-    añoSeleccionado
-  ) {
+  function comprobarDiaActual(dia, mes, año) {
+    const hoy = new Date();
+    const diaActual = hoy.getDate();
+    const mesActual = hoy.toLocaleString("default", { month: "long" });
+    const añoActual = hoy.getFullYear();
+
+    return (
+      parseInt(dia) === diaActual &&
+      mes.toLowerCase() === mesActual.toLowerCase() &&
+      parseInt(año) === añoActual
+    );
+  }
+
+  function imprimirTabla(horarios, citas, diaSeleccionado, mesSeleccionado, añoSeleccionado) {
     let html = "";
 
-    // Fila de encabezado
     html += "<tr id='encabezado-tabla'>";
     html += "<th>Horarios</th>";
     html += "<th>Citas</th>";
@@ -173,7 +171,6 @@ window.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < horarios.length; i++) {
       const horaHorario = horarios[i].hora;
 
-      // Filtra citas según hora y día
       const citasParaHorario = citas.filter(
         (c) =>
           c.hora === horaHorario &&
@@ -182,18 +179,13 @@ window.addEventListener("DOMContentLoaded", function () {
           c.mes.toLowerCase() === "" + mesSeleccionado + ""
       );
 
-      console.log(
-        `Citas para el horario ${horaHorario} y día ${diaSeleccionado}:`,
-        citasParaHorario
-      );
+      console.log(`Citas para el horario ${horaHorario} y día ${diaSeleccionado}:`, citasParaHorario);
 
-      // Generar filas para cada cita en este horario
       if (citasParaHorario.length > 0) {
         citasParaHorario.forEach((cita) => {
           html += generarFilaCita(cita, horaHorario);
         });
       } else {
-        // Si no hay citas, muestra "No asignada"
         html += "<tr>";
         html += `<td>${horaHorario.substring(0, 5)}</td>`;
         html += `<td class='no-asignada'><hr></td>`;
@@ -202,7 +194,6 @@ window.addEventListener("DOMContentLoaded", function () {
       }
     }
 
-    // Actualiza el contenido de la tabla
     tabla.innerHTML = html;
   }
 
@@ -233,15 +224,12 @@ window.addEventListener("DOMContentLoaded", function () {
       </tr>`;
   }
 
-
   main();
 
-  // Obtener el dato temporal
   function obtenerDatoTemporal(clave) {
     return sessionStorage.getItem(clave);
   }
 
-  // Guardar el dato temporal
   function guardarDatoTemporal(clave, valor) {
     sessionStorage.setItem(clave, valor);
   }

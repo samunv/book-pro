@@ -123,15 +123,19 @@ button:hover {
 }
 
 #enlace-registro {
-    color: rgb(0, 107, 255);
     margin-top: 50px;
+}
+
+.enlace-azul {
+    color: rgb(0, 107, 255);
     font-size: 17px;
     font-weight: bolder;
     text-decoration: none;
 }
 
-#enlace-registro:hover {
+.enlace-azul:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 #btn-cerrar-sesion {
@@ -139,11 +143,13 @@ button:hover {
     width: 30%;
     margin: 10px;
 }
-#btn-eliminar{
+
+#btn-eliminar {
     background-color: red;
     width: 30%;
     margin: 10px;
 }
+
 #enlace-volver {
     position: absolute;
     right: 90%;
@@ -154,13 +160,13 @@ button:hover {
 .botones {
     width: 50%;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 25px;
 }
 
-#seccion-confirmacion{
+#seccion-confirmacion {
     display: none;
     position: fixed;
     left: 50%;
@@ -170,29 +176,30 @@ button:hover {
     background-color: white;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-padding: 30px;
+    padding: 30px;
     z-index: 999;
 
 }
 
-#botones{
+#botones {
     display: flex;
     flex-direction: row;
 }
 
-#botones button:nth-child(2){
+#botones button:nth-child(2) {
     background-color: red;
 }
-#botones button{
+
+#botones button {
     margin: 5px;
 }
 
-#seccion-confirmacion form{
+#seccion-confirmacion form {
     box-shadow: none;
 
 }
 
-h2{
+h2 {
     max-width: 500px;
     text-align: center;
     margin-bottom: 5px;
@@ -213,4 +220,43 @@ h2{
     background-color: rgba(0, 0, 0, 0.7);
     /* Fondo oscuro con transparencia */
     z-index: 998;
+}
+
+#ventana-recordar-contrasena{
+    background-color: white;
+    padding: 30px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+#correo-recuperar{
+    margin: 0%;
+}
+
+#contenedor-recuperar{
+    width: 250px;
+    text-align: center;
+    padding: 30px;
+    background-color: white;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#contraseña-nueva{
+    margin-bottom: 0;
+}
+
+.texto-info{
+    color: gray;
+    font-size: small;
 }

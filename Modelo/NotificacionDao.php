@@ -44,5 +44,21 @@ class NotificacionDAO
         return $datosArray;
     }
 
-
+    public function borrarNotificacionesPorCorreo($correo)
+    {
+        $sql = "DELETE FROM notificaciones where destinatario=?";
+        $consulta = $this->conexion->getConexion()->prepare($sql);
+        if ($consulta) {
+            $consulta->bind_param("s", $correo);
+            $resultado = $consulta->execute();  // Verificar si la ejecución tuvo éxito
+            if ($resultado) {
+                return "Se han eliminado las notificaciones.";
+            } else {
+                return "Error al eliminar notificaciones.";
+            }
+        } else {
+            // Si la preparación falla, devolver un mensaje de error
+            return "Error al preparar la consulta";
+        }
+    }
 }

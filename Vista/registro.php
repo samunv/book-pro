@@ -14,7 +14,6 @@
     <form class="formulario" id="formularioRegistro">
         <label for="nombre">Nombre</label>
         <input type="text" id="nombre" name="nombre" required maxlength="15" minlength="5" placeholder="Ej: Rodrigo" />
-       
         <label for="contrasena">Contraseña (8 caracteres mínimo)</label>
         <input type="password" id="contrasena" name="contrasena" required maxlength="15" minlength="8" />
         <label for="correo">Correo</label>

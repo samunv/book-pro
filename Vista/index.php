@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inicio</title>
     <script type="module" src="js/index.js?v=<?php echo time() ?>"></script>
+    <script type="text/javascript" src="js/header.js?v=<?php echo time() ?>"></script>
     <link rel="stylesheet" href="css/estiloindex.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+
 </head>
 
 <body>
@@ -45,7 +47,7 @@
                 </div>
             </a>
 
-            <a href="editarperfil.php" class="enlaces">
+            <a href="editarperfil.php" class="enlaces" id="editar-perfil">
                 <div class="contenedor-img"><img src="img/account_circle_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
                 <div class="contenedor-txt">
                     <p>Editar Perfil</p>
@@ -58,8 +60,12 @@
                     <p>Empresa</p>
                 </div>
             </a>
-            <a href="notificaciones.php" class="enlaces">
-                <div class="contenedor-img"><img src="img/notifications_24dp_016BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
+            <a href="notificaciones.php" class="enlaces" id="notificaciones">
+                <div class="contenedor-foto-cuenta">
+                    <div class="contenedor-img"><img src="img/notifications_24dp_016BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
+                    <div id="cuenta-notificaciones"></div>
+                </div>
+
                 <div class="contenedor-txt">
                     <p>Notificaciones</p>
                 </div>

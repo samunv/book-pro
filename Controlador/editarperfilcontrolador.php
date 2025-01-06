@@ -36,7 +36,7 @@ if (isset($_GET["idUsuario"])) {
     } else {
         echo json_encode("Algo está mal");
     }
-} elseif (isset($_GET['cerrarSesionBoolean']) && $_GET['cerrarSesionBoolean'] === 'true') {
+} else if (isset($_GET['cerrarSesionBoolean']) && $_GET['cerrarSesionBoolean'] === 'true') {
     // Si se recibe el parámetro de cerrarSesionBoolean como true:
     $sesion = new Sesion();
     $array = array();
@@ -49,4 +49,10 @@ if (isset($_GET["idUsuario"])) {
     }
 
     echo json_encode($array);
-} 
+}
+if(isset($_GET["correoUsuario"])){
+    $correo = $_GET["correoUsuario"];
+    $daoUs = new UsuariosDao();
+    $resultado = $daoUs->leerUsuarioPorCorreo($correo);
+    echo json_encode($resultado);
+}

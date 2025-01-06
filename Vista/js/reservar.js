@@ -269,29 +269,21 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function mostrarHoras(horas) {
     let html = "";
-    let hayHorasDisponibles = false;
     const numeroDeCaracteres = 5;
 
     // Verificar si hay horas disponibles antes de recorrer las horas
     if (horas.length > 0) {
-      hayHorasDisponibles = true;
-    }else{
-      hayHorasDisponibles = false;
-    }
-
-    // Recorrer las horas y mostrar las disponibles
-    horas.forEach((hora) => {
-      if (hora.hora && comprobarHoraActual(hora.hora, diaSeleccionado)) {
-        // Verificar si la hora no está vacía
-        html += `<li id='${hora.hora}'>${hora.hora.substring(
-          0,
-          numeroDeCaracteres
-        )}</li>`;
-      }
-    });
-
-    // Si no hay horas disponibles, mostrar el mensaje correspondiente
-    if (!hayHorasDisponibles) {
+      // Recorrer las horas y mostrar las disponibles
+      horas.forEach((hora) => {
+        if (hora.hora && comprobarHoraActual(hora.hora, diaSeleccionado)) {
+          // Verificar si la hora no está vacía
+          html += `<li id='${hora.hora}'>${hora.hora.substring(
+            0,
+            numeroDeCaracteres
+          )}</li>`;
+        }
+      });
+    } else {
       html =
         "<p id='texto-no-horas'>No hay horas disponibles en el día seleccionado.<p>";
     }

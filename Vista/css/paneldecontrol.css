@@ -75,7 +75,7 @@ table {
     padding-left: 30px;
     padding-right: 30px;
     background-color: white;
-   
+
 
 }
 
@@ -89,7 +89,7 @@ tr td:last-child {
     padding-right: 40px;
 }
 
-#encabezado-tabla th:first-child{
+#encabezado-tabla th:first-child {
     padding-left: 40px;
 }
 
@@ -119,11 +119,11 @@ tr td:last-child {
 
 
 
- tr:last-child td {
+tr:last-child td {
     padding-bottom: 40px;
 }
 
-#encabezado-tabla th:last-child{
+#encabezado-tabla th:last-child {
     padding-right: 40px;
 }
 
@@ -190,6 +190,12 @@ tr {
     width: 25px;
     height: 25px;
     cursor: pointer;
+
+}
+
+
+#dia-anterior{
+    transform: scaleX(-1);
 }
 
 .fecha {
@@ -210,7 +216,8 @@ hr {
 }
 
 .iconos-accion:hover {
-    transform: scale(1.1);
+    background-color: rgb(220, 220, 220);
+    border-radius: 5px;
 }
 
 

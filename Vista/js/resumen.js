@@ -39,6 +39,9 @@ window.addEventListener("DOMContentLoaded", function () {
   let correoProfesional = obtenerDatoTemporal("correoProfesional");
   let nombreCliente = obtenerDatoTemporal("nombre");
 
+  let divConfirmado = this.document.getElementById("confirmado");
+  let overlay = this.document.getElementById("overlay");
+
   console.log(correoProfesional);
 
   let nombreProfesional = null;
@@ -168,7 +171,7 @@ window.addEventListener("DOMContentLoaded", function () {
     )
       .then((response) => response.json())
       .then((data) => {
-        alert(data);
+        console.log(data);
       });
   }
 
@@ -204,10 +207,19 @@ window.addEventListener("DOMContentLoaded", function () {
     )
       .then((response) => response.json())
       .then((data) => {
-        alert("Reserva realizada con éxito.");
+        console.log("Reserva realizada con éxito.");
         guardarDatoTemporal("idCita", data);
-        window.location.href = "index.php";
+        mostrarElementos(divConfirmado, overlay);
+        setTimeout(() => {
+          window.location.href = "vercitas.php?correo=" + correo + "&#contenedor" + data;
+        }, 2000);
       });
+  }
+
+  function mostrarElementos(...elementos) {
+    elementos.forEach((elemento) => {
+      elemento.style.display = "flex";
+    });
   }
 
   function obtenerDatoTemporal(clave) {

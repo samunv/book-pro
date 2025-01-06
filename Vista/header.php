@@ -4,7 +4,7 @@
         <h1 id="titulo-pagina"></h1>
     </div>
 
-    <a href="editarperfil.php">
+    <a href="editarperfil.php" id="ir-a-perfil">
         <div class="elementos-header2">
 
             <img src="" alt="" id="img-foto" width="50" height="50">
@@ -13,13 +13,8 @@
                 <p id="nombre-usuario"></p>
                 <p id="correo-usuario"></p>
             </div>
-
-
-
         </div>
     </a>
-
-
 
 
 </header>

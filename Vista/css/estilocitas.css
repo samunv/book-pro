@@ -1,6 +1,7 @@
-*{
+* {
     transition: all 0.3s ease;
 }
+
 .seccion-principal {
     width: 100%;
     padding-top: 50px;
@@ -13,45 +14,53 @@
 
 .contenedor-cita {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 40%;
     margin: 20px;
-    padding: 15px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 25px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
 
 
 }
 
 #lista-citas {
+    display: none;
     width: 100%;
-    display: flex;
-
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
 
 }
 
-.conjunto-foto-texto{
+.conjunto-foto-texto {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-.contenedor-papelera {
+
+.conjunto-foto-texto img {
+    border-radius: 7px;
+}
+
+.contenedor-iconos {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    align-items: center;
 }
 
-.contenedor-papelera img {
-    transition: all 0.3s ease;
+.contenedor-iconos img {
+    border-radius: 5px;
+    width: 30px;
+    height: 30px;
 }
 
-.contenedor-papelera img:hover {
-    transform: scale(1.2);
+.contenedor-iconos img:hover {
+    background-color: #BFE8FF;
     cursor: pointer;
 }
 
@@ -59,7 +68,7 @@
     background-color: white;
     border-radius: 20px;
     z-index: 999;
-    width: 40%;
+    width: 30%;
     padding: 40px;
     position: fixed;
     /* Posición absoluta */
@@ -68,7 +77,7 @@
     left: 50%;
     /* 50% desde la izquierda */
     transform: translate(-50%, -50%);
-    
+
 }
 
 #icono-accion {
@@ -95,16 +104,17 @@
 .caja-botones {
     display: flex;
     justify-content: center;
+    align-items: center;
 
 }
 
 button {
-    width: 30%;
+    width: 20%;
     margin: 10px;
     padding: 20px;
     font-size: 15px;
-    background-color: rgb(0, 107, 255);
-    color: #fff;
+    background-color: transparent;
+    color: gray;
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -117,16 +127,21 @@ button {
 }
 
 button:hover {
-    background-color: rgb(7, 88, 201);
+    background-color: #ebebeb;
 }
 
 #btn-eliminar {
-    background-color: red;
+    color: red;
+    background-color: transparent;
+}
+
+#btn-eliminar:hover{
+    background-color: rgb(255, 222, 222);
 }
 
 h2 {
     text-align: center;
-    padding: 15px;
+    
 }
 
 .foto-servicio {
@@ -138,10 +153,25 @@ h2 {
 
 .apartado-texto {
     margin: 20px;
-    
+
 }
 
-.apartado-texto p, .apartado-texto h3{
+.apartado-texto p,
+.apartado-texto h3 {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+#loader {
+    margin-top: 100px;
+    width: 120px;
+    height: 20px;
+    border-radius: 10px;
+    background:
+     linear-gradient(#000000 0 0) 0/0% no-repeat
+     #ddd;
+    animation: l1 0.6s infinite linear;
+  }
+  @keyframes l1 {
+      100% {background-size:100%}
+  }

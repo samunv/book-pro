@@ -7,6 +7,7 @@
     <title>Mis citas</title>
     <link rel="stylesheet" href="css/estilocitas.css?v=<?php echo time() ?>">
     <script src="js/vercitas.js?v=<?php echo time() ?>"></script>
+    <script type="text/javascript" src="js/header.js?v=<?php echo time() ?>"></script>
     <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
 </head>
@@ -16,6 +17,9 @@
     include "header.php"
     ?>
     <section class="seccion-principal">
+        <div class="contenedor-loader">
+            <div id="loader"></div>
+        </div>
         <div id="lista-citas"></div>
     </section>
 

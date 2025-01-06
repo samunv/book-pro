@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegir Servicio</title>
     <script type="module" src="js/servicios.js?v=<?php echo time() ?>"></script>
+    <script type="text/javascript" src="js/header.js?v=<?php echo time() ?>"></script>
     <link rel="stylesheet" href="css/servicio.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
     <link rel="icon" href="img/pngtree-barbershop-pole-decoration-png-image_6115703.png">

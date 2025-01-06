@@ -98,3 +98,24 @@ h1 {
 #contenedor-oculto {
     display: none;
 }
+#cuenta-notificaciones{
+    background-color: rgb(0, 107, 255);
+    color: white;
+    font-weight: bold;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    position: absolute;
+    transform: translate(25px, -20px);
+}
+
+.contenedor-foto-cuenta{
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

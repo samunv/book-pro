@@ -15,22 +15,34 @@ window.addEventListener("DOMContentLoaded", function () {
   let nombre = document.getElementById("nombreEditar");
   let telefono = document.getElementById("telefonoEditar");
 
-  let idUsuario = obtenerDatoTemporal("idUsuario");
+  let idUsuario = "";
 
-  let nombreSesion = obtenerDatoTemporal("nombre");
-  let telefonoSesion = obtenerDatoTemporal("telefono");
+  const params = new URLSearchParams(window.location.search);
+  const correo = params.get("correo");
 
-  nombre.placeholder = nombreSesion;
-  telefono.placeholder = telefonoSesion;
+  obtenerUsuario(correo);
+
+  function obtenerUsuario(correo) {
+    fetch(url + "?correoUsuario=" + correo)
+      .then((response) => response.json())
+      .then((usuario) => {
+        imprimirDatosDelUsuario(usuario[0]);
+      });
+  }
+  let fotoDePerfil = document.getElementById("fotoDePerfil");
+
+  function imprimirDatosDelUsuario(usuario) {
+    nombre.placeholder = usuario.nombre;
+    telefono.placeholder = usuario.telefono;
+    fotoDePerfil.src = usuario.foto;
+    idUsuario = usuario.idUsuario;
+  }
 
   let imgFoto = document.getElementById("img-foto");
   imgFoto.style.display = "none";
 
   let nombreUsuario = document.getElementById("nombre-usuario");
   nombreUsuario.innerHTML = "";
-
-  let fotoDePerfil = document.getElementById("fotoDePerfil");
-  fotoDePerfil.src = obtenerDatoTemporal("foto");
 
   let ventanaEditarFoto = document.getElementById("ventana-editarfoto-oculta");
   let overlay = document.getElementById("overlay");
@@ -55,10 +67,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Validación del campo de nombre
   nombre.addEventListener("input", function () {
-     // Elimina caracteres no permitidos y reemplaza múltiples espacios por uno solo
-     this.value = this.value.replace(/[^A-Za-z0-9\s]/g, "");
-     this.value = this.value.replace(/\s{3,}/g, "  "); // Limita los espacios consecutivos a un máximo de dos
-     this.value = this.value.replace(/^\s+/g, ""); // Elimina los espacios al inicio
+    // Elimina caracteres no permitidos y reemplaza múltiples espacios por uno solo
+    this.value = this.value.replace(/[^A-Za-z0-9\s]/g, "");
+    this.value = this.value.replace(/\s{3,}/g, "  "); // Limita los espacios consecutivos a un máximo de dos
+    this.value = this.value.replace(/^\s+/g, ""); // Elimina los espacios al inicio
 
     if (nombre.value.length >= 5 && nombre.value.length <= 15) {
       activarBoton(btnActualizarNombre);
@@ -129,6 +141,7 @@ window.addEventListener("DOMContentLoaded", function () {
       .then((response) => response.json())
       .then((data) => {
         if (data.exito) {
+          sessionStorage.clear();
           alert(data.exito);
           window.location.href = "login.php";
         } else if (data.error) {
