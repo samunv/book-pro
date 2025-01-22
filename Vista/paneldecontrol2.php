@@ -19,17 +19,23 @@
 
     <section class="seccion-principal">
         <div class="fecha">
-            <div class="circulo-flechas"><img src="img/arrow_forward_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="dia-anterior" class="flechas" /></div>
-            <h2 id="fecha-citas"></h2>
-            <div class="circulo-flechas"><img src="img/arrow_forward_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="dia-siguiente" class="flechas" /></div>
+            <div id="fecha-citas">
+                <input type="text" id="input-dia" placeholder="Día" maxlength="2"/>
+                <select name="mes" id="input-mes"></select>
+                <input type="text" id="input-año" value="" placeholder="Año" maxlength="4"/>
+            </div>
+
+            <div class="contenedor-flechas">
+                <div class="circulo-flechas"><img src="img/arrow_forward_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="dia-anterior" class="flechas" /></div>
+                <div class="circulo-flechas"><img src="img/arrow_forward_ios_24dp_000000_FILL0_wght400_GRAD0_opsz24.png" id="dia-siguiente" class="flechas" /></div>
+
+            </div>
         </div>
 
 
         <table id="tabla-citas"></table>
     </section>
-
-
-    <a href="editarperfil.php">Editar Perfil</a>
+    <div id="overlay" class="overlay"></div>
 </body>
 
 </html>

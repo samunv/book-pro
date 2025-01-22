@@ -7,6 +7,7 @@
     <title>Inicio</title>
     <script type="module" src="js/index.js?v=<?php echo time() ?>"></script>
     <script type="text/javascript" src="js/header.js?v=<?php echo time() ?>"></script>
+    <link rel="icon" href="img/B-logo-bpro.png">
     <link rel="stylesheet" href="css/estiloindex.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/header.css?v=<?php echo time() ?>">
     <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">

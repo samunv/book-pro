@@ -79,7 +79,8 @@ if (isset($_GET["token"]) && isset($_GET["correoToken"])) {
             unset($_SESSION['usuarioProvisional']); // Eliminar el usuario provisional tras guardarlo
             echo json_encode(["mensaje" => "Usuario verificado y registrado con éxito."]);
         } else {
-            echo json_encode(["mensaje" => "Token inválido o no coincide con el usuario provisional."]);
+            unset($_SESSION['usuarioProvisional']); // Eliminar el usuario provisional tras guardarlo
+            echo json_encode(["mensaje" => "Token inválido para ". $_GET["correoToken"]]);
         }
     } else {
         echo json_encode(["mensaje" => "No hay un usuario provisional almacenado."]);

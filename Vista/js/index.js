@@ -106,7 +106,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
       const data = await response.json();
       const tituloPagina = document.getElementById("titulo-pagina");
-      tituloPagina.textContent = data.nombre || "Nombre de la empresa";
+      tituloPagina.textContent = "BookPro" || "Nombre de la empresa";
     } catch (error) {
       console.error("Error al obtener el nombre de la empresa:", error);
     }

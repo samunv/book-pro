@@ -112,10 +112,6 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   });
 
-  function obtenerDatoTemporal(clave) {
-    return sessionStorage.getItem(clave);
-  }
-
   function comprobarSesion() {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())

@@ -15,11 +15,23 @@ class CitaDao
         return $this->conexion = new Conexion();
     }
 
+    //obtener todas las citas
+    public function obtenerTodasLasCitas()
+    {
+        $consulta = mysqli_query($this->conexion->getConexion(), "SELECT * FROM citas") or die("Error en consulta: " . mysqli_error($this->conexion->getConexion()));   //ejecutar la consulta
+        $datosArray = array();  //crear un array para almacenar los datos
+        while ($reg = mysqli_fetch_array($consulta)) {  //recorrer los datos de la consulta
+            $datosArray[] = $reg;  //almacenar los datos en el array
+        }
+        return $datosArray;  //devolver el array
+    }
+
     public function leerCitas($idProfesional)
     {
         $consulta = mysqli_query($this->conexion->getConexion(), "
         SELECT 
             citas.*, 
+            usuarios.correo,
             usuarios.telefono, 
             usuarios.nombre, 
             usuarios.foto,

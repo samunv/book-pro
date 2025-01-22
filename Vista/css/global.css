@@ -4,10 +4,9 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    width: 100%;
 }
-*{
-    transition: all 0.3s ease;
-}
+
 
 @media (max-width: 600px) {
 
@@ -16,108 +15,9 @@ body {
         padding-bottom: 10px;
         padding-left: 0px;
         padding-right: 0px;
-    }
-
-    /*Index*/
-    .contenedor-enlaces {
-        transform: scale(0.7) translateY(-150px);
-        width: 500px;
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 20px;
         
     }
 
-
-    #texto-gris {
-        display: none;
-    }
-
-    .enlaces {
-        overflow: hidden;
-        border-radius: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin: 15px;
-        transition: all 0.3s ease;
-        background-color: white;
-        padding: 10px;
-        width: 170px;
-        height: 170px;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-decoration: none;
-    
-    }
-
-    .enlaces p{
-        font-size: 16px;
-        margin-left: 0px;
-    }
-
-
-    /*Resumen*/
-    #lista-datos {
-        margin: 0px;
-        transform: scale(0.8);
-    }
-
-    #btn-aceptar {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-
-    /*Mis citas*/
-    .contenedor-cita {
-        width: 90%;
-        
-        margin: 10px;
-        padding: 0px 0px 0px 0px;
-        
-
-    }
-
-    .conjunto-foto-texto{
-        margin: 20px;
-    }
-    .conjunto-foto-texto img {
-        width: 60px;
-        height: 60px;
-    }
-
-    .conjunto-foto-texto .apartado-texto {
-        font-size: small;
-        width: 150px;
-    }
-
-    .contenedor-papelera {
-        margin-right: 30px;
-    }
-
-
-
-    /*Empresa*/
-    #contenedor-datos {
-        transform: scale(0.7) translateY(-100px);
-        width: 100%;
-        margin: 0px;
-    }
-
-    .lista {
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        padding-top: 2px;
-        padding-bottom: 2px;
-    }
-
-    #contenedor-info h3 {
-        padding-top: 10px;
-        padding-bottom: 2px;
-    }
 
 
 

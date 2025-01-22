@@ -56,3 +56,35 @@
 #btn-borrar-notificaciones:hover {
     background-color: rgb(185, 185, 185);
 }
+
+@media (max-width: 600px) {
+    #btn-borrar-notificaciones {
+        display: none;
+        border: none;
+        font-size: 12px;
+        font-weight: bold;
+        color: rgb(82, 82, 82);
+        background-color: rgb(212, 212, 212);
+        padding: 20px;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+
+
+    .caja-notificacion {
+        background-color: white;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 15px;
+        border-radius: 15px;
+        margin: 5px;
+        max-width: 800px;
+        font-size: 12px;
+    }
+
+    .caja-notificacion img {
+        width: 40px;
+        height: 40px;
+    }
+}

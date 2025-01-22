@@ -40,6 +40,7 @@ window.addEventListener("DOMContentLoaded", function () {
   let nombreCliente = obtenerDatoTemporal("nombre");
 
   let divConfirmado = this.document.getElementById("confirmado");
+  let seleccionarPago = this.document.getElementById("seleccionar-pago");
   let overlay = this.document.getElementById("overlay");
 
   console.log(correoProfesional);
@@ -114,7 +115,17 @@ window.addEventListener("DOMContentLoaded", function () {
   let btnAceptar = document.getElementById("btn-aceptar");
   btnAceptar.addEventListener("click", async function (e) {
     e.preventDefault();
+    enviar();
+  });
 
+  function establecerBoton(boton, formaDePago) {
+    boton.addEventListener("click", function () {
+      guardarDatoTemporal("formaDePago", formaDePago);
+      enviar();
+    });
+  }
+
+  function enviar() {
     // Comprobar si existe una cita duplicada
 
     enviarDatos(
@@ -138,7 +149,7 @@ window.addEventListener("DOMContentLoaded", function () {
       añoFinal,
       nombreServicio
     );
-  });
+  }
 
   function enviarNotificacion(
     destinatario,
@@ -209,9 +220,11 @@ window.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         console.log("Reserva realizada con éxito.");
         guardarDatoTemporal("idCita", data);
+        seleccionarPago.style.display = "none";
         mostrarElementos(divConfirmado, overlay);
         setTimeout(() => {
-          window.location.href = "vercitas.php?correo=" + correo + "&#contenedor" + data;
+          window.location.href =
+            "vercitas.php?correo=" + correo + "&#contenedor" + data;
         }, 2000);
       });
   }

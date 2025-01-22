@@ -25,6 +25,15 @@
 
     <div id="confirmado">Reserva confirmada <img src="img/check_circle_24dp_75FB4C_FILL0_wght300_GRAD0_opsz24.png" alt=""></div>
     <div id="overlay" class="overlay"></div>
+    <div id="seleccionar-pago">
+        Elige un forma de Pago
+        <p>El pago en persona podrá realizarse en efectivo o tarjeta.</p>
+        <div class="botones-pago">
+            <button type="button" id="btnPersona">En persona</button>
+            <button type="button" id="btnOnline">Online (Tarjeta)</button>
+        </div>
+
+    </div>
 
 
 </body>

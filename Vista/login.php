@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>BarberPro</h1>
+    <h1>BookPro</h1>
     <form class="formulario" id="formularioLogin">
 
         <label for="correo">Correo</label>

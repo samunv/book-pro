@@ -14,7 +14,6 @@ window.addEventListener("DOMContentLoaded", function () {
   const params = new URLSearchParams(window.location.search);
   const correo = params.get("correo");
 
-
   correoUsuario.textContent =
     correo.length > 20 ? correo.substring(0, 20) + "..." : correo;
 
@@ -61,7 +60,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     if (notificaciones.length === 0) {
       btnBorrar.style.display = "none";
-      html = "No tienes notificaciones aún.";
+      html = "<p id='no-notificaciones'>No tienes notificaciones aún.</p>";
     } else {
       btnBorrar.style.display = "block";
       for (let i = notificaciones.length - 1; i >= 0; i--) {
@@ -74,27 +73,13 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function borrarNotificaciones(correo) {
-    const notificaciones = document.querySelectorAll(".caja-notificacion");
-    if (notificaciones.length === 0) return;
-
-    notificaciones.forEach((notificacion, index) => {
-      // Retraso para el efecto de escalera
-      setTimeout(() => {
-        notificacion.classList.add("salida"); // Aplicar la clase de salida
-        // Elimina la notificación del DOM después de la animación
-        notificacion.addEventListener("transitionend", () => {
-          notificacion.remove();
-          if (index === notificaciones.length - 1) {
-            // Si es la última, llama al backend para borrar notificaciones
-            fetch(url + "?borrarNotificaciones=true&correoBorrar=" + correo)
-              .then((response) => response.json())
-              .then((mensaje) => {
-                console.log(mensaje);
-                window.location.reload();
-              });
-          }
+      // Si es la última, llama al backend para borrar notificaciones
+      fetch(url + "?borrarNotificaciones=true&correoBorrar=" + correo)
+        .then((response) => response.json())
+        .then((mensaje) => {
+          console.log(mensaje);
+          window.location.reload();
         });
-      }, index * 150); // Retraso escalonado (100ms entre notificaciones)
-    });
+    
   }
 });

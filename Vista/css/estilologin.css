@@ -14,7 +14,6 @@ form {
     margin-right: auto;
     background-color: #fff;
     padding: 35px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     display: flex;
     flex-direction: column;
@@ -175,7 +174,6 @@ button:hover {
     margin-bottom: 100px;
     background-color: white;
     border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
     z-index: 999;
 
@@ -222,7 +220,7 @@ h2 {
     z-index: 998;
 }
 
-#ventana-recordar-contrasena{
+#ventana-recordar-contrasena {
     background-color: white;
     padding: 30px;
     display: none;
@@ -234,13 +232,14 @@ h2 {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+    text-align: center;
 }
 
-#correo-recuperar{
+#correo-recuperar {
     margin: 0%;
 }
 
-#contenedor-recuperar{
+#contenedor-recuperar {
     width: 250px;
     text-align: center;
     padding: 30px;
@@ -249,14 +248,41 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#contraseña-nueva{
+#contraseña-nueva {
     margin-bottom: 0;
 }
 
-.texto-info{
+.texto-info {
     color: gray;
     font-size: small;
+}
+
+@media (max-width: 600px) {
+
+    h1 {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 30px;
+        margin: 20px;
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    .formulario {
+        width: 60%;
+
+    }
+
+    #ventana-recordar-contrasena {
+        width: 60%;
+        text-align: center;
+    }
+
+    .btn-registrarse {
+        margin: 0;
+    }
+
 }

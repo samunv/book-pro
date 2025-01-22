@@ -5,12 +5,8 @@ window.addEventListener("DOMContentLoaded", function () {
 
   let listaCitas = document.getElementById("lista-citas");
 
-  // Retrasar la visualización del contenido
-  setTimeout(() => {
-    // Ocultar el loader y mostrar el contenido
-    document.getElementById("loader").style.display = "none";
-    listaCitas.style.display = "flex";
-  }, 600);
+
+  listaCitas.style.display = "flex";
 
   let tituloPagina = document.getElementById("titulo-pagina");
   tituloPagina.innerHTML = "Mis Citas";
@@ -76,7 +72,10 @@ window.addEventListener("DOMContentLoaded", function () {
             citas[i].hora
           )
         ) {
-          html += "<div class='contenedor-cita' id='contenedor" + citas[i].idCita + "'>";
+          html +=
+            "<div class='contenedor-cita' id='contenedor" +
+            citas[i].idCita +
+            "'>";
 
           html += "<div class='conjunto-foto-texto'>";
           html += "<img src='" + citas[i].imagen + "' class='foto-servicio'>";
@@ -107,9 +106,9 @@ window.addEventListener("DOMContentLoaded", function () {
           html += "</div>";
           html += "<div class='contenedor-iconos'>";
           html +=
-            "<img src='img/delete_24dp_BLACK_FILL0_wght300_GRAD0_opsz24.png' id='" +
+            "<svg xmlns='http://www.w3.org/2000/svg' id='" +
             citas[i].idCita +
-            "' class='papelera'>";
+            "' height='24px' viewBox='0 -960 960 960' width='24px' class='papelera'><path d='M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z'/></svg>";
           html += `<img src='img/googlecalendar.webp' title='añadir a Google Calendar' id='btn-google-calendar-${
             citas[i].idCita
           }' data-cita='${JSON.stringify(citas[i])}'>`;
@@ -141,19 +140,6 @@ window.addEventListener("DOMContentLoaded", function () {
 
       for (let j = 0; j < papeleras.length; j++) {
         let papelera = papeleras[j]; // Accede a cada elemento individualmente
-
-        // Agrega evento 'mouseenter' a la papelera
-        papelera.addEventListener("mouseenter", () => {
-          papelera.src =
-            "img/delete_24dp_006BFF_FILL0_wght300_GRAD0_opsz24.png"; // Cambia la imagen
-        });
-
-        // Agrega evento 'mouseleave' a la papelera
-        papelera.addEventListener("mouseleave", () => {
-          // Restablece la imagen original (puedes definir la ruta adecuada)
-          papelera.src = "img/delete_24dp_BLACK_FILL0_wght300_GRAD0_opsz24.png";
-        });
-
         // Llama a la función para abrir la ventana de eliminar
         abrirVentanaEliminar(papelera.id);
       }
@@ -314,22 +300,4 @@ window.addEventListener("DOMContentLoaded", function () {
 
     return fechaGoogle;
   }
-
-  // function calcularHoraFin(horaInicio, duracion) {
-  //   let [horas, minutos] = horaInicio.split(":").map(Number);
-
-  //   // Sumar la duración a los minutos
-  //   minutos += duracion;
-
-  //   // Calcular las horas adicionales si la duración supera los 60 minutos
-  //   horas += Math.floor(minutos / 60);
-
-  //   // Obtener los minutos restantes
-  //   minutos = minutos % 60;
-
-  //   // Devolver la hora de finalización con formato de dos dígitos (sin segundos)
-  //   return `${horas
-  //     .toString()
-  //     .padStart(2, "0")}:${minutos.toString().padStart(2, "0")}`;
-  // }
 });

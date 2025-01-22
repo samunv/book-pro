@@ -9,12 +9,11 @@ class Notificacion
     private $imagen_notificacion;
     private Correo $correo;
 
-    function __construct($titulo, $mensaje, $destinatario, $imagen_notificacion)
+    function __construct($titulo, $mensaje, $destinatario)
     {
         $this->titulo = $titulo;
         $this->mensaje = $mensaje;
         $this->destinatario = $destinatario;
-        $this->imagen_notificacion = $imagen_notificacion;
     }
 
     /**

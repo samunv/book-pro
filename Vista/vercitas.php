@@ -17,9 +17,6 @@
     include "header.php"
     ?>
     <section class="seccion-principal">
-        <div class="contenedor-loader">
-            <div id="loader"></div>
-        </div>
         <div id="lista-citas"></div>
     </section>
 
@@ -27,7 +24,7 @@
         <h2>¿Estás seguro de que quieres cancelar la cita del <span id="span-fecha"></span>?</h2>
         <div class="caja-botones">
             <button id="btn-cancelar" type="button">Cancelar</button>
-            <button id="btn-eliminar" type="button">Eliminar</button>
+            <button id="btn-eliminar" type="button">Aceptar</button>
         </div>
 
 

@@ -48,7 +48,6 @@ p {
     padding: 25px;
     padding-left: 50px;
     padding-right: 50px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 button {
@@ -98,6 +97,7 @@ button:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 .overlay {
@@ -120,4 +120,104 @@ button:hover {
 #confirmado img {
     width: 50px;
     height: 50px;
+    margin-top: 15px;
+}
+
+#seleccionar-pago {
+    padding: 50px;
+    font-size: 25px;
+    color: black;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 15px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#seleccionar-pago p {
+    font-size: 15px;
+    color: gray;
+    font-weight: normal;
+}
+
+
+.botones-pago {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.botones-pago button {
+    margin: 10px;
+    background-color: rgb(0, 107, 255);
+    font-size: 15px;
+}
+
+.botones-pago button:hover {
+    background-color: rgb(7, 88, 201);
+    /* Cambio de color cuando se pasa el mouse */
+}
+
+
+@media (max-width: 600px) {
+    #lista-datos {
+        padding: 15px;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-bottom: 30px;
+    }
+
+    #lista-datos .filas img {
+        width: 25px;
+        height: 25px;
+    }
+
+    #lista-datos p {
+        font-size: 12px;
+    }button {
+   
+        padding: 20px;
+        font-size: 14px;
+        background-color: black;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+
+    #info {
+
+        text-align: center;
+        color: grey;
+        font-size: 13px;
+        width: 70%;
+    }
+    #confirmado {
+        
+        font-size: 20px;
+        padding: 20px;
+    }
+
+    #confirmado img {
+        width: 30px;
+        height: 30px;
+        margin-top: 15px;
+    }
 }

@@ -1,22 +1,22 @@
 {
     "propietario": "Samuel Navasardyan Vardanyan",
     "cif": "B-12345678",
-    "nombre": "BarberPro",
+    "nombre": "BookPro",
     "direccion": "Moncloa, Madrid",
     "hora_apertura":"12:00",
     "hora_cierre": "22:00",
-    "web": "barberpro.com",
+    "web": "bookpro.com",
     "contacto":[
         {
             "telefono": "455 32 21 44",
-            "correo": "barberpro@gmail.com",
+            "correo": "bookpro@gmail.com",
             "redes_sociales":[{
-                "instagram": "@barberpro",
-                "facebook": "@barberpro"
+                "instagram": "@bookpro",
+                "facebook": "@bookpro"
             }]
         }
     ], 
-    "logo": "./../Vista/img/vintage-barberia-vector-logo-plantilla-etiqueta_278810-684.avif",
+    "logo": "./../Vista/img/B-logo-bpro.png",
     "banner":""
 
     

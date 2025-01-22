@@ -85,18 +85,48 @@ header a{
         max-width:fit-content;
     }
     header {
-        height: 130px;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: -1;
     }
+
 
     h1{
         font-size: 20px;
     }
 
-    .elementos-header2 img{
+    header .elementos-header1{
+        font-size: 16px;
+        margin: 20px;
+    }
+    header .elementos-header2{
+        margin: 20px;
+    }
+    header .elementos-header2 img{
         width: 25px;
         height: 25px;
     }
-    .elementos-header2 .nombre-correo-usuario p{
-        font-size: 10px;
+    .elementos-header2 #correo-usuario{
+        font-size: 11px;
+        display: none;
+    }
+    .elementos-header2 #nombre-usuario{
+        font-size: 13px;
+    }
+
+    .elementos-header1 #icono-accion{
+        width: 20px;
+        height: 20px;
+    }
+
+    .elementos-header1 #titulo-pagina{
+        font-size: 15px;
+    }
+
+    .nombre-correo-usuario{
+        margin-left: 5px;
     }
 }

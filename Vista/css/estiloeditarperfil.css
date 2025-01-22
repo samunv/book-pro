@@ -1,12 +1,10 @@
-
 form {
     margin-left: auto;
     margin-right: auto;
     margin-top: 30px;
     background-color: #fff;
     padding: 35px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
+    border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -116,7 +114,7 @@ button:hover {
     border: 3px rgb(224, 224, 224) solid;
     transition: all 0.3s ease;
     object-fit: cover;
-   
+
 }
 
 #ventana-editarfoto-oculta {
@@ -133,11 +131,11 @@ button:hover {
     transform: translate(-50%, -50%);
 }
 
-#ventana-editarfoto-oculta h3{
+#ventana-editarfoto-oculta h3 {
     padding: 20px;
 }
 
-#ventana-editarfoto-oculta .botones-editar-foto{
+#ventana-editarfoto-oculta .botones-editar-foto {
     display: flex;
     flex-direction: row;
     padding: 20px;
@@ -156,7 +154,7 @@ button:hover {
 
 }
 
-#ventana-editarfoto-oculta .botones-editar-foto button:nth-child(2){
+#ventana-editarfoto-oculta .botones-editar-foto button:nth-child(2) {
     background-color: rgb(0, 107, 255);
 }
 
@@ -169,14 +167,15 @@ button:hover {
     position: static;
 }
 
-#archivo-foto{
+#archivo-foto {
     border-radius: 10px;
 }
 
-.contenedor-editar{
+.contenedor-editar {
     background-color: rgb(0, 107, 255);
     border-radius: 50%;
-    width: 30px;height: 30px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -204,13 +203,40 @@ button:hover {
     /* Asegurarse de que esté detrás de la ventana */
 }
 
-@media (max-width:500) {
+
+
+
+@media(max-width: 600px) {
     form {
-        transform: scale(-1);
+        width: 60%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
     }
 
-}
+    .contenedores-actualizar {
+        width: 290px;
+        justify-content: center;
+    }
 
-input[type="file"]{
+    input {
+        width: 125px;
+        font-size: 13px;
+    }
+
+    .botones {
+        width: 60%;
+
+    }
+
+    button {
+        font-size: 13px;
+    }   
+
+    #ventana-editarfoto-oculta {
+        width: 70%;
+    }
+
 
 }
