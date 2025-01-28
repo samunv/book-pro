@@ -85,6 +85,7 @@ class CitaDao
             SELECT 
                 citas.*,                     -- Seleccionar todo de citas
                 usuarios.nombre AS nombreProfesional,  -- Nombre del usuario asociado al profesional
+                usuarios.correo AS correoProfesional,
                 servicios.*                  -- Seleccionar todo de servicios
             FROM 
                 citas

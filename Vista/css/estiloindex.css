@@ -1,6 +1,7 @@
-#contenido{
+#contenido {
     display: none;
 }
+
 /* #loader {
     display: flex;
     justify-content: center;
@@ -15,13 +16,15 @@
     height: 20px;
     border-radius: 10px;
     background:
-     linear-gradient(#000000 0 0) 0/0% no-repeat
-     #ddd;
+        linear-gradient(#000000 0 0) 0/0% no-repeat #ddd;
     animation: l1 0.6s infinite linear;
-  }
-  @keyframes l1 {
-      100% {background-size:100%}
-  }
+}
+
+@keyframes l1 {
+    100% {
+        background-size: 100%
+    }
+}
 
 
 .contenedor-enlaces {
@@ -45,7 +48,7 @@ h1 {
 
 .enlaces {
     overflow: hidden;
-    border-radius: 20px;
+    border-radius: 15px;
     margin: 20px;
     transition: all 0.3s ease;
     background-color: white;
@@ -97,7 +100,8 @@ h1 {
 #contenedor-oculto {
     display: none;
 }
-#cuenta-notificaciones{
+
+#cuenta-notificaciones {
     background-color: rgb(0, 107, 255);
     color: white;
     font-weight: bold;
@@ -112,14 +116,33 @@ h1 {
     transform: translate(25px, -20px);
 }
 
-.contenedor-foto-cuenta{
+.contenedor-foto-cuenta {
     position: static;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-@media (max-width: 600px){
+#instalar-app .contenedor-txt{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    height: 50px;
+
+}
+
+#instalar-app .contenedor-txt p{
+    margin:0 ;
+}
+
+#instalar-app .contenedor-txt p:nth-child(2){
+    font-size: 16px;
+    color: gray;
+}
+
+@media (max-width: 600px) {
+
     /*Index*/
     .contenedor-enlaces {
         transform: scale(0.7) translateY(-150px);
@@ -127,7 +150,7 @@ h1 {
         margin-left: 0;
         margin-right: 0;
         margin-top: 20px;
-        
+
 
     }
 
@@ -155,7 +178,7 @@ h1 {
 
     }
 
-    .contenedor-txt{
+    .contenedor-txt {
         margin-left: 0px;
     }
 
@@ -163,4 +186,6 @@ h1 {
         font-size: 20px;
         margin-left: 0px;
     }
+
+    
 }

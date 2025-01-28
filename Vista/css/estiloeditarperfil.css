@@ -77,26 +77,37 @@ button:hover {
     padding: 25px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .botones button {
     background-color: transparent;
-    width: 30%;
+
     margin: 10px;
     font-weight: bolder;
     transition: all 0.3s ease;
+    background-color: #006bff;
+    color: white;
+    border-radius: 10px;
+    border:1px transparent solid;
 }
 
-.botones button:hover {
-    opacity: 0.5;
-}
+
 
 .botones button:nth-child(1) {
-    color: black;
+
 }
 
 .botones button:nth-child(2) {
-    color: red;
+  background-color: transparent;
+  color: #006bff;
+  border: 1px #006bff solid;
+}
+
+.botones button:nth-child(2):hover{
+    color: white;
+    background-color: #006bff;
+    border: 1px solid transparent;
 }
 
 .contenedores-actualizar {
@@ -129,6 +140,7 @@ button:hover {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 #ventana-editarfoto-oculta h3 {
@@ -138,6 +150,7 @@ button:hover {
 #ventana-editarfoto-oculta .botones-editar-foto {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     padding: 20px;
 }
 
@@ -168,6 +181,7 @@ button:hover {
 }
 
 #archivo-foto {
+    width: 70%;
     border-radius: 10px;
 }
 

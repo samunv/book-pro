@@ -16,6 +16,18 @@ class Sesion
         return $_SESSION['nombre'];
     }
 
+
+    public function    setUsuarioProvisional($usuario_provisional)
+    {
+        $_SESSION['usuario_provisional'] = $usuario_provisional;
+    }
+
+    public function getUsuarioProvisional()
+    {
+        return $_SESSION['usuario_provisional'];
+    }
+
+
     public function cerrarSesion()
     {
         session_unset();

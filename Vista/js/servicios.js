@@ -27,7 +27,6 @@ window.addEventListener("DOMContentLoaded", function () {
   icono.src = "img/arrow_back_ios_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png";
   icono.addEventListener("click", function () {
     borrarDatos();
-    alert("Has cancelado tu reserva.");
     window.location.href = "index.php";
   });
 
@@ -111,8 +110,9 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          window.location.href = "login.php";
+        if (!data.sesion) {
+          alert("No hay sesión");
+          window.location.href="login.php";
         }
       });
   }

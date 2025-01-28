@@ -2,9 +2,9 @@ window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
 
   let url = "./../Controlador/vercitascontrolador.php";
+  let sesion = "./../Controlador/procesarsesion.php";
 
   let listaCitas = document.getElementById("lista-citas");
-
 
   listaCitas.style.display = "flex";
 
@@ -30,7 +30,20 @@ window.addEventListener("DOMContentLoaded", function () {
     correo.length > 20 ? correo.substring(0, 20) + "..." : correo;
 
   obtenerUsuario(correo);
+  verificarCorreo(correo);
 
+  function verificarCorreo(correo) {
+    fetch(sesion)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.sesion != correo) {
+          alert("No puedes ver la información de otro usuario");
+          window.location.href = "index.php";
+        }
+      });
+  }
+
+  let cliente = "";
   function obtenerUsuario(correo) {
     fetch(url + "?correoUsuario=" + correo)
       .then((response) => response.json())
@@ -43,6 +56,7 @@ window.addEventListener("DOMContentLoaded", function () {
     imgFoto.src = usuario.foto;
     nombreUsuario.innerHTML = usuario.nombre;
     obtenerCitas(usuario.idUsuario);
+    cliente = usuario.nombre;
   }
 
   let ventanaEliminar = document.getElementById("ventana-eliminar");
@@ -59,6 +73,52 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  function HTMLcitas(cita) {
+    let html = "";
+    html += "<div class='contenedor-cita' id='contenedor" + cita.idCita + "'>";
+
+    html += "<div class='conjunto-foto-texto'>";
+    html += "<img src='" + cita.imagen + "' class='foto-servicio'>";
+
+    html += "<div class='apartado-texto'>";
+    html +=
+      "<h3>" +
+      cita.nombreServicio +
+      " - " +
+      cita.fecha +
+      " de " +
+      cita.mes +
+      " de " +
+      cita.año +
+      "</h3>";
+
+    html += "<p> Hora: " + cita.hora.substring(0, 5) + "</p>";
+    html +=
+      "<p> Detalles: " +
+      "<span id='span-precio'>" +
+      cita.precio +
+      "€</span>" +
+      " - " +
+      cita.duracion +
+      "min.</p>";
+    html += "<p> Profesional: " + cita.nombreProfesional + "</p>";
+    html += "</div>";
+    html += "</div>";
+    html += "<div class='contenedor-iconos'>";
+    html += `<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' class='papelera' id='papelera-${
+        cita.idCita
+      }' data-cita='${JSON.stringify(
+      cita
+    )}'><path d='M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z'/><title>Cancelar Reserva</title></path></svg>`;
+    html += `<img src='img/googlecalendar.webp' title='Añadir a Google Calendar' id='btn-google-calendar-${
+      cita.idCita
+    }' data-cita='${JSON.stringify(cita)}'>`;
+
+    html += "</div>";
+    html += "</div>";
+    return html;
+  }
+
   function imprimirCitas(citas) {
     let html = "";
     if (citas.length > 0) {
@@ -72,122 +132,98 @@ window.addEventListener("DOMContentLoaded", function () {
             citas[i].hora
           )
         ) {
-          html +=
-            "<div class='contenedor-cita' id='contenedor" +
-            citas[i].idCita +
-            "'>";
-
-          html += "<div class='conjunto-foto-texto'>";
-          html += "<img src='" + citas[i].imagen + "' class='foto-servicio'>";
-
-          html += "<div class='apartado-texto'>";
-          html +=
-            "<h3>" +
-            citas[i].nombreServicio +
-            " - " +
-            citas[i].fecha +
-            " de " +
-            citas[i].mes +
-            " de " +
-            citas[i].año +
-            "</h3>";
-
-          html += "<p> Hora: " + citas[i].hora.substring(0, 5) + "</p>";
-          html +=
-            "<p> Detalles: " +
-            "<span id='span-precio'>" +
-            citas[i].precio +
-            "€</span>" +
-            " - " +
-            citas[i].duracion +
-            "min.</p>";
-          html += "<p> Profesional: " + citas[i].nombreProfesional + "</p>";
-          html += "</div>";
-          html += "</div>";
-          html += "<div class='contenedor-iconos'>";
-          html +=
-            "<svg xmlns='http://www.w3.org/2000/svg' id='" +
-            citas[i].idCita +
-            "' height='24px' viewBox='0 -960 960 960' width='24px' class='papelera'><path d='M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z'/></svg>";
-          html += `<img src='img/googlecalendar.webp' title='añadir a Google Calendar' id='btn-google-calendar-${
-            citas[i].idCita
-          }' data-cita='${JSON.stringify(citas[i])}'>`;
-
-          html += "</div>";
-          html += "</div>";
+          html += HTMLcitas(citas[i]);
         }
       }
 
       listaCitas.innerHTML = html;
 
-      // Después de crear los botones, asignamos el evento directamente
       for (let i = 0; i < citas.length; i++) {
         let botonCalendario = document.getElementById(
           "btn-google-calendar-" + citas[i].idCita
         );
+        let botonEliminar = document.getElementById(
+          "papelera-" + citas[i].idCita
+        );
 
         if (botonCalendario) {
           botonCalendario.addEventListener("click", function () {
-            // Obtener el objeto de cita desde el atributo data-cita
             const cita = JSON.parse(botonCalendario.getAttribute("data-cita"));
-            // Llamar a la función para agregar la cita al calendario de Google
             agregarCitaAGoogleCalendar(cita);
+          });
+        }
+
+        if (botonEliminar) {
+          const cita = JSON.parse(botonEliminar.getAttribute("data-cita"));
+          cita.cliente = cliente;
+          botonEliminar.addEventListener("click", function () {
+            ventanaEliminar.style.display = "block";
+            overlay.style.display = "block";
+            abrirVentanaEliminar(cita);
           });
         }
       }
 
-      let papeleras = document.getElementsByClassName("papelera");
-
-      for (let j = 0; j < papeleras.length; j++) {
-        let papelera = papeleras[j]; // Accede a cada elemento individualmente
-        // Llama a la función para abrir la ventana de eliminar
-        abrirVentanaEliminar(papelera.id);
-      }
     } else {
       html = "No has reservado ninguna cita.";
       listaCitas.innerHTML = html;
     }
   }
 
-  async function abrirVentanaEliminar(idCita) {
+  function abrirVentanaEliminar(datosCita) {
     let spanFecha = document.getElementById("span-fecha");
-    let papelera = document.getElementById(idCita);
+    let spanProfesional = document.getElementById("span-profesional");
+
     let btnEliminar = document.getElementById("btn-eliminar");
     let btnCancelar = document.getElementById("btn-cancelar");
 
-    papelera.addEventListener("click", async function () {
-      ventanaEliminar.style.display = "block";
-      overlay.style.display = "block";
+    spanFecha.textContent =
+      datosCita.nombreServicio +
+      " del " +
+      datosCita.fecha +
+      " de " +
+      datosCita.mes +
+      " de " +
+      datosCita.año +
+      " a las " +
+      datosCita.hora;
+    spanProfesional.textContent = datosCita.nombreProfesional;
 
-      // Asigna el texto de la fecha directamente al elemento span
-      spanFecha.textContent = await obtenerFechaPorIdCita(idCita);
+    btnEliminar.addEventListener("click", function () {
+      eliminarCita(datosCita.idCita, datosCita);
+    });
 
-      btnEliminar.addEventListener("click", function () {
-        eliminarCita(idCita);
-      });
-
-      btnCancelar.addEventListener("click", function () {
-        ventanaEliminar.style.display = "none";
-        overlay.style.display = "none";
-      });
+    btnCancelar.addEventListener("click", function () {
+      ventanaEliminar.style.display = "none";
+      overlay.style.display = "none";
     });
   }
 
-  async function obtenerFechaPorIdCita(idCita) {
-    try {
-      const response = await fetch(url + "?idCita=" + idCita);
-      const data = await response.json();
-      return `${data[0].fecha} de ${data[0].mes} de ${data[0].año} a las ${data[0].hora}`;
-    } catch (error) {
-      console.error("Error al obtener la fecha:", error);
-    }
-  }
+  //Función en desuso actualmente
 
-  function eliminarCita(idCita) {
-    fetch(url + "?idCitaEliminar=" + idCita)
+  // async function obtenerFechaPorIdCita(idCita) {
+  //   try {
+  //     const response = await fetch(url + "?idCita=" + idCita);
+  //     const data = await response.json();
+  //     return `${data[0].fecha} de ${data[0].mes} de ${data[0].año} a las ${data[0].hora}`;
+  //   } catch (error) {
+  //     console.error("Error al obtener la fecha:", error);
+  //   }
+  // }
+
+  function eliminarCita(idCita, datos) {
+    const datosJSON = JSON.stringify(datos);
+
+    fetch(
+      url +
+        "?idCitaEliminar=" +
+        idCita +
+        "&datosCita=" +
+        encodeURIComponent(datosJSON)
+    )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        alert(data);
         window.location.reload();
         obtenerCitas(idUsuario);
       });
@@ -237,16 +273,12 @@ window.addEventListener("DOMContentLoaded", function () {
     return false; // Fecha pasada
   }
 
-  // Función para recuperar un dato de sessionStorage
-  function obtenerDatoTemporal(clave) {
-    return sessionStorage.getItem(clave);
-  }
-
   function comprobarSesion() {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
+        if (!data.sesion) {
+          alert("No hay sesión");
           window.location.href = "login.php";
         }
       });

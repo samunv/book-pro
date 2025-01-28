@@ -21,10 +21,13 @@
     </section>
 
     <div id="ventana-eliminar" class="ventanas">
-        <h2>¿Estás seguro de que quieres cancelar la cita del <span id="span-fecha"></span>?</h2>
+        <h2>¿Estás seguro de que quieres cancelar la cita de <span id="span-fecha"></span>?</h2>
+        <p>
+           <strong>Cuidado, </strong> No podrás deshacer esta acción. La anulación de tu cita será notificada a <span id="span-profesional"></span>.
+        </p>
         <div class="caja-botones">
-            <button id="btn-cancelar" type="button">Cancelar</button>
-            <button id="btn-eliminar" type="button">Aceptar</button>
+            <button id="btn-cancelar" type="button">Cerrar</button>
+            <button id="btn-eliminar" type="button">Cancelar cita</button>
         </div>
 
 

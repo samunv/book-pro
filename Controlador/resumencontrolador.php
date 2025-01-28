@@ -27,7 +27,8 @@ if (isset($_GET["idProfesionalParaNombre"])) {
     $cita = new Cita($idUsuario, $fecha, $hora, $idProfesional, $mes, $año, $idServicio);
     $fechaCita = $fecha . " de " .  $mes . " de " . $año . " a las " . $hora;
 
-    $notificacion = new Notificacion("Reserva de Cita", "Has reservado una cita el $fechaCita.", $correo, "");
+    $notificacion = new Notificacion("Reserva de Cita", "Has reservado una cita el $fechaCita.", $correo);
+    $notificacion->setImagen_notificacion("./img/notificacion-reserva.png");
     enviarNotificacion($notificacion);
 
     $reservaCompletada = $daoCita->crearCita($cita);
@@ -46,7 +47,8 @@ if (isset($_GET["idProfesionalParaNombre"])) {
 
     $fechaCita = $fecha . " de " .  $mes . " de " . $año . " a las " . $hora;
 
-    $notificacion = new Notificacion("Reserva de Cita", "$cliente ha reservado una cita de $servicio el $fechaCita.", $destinatario, "");
+    $notificacion = new Notificacion("Reserva de Cita", "$cliente ha reservado una cita de $servicio el $fechaCita.", $destinatario);
+    $notificacion->setImagen_notificacion("./img/notificacion-reserva.png");
     enviarNotificacion($notificacion);
     echo json_encode("Notificación enviada al destinatario.");
 }

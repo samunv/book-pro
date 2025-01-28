@@ -19,8 +19,10 @@
 
     <section class="seccion-principal">
 
-       
-        <div id="contenedor-datos"></div>
+        <div class="contenedor-empresa">
+            <div id="contenedor-datos"></div>
+        </div>
+
 
 
     </section>

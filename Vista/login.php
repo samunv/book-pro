@@ -10,7 +10,11 @@
 </head>
 
 <body>
-    <h1>BookPro</h1>
+    <div class="logo-app">
+        <img src="img/B-logo-bpro.png" alt="">
+        <h1>ookPro</h1>
+    </div>
+
     <form class="formulario" id="formularioLogin">
 
         <label for="correo">Correo</label>

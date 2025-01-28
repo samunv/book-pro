@@ -19,11 +19,11 @@
     <section class="seccion-principal">
         <section id="lista-datos"></section>
         <button id="btn-aceptar">Confirmar</button>
-        <p id="info">Puedes cancelar Tu Reserva pinchando en la X de arriba. También puedes hacerlo en cualquier momento desde Ver Mis Citas.</p>
+        <p id="info">Puedes cancelar Tu Reserva pinchando en la X de arriba. También puedes hacerlo en cualquier momento desde la sección Mis Citas.</p>
 
     </section>
 
-    <div id="confirmado">Reserva confirmada <img src="img/check_circle_24dp_75FB4C_FILL0_wght300_GRAD0_opsz24.png" alt=""></div>
+    <div id="confirmado">Reserva confirmada <img src="img/task_alt_30dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></div>
     <div id="overlay" class="overlay"></div>
     <div id="seleccionar-pago">
         Elige un forma de Pago

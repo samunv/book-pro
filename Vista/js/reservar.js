@@ -1,5 +1,17 @@
 window.addEventListener("DOMContentLoaded", function () {
   let url = "./../Controlador/reservarcontrolador.php";
+  comprobarSesion();
+  
+  function comprobarSesion() {
+    fetch("./../Controlador/procesarsesion.php")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.sesion) {
+          alert("No hay sesión");
+          window.location.href="login.php";
+        }
+      });
+  }
 
   let btnContinuar1 = document.getElementById("btn-continuar-1");
   let listaHorarios = document.getElementById("lista-horarios");

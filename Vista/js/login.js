@@ -23,28 +23,18 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   });
 
-  let permisos = obtenerDatoTemporal("permisos");
 
   function comprobarSesion() {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
         if (data.sesion) {
-          if (permisos === "1") {
-            window.location.href = "paneldecontrol2.php";
-          } else {
-            window.location.href = "index.php";
-          }
+          window.location.href= "index.php";
+  
+        }else if(!data.sesion){
+
         }
       });
-  }
-
-  function guardarDatoTemporal(clave, valor) {
-    sessionStorage.setItem(clave, valor);
-  }
-
-  function obtenerDatoTemporal(clave) {
-    return sessionStorage.getItem(clave);
   }
 
   let btnRecordarContrasena = document.getElementById("recordar-contrasena");

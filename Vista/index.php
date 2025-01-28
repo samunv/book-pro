@@ -72,10 +72,23 @@
                 </div>
             </a>
 
+            <a href="" class="enlaces" id="instalar-app">
+                
+                    <div class="contenedor-img"><img src="img/download_24dp_006BFF_FILL0_wght400_GRAD0_opsz24.png" alt="" /></div>
+                    
+            
 
+                <div class="contenedor-txt">
+                    <p>Instalar App</p>
+                    <p>Recomendable</p>
+                </div>
+                
+            </a>
 
+            
 
         </section>
+        
 
     </section>
 

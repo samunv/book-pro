@@ -81,6 +81,7 @@ function crearNotificacion($correo, $datos)
     $datos = json_decode($datos, true);
     $notificacion = new Notificacion("Reserva Cancelada", "Se ha cancelado tu reserva de  " . $datos['servicio'] . " el " . $datos['fecha'] . " de " . $datos['mes'] . " de " . $datos['año'] . " a las " . $datos['hora'], $correo);
 
+    $notificacion->setImagen_notificacion("./img/notificacion-eliminar.png");
     $daoNotificacion = new NotificacionDAO();
     $daoNotificacion->crearNotificacion($notificacion);
 

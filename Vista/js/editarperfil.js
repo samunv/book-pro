@@ -2,6 +2,7 @@ window.addEventListener("DOMContentLoaded", function () {
   comprobarSesion();
 
   let url = "./../Controlador/editarperfilcontrolador.php";
+  let sesion = "./../Controlador/procesarsesion.php";
 
   let tituloPagina = document.getElementById("titulo-pagina");
   tituloPagina.innerHTML = "Editar Perfil";
@@ -21,6 +22,19 @@ window.addEventListener("DOMContentLoaded", function () {
   const correo = params.get("correo");
 
   obtenerUsuario(correo);
+
+  verificarCorreo(correo);
+
+  function verificarCorreo(correo) {
+    fetch(sesion)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.sesion != correo) {
+          alert("No puedes ver la información de otro usuario");
+          window.location.href = "index.php";
+        }
+      });
+  }
 
   function obtenerUsuario(correo) {
     fetch(url + "?correoUsuario=" + correo)
@@ -116,8 +130,9 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          window.location.href = "login.php";
+        if (!data.sesion) {
+          alert("No hay sesión");
+          window.location.href="login.php";
         }
       });
   }

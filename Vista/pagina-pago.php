@@ -13,13 +13,14 @@
 </head>
 
 <body>
-    <h1>Pago con tarjeta</h1>
+    <h1>Pago Online</h1>
     <form id="payment-form">
+        <label for="card-element" class="label">Datos de la tarjeta:</label>
         <div id="card-element"></div>
-        <button id="submit">Pagar</button>
+        <button id="submit">Pagar Ahora</button>
     </form>
     <br>
-    <p>Los datos de la tarjeta están completamente protegidos. Se utiliza Stripe para manejar las transacciones y pagos. <a href="https://stripe.com/es" target="_blank">Stripe</a></p>
+    <p>BookPro no guardará ni recopilará información de tu tarjeta de crédito o débito. Nuestro procesador de pagos: <a href="https://stripe.com/es" target="_blank">Stripe</a></p>
 </body>
 
 </html>

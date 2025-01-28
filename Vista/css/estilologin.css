@@ -8,6 +8,27 @@ body {
     align-items: center;
 }
 
+.logo-app{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: rgb(0, 107, 255);
+    margin: 30px;
+}
+
+.logo-app h1{
+    margin: 0;
+    width: auto;
+    font-weight: 1000;
+}
+
+.logo-app img{
+    height: 100px;
+    width: 100px;
+    border-radius: 10px;
+}
+
 form {
     width: 300px;
     margin-left: auto;
@@ -284,5 +305,11 @@ h2 {
     .btn-registrarse {
         margin: 0;
     }
+
+    .logo-app img{
+        height: 70px;
+        width: 70px;
+    }
+    
 
 }

@@ -225,7 +225,7 @@ window.addEventListener("DOMContentLoaded", function () {
         setTimeout(() => {
           window.location.href =
             "vercitas.php?correo=" + correo + "&#contenedor" + data;
-        }, 2000);
+        }, 3000);
       });
   }
 
@@ -273,10 +273,10 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
-          window.location.href = "login.php";
+        if (!data.sesion) {
+          alert("No hay sesión");
+          window.location.href="login.php";
         }
-      })
-      .catch((error) => console.error("Error al comprobar sesión:", error));
+      });
   }
 });

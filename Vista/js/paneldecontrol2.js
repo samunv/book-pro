@@ -123,7 +123,19 @@ window.addEventListener("DOMContentLoaded", function () {
       });
   }
 
+  function comprobarSesion() {
+    fetch("./../Controlador/procesarsesion.php")
+      .then((response) => response.json())
+      .then((data) => {
+        if (!data.sesion) {
+          alert("No hay sesión");
+          window.location.href="login.php";
+        }
+      });
+  }
+
   function main() {
+    comprobarSesion();
     Promise.all([obtenerHorarios(), obtenerCitas(idUsuarioProfesional)])
       .then(([horarios, citas]) => {
         console.log("Horarios obtenidos:", horarios);
@@ -300,10 +312,10 @@ window.addEventListener("DOMContentLoaded", function () {
           </div>
         </td>
         <td class='td-iconos'>
-          <div class='icono-texto editar' id=''><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h346.23l-60 60H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-288.77l60-60v348.77Q820-182 799-161q-21 21-51.31 21H212.31ZM480-480ZM380-380v-137.31l362.39-362.38q9.3-9.31 20.46-13.58 11.15-4.27 22.69-4.27 11.77 0 22.61 4.27Q819-889 827.92-880.08L878.15-830q8.69 9.31 13.35 20.54 4.65 11.23 4.65 22.77t-3.96 22.38q-3.96 10.85-13.27 20.15L515.38-380H380Zm456.77-406.31-50.23-51.38 50.23 51.38ZM440-440h49.85l249.3-249.31-24.92-24.92-26.69-25.69L440-492.38V-440Zm274.23-274.23-26.69-25.69 26.69 25.69 24.92 24.92-24.92-24.92Z"/></svg>Cambiar</div>
+          <div class='icono-texto editar' id=''>Cambiar</div>
           <div class='icono-texto eliminar' id='papelera-${
             cita.idCita
-          }'><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="black"><path d="M292.31-140q-29.92 0-51.12-21.19Q220-182.39 220-212.31V-720h-40v-60h180v-35.38h240V-780h180v60h-40v507.69Q740-182 719-161q-21 21-51.31 21H292.31ZM680-720H280v507.69q0 5.39 3.46 8.85t8.85 3.46h375.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46V-720ZM376.16-280h59.99v-360h-59.99v360Zm147.69 0h59.99v-360h-59.99v360ZM280-720v520-520Z"/></svg>Cancelar</div>
+          }'>Cancelar</div>
         </td>
       </tr>`;
   }

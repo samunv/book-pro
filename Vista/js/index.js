@@ -120,10 +120,9 @@ window.addEventListener("DOMContentLoaded", function () {
         throw new Error(`Error al comprobar sesión: ${response.status}`);
 
       const data = await response.json();
-      if (!data || data.error) {
-        console.warn(data?.error || "Sesión no encontrada");
-        window.location.href = "login.php"; // Redirigir al login
-        return;
+      if(!data.sesion){
+        alert("No hay sesión");
+        window.location.href="login.php";
       }
 
       console.log("Sesión encontrada:", data.sesion);

@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", function () {
     fetch("./../Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
-        if (data.error) {
+        if (!data.sesion) {
           window.location.href = "login.php";
         }
       });

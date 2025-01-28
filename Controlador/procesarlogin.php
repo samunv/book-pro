@@ -44,6 +44,7 @@ if (isset($_POST["contrasenaLogin"]) && isset($_POST["correo"])) {
 
 
 if (isset($_GET["correoRecuperar"])) {
+    $sesion->setUsuarioProvisional($_GET["correoRecuperar"]);
     $destinatario = $_GET["correoRecuperar"];
     $correo = new Correo($destinatario, "Recuperar mi Cuenta", "Haz click en este enlace para recuperar tu cuenta http://localhost/barbershopWebApp/Vista/recuperarcuenta.php?correo=$destinatario");
     $correo->enviarCorreo();

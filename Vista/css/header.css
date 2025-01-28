@@ -29,6 +29,7 @@ h1 {
     align-items: center;
     background-color: #f4f4f4;
     transform: translateY(-20px);
+    width: 100%;
 }
 
 #icono-accion {
@@ -81,9 +82,7 @@ header a{
 }
 
 @media (max-width: 600px) {
-    body{
-        max-width:fit-content;
-    }
+
     header {
         height: 100px;
         width: 100%;
@@ -93,24 +92,30 @@ header a{
         z-index: -1;
     }
 
+    .seccion-principal{
+        padding-top: 20px;
+        padding-bottom: 0px;
+    }
+
 
     h1{
         font-size: 20px;
     }
 
     header .elementos-header1{
-        font-size: 16px;
+        font-size: 18px;
         margin: 20px;
     }
+
     header .elementos-header2{
         margin: 20px;
     }
     header .elementos-header2 img{
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
     }
     .elementos-header2 #correo-usuario{
-        font-size: 11px;
+        font-size: 14px;
         display: none;
     }
     .elementos-header2 #nombre-usuario{

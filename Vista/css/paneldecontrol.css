@@ -195,7 +195,6 @@ hr {
 .td-iconos {
     display: flex;
     flex-direction: column;
-
     justify-content: center;
 }
 
@@ -213,13 +212,14 @@ hr {
     justify-content: center;
     font-size: 13px;
     border-radius: 5px;
-    padding: 3px 5px;
+    padding: 7px 15px;
     cursor: pointer;
     margin: 3px;
     transition: all 0.3s ease;
     color: black;
     font-weight: bold;
     background-color: #f4f4f4;
+    border: 1px transparent solid;
 }
 
 .icono-texto:hover {
@@ -275,14 +275,18 @@ input:nth-child(1) {
 
 
 
-.icono-texto svg {
-    fill: black;
-}
-
 
 .icono-texto.editar {}
 
-.icono-texto.eliminar {}
+.icono-texto.eliminar {
+    background-color: #006bff;
+    color: white;
+}
+.icono-texto.eliminar:hover{
+    background-color: transparent;
+    border: 1px #006bff solid ;
+    color: #006bff;
+}
 
 .overlay {
     display: none;

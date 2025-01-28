@@ -106,3 +106,41 @@ class Notificacion
         return "Correo de notificación enviado correctamente";
     }
 }
+
+class Recordatorio extends Notificacion
+{
+    private $fechaRecordatorio;
+
+    function __construct($titulo, $mensaje, $destinatario, $fechaRecordatorio)
+    {
+        parent::__construct($titulo, $mensaje, $destinatario);
+        $this->fechaRecordatorio = $fechaRecordatorio;
+    }
+
+    /**
+     * Get the value of fechaRecordatorio
+     */
+    public function getFechaRecordatorio()
+    {
+        return $this->fechaRecordatorio;
+    }
+
+    /**
+     * Set the value of fechaRecordatorio
+     *
+     * @return  self
+     */
+    public function setFechaRecordatorio($fechaRecordatorio)
+    {
+        $this->fechaRecordatorio = $fechaRecordatorio;
+
+        return $this;
+    }
+
+    public function enviarRecordatorio()
+    {
+        $mensajeCompleto = $this->getMensaje() . "\n\nRecordatorio para: " . $this->getFechaRecordatorio();
+        $this->setMensaje($mensajeCompleto);
+        return $this->enviarNotificacionCorreo($this);
+    }
+}
