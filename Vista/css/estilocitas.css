@@ -166,13 +166,13 @@ button {
 
 
 #btn-eliminar {
-    background-color: #006bff;
+    background-color: var(--tema-principal);
 }
 
 #btn-eliminar:hover {
-    color: #006bff;
+    color: var(--tema-principal);
     background-color: transparent;
-    border: 1px #006bff solid;
+    border: 1px var(--tema-principal) solid;
 }
 
 h2 {

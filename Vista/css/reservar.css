@@ -105,7 +105,7 @@ button:hover {
 }
 
 #formulario-hora ul li:hover {
-    border: 2px rgb(0, 107, 255) solid;
+    border: 2px var(--tema-principal) solid;
     cursor: pointer;
 }
 
@@ -144,7 +144,7 @@ button:hover {
 }
 
 .dia.numero:hover {
-    border: 2px rgb(0, 107, 255) solid;
+    border: 2px var(--tema-principal)  solid;
     cursor: pointer;
 }
 
@@ -173,12 +173,6 @@ button:hover {
 }
 
 
-.dia.ocupado {
-    cursor: not-allowed;
-    color: red;
-    /* O el color que desees */
-    /* O el color que desees */
-}
 
 .seccion-principal {
     width: 100%;

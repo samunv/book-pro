@@ -39,6 +39,15 @@ window.addEventListener("DOMContentLoaded", function () {
   let correoProfesional = obtenerDatoTemporal("correoProfesional");
   let nombreCliente = obtenerDatoTemporal("nombre");
 
+  let datosParaPagar = {
+    servicio: nombreServicio,
+    precio: precio,
+    duracion: duracion,
+    cliente: nombreCliente,
+    correoCliente: correo,
+    correoProfesional: correoProfesional,
+  };
+
   let divConfirmado = this.document.getElementById("confirmado");
   let seleccionarPago = this.document.getElementById("seleccionar-pago");
   let overlay = this.document.getElementById("overlay");
@@ -50,29 +59,35 @@ window.addEventListener("DOMContentLoaded", function () {
   // Depuración: Verificar valores obtenidos
   console.log("ID Profesional:", idProfesional);
 
-  obtenerNombreProfesional(idProfesional);
+  async function obtenerNombreProfesional(idProfesional) {
+    try {
+      const response = await fetch(
+        url + "?idProfesionalParaNombre=" + idProfesional
+      );
+      const data = await response.json();
 
-  function obtenerNombreProfesional(idProfesional) {
-    fetch(url + "?idProfesionalParaNombre=" + idProfesional)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data && data.length > 0) {
-          const nombre = data[0].nombre;
-          guardarDatoTemporal("nombreProfesional", nombre);
-        } else {
-          console.error("No se encontró el profesional con ID:", idProfesional);
-          guardarDatoTemporal("nombreProfesional", "No disponible");
-        }
-        // Ahora que tenemos el nombre del profesional, podemos imprimir los datos.
-        imprimirDatos();
-      })
-      .catch((error) => console.error("Error al obtener profesional:", error));
+      if (data && data.length > 0) {
+        const nombre = data[0].nombre;
+        guardarDatoTemporal("nombreProfesional", nombre);
+        return nombre;
+      } else {
+        console.error("No se encontró el profesional con ID:", idProfesional);
+        guardarDatoTemporal("nombreProfesional", "No disponible");
+        return "No disponible";
+      }
+    } catch (error) {
+      console.error("Error al obtener profesional:", error);
+      guardarDatoTemporal("nombreProfesional", "Error");
+      return "Error";
+    }
   }
 
+  (async () => {
+    nombreProfesional = await obtenerNombreProfesional(idProfesional);
+    imprimirDatos();
+  })();
+
   function imprimirDatos() {
-    // Comprobar si cita está definida y tiene propiedades válidas
-    // Comprobar si cita está definida y tiene propiedades válidas
-    nombreProfesional = obtenerDatoTemporal("nombreProfesional");
     let html = "";
 
     html +=
@@ -113,20 +128,32 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   let btnAceptar = document.getElementById("btn-aceptar");
+  let btnEnPersona = this.document.getElementById("btnPersona");
+  let btnOnline = this.document.getElementById("btnOnline");
+
   btnAceptar.addEventListener("click", async function (e) {
     e.preventDefault();
-    enviar();
+    mostrarElementos(seleccionarPago, overlay);
+    establecerBoton(btnEnPersona, false);
+    establecerBoton(btnOnline, true);
+    //enviar();
   });
 
-  function establecerBoton(boton, formaDePago) {
+  function establecerBoton(boton, pagarAhoraBoolean) {
     boton.addEventListener("click", function () {
-      guardarDatoTemporal("formaDePago", formaDePago);
-      enviar();
+      if (pagarAhoraBoolean == true) {
+        enviar(
+          "pagina-pago.php?datos=" +
+            encodeURIComponent(JSON.stringify(datosParaPagar))
+        );
+      } else if (pagarAhoraBoolean == false) {
+        enviar("vercitas.php?correo=" + correo);
+      }
     });
   }
 
-  function enviar() {
-    // Comprobar si existe una cita duplicada
+  function enviar(URLsiguientePagina) {
+    // Comprobar si existe una ciURLsiguientePaginata duplicada
 
     enviarDatos(
       diaFinal,
@@ -136,7 +163,8 @@ window.addEventListener("DOMContentLoaded", function () {
       mesFinal,
       añoFinal,
       idServicio,
-      correo
+      correo,
+      URLsiguientePagina
     );
 
     enviarNotificacion(
@@ -194,7 +222,8 @@ window.addEventListener("DOMContentLoaded", function () {
     mes,
     año,
     idServicio,
-    correo
+    correo,
+    URLsiguientePagina
   ) {
     console.log(dia + hora + idUsuario + mes + año + idServicio);
     fetch(
@@ -217,14 +246,14 @@ window.addEventListener("DOMContentLoaded", function () {
         correo
     )
       .then((response) => response.json())
-      .then((data) => {
+      .then((idCita) => {
         console.log("Reserva realizada con éxito.");
-        guardarDatoTemporal("idCita", data);
+        guardarDatoTemporal("idCita", idCita);
         seleccionarPago.style.display = "none";
         mostrarElementos(divConfirmado, overlay);
         setTimeout(() => {
-          window.location.href =
-            "vercitas.php?correo=" + correo + "&#contenedor" + data;
+          window.location.href = "index.php";
+          window.open(URLsiguientePagina + "&idCita=" + idCita, "_blank");
         }, 3000);
       });
   }
@@ -275,7 +304,7 @@ window.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         if (!data.sesion) {
           alert("No hay sesión");
-          window.location.href="login.php";
+          window.location.href = "login.php";
         }
       });
   }

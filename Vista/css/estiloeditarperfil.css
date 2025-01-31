@@ -55,7 +55,7 @@ button:hover {
 }
 
 #texto-morado {
-    color: rgb(0, 107, 255);
+    color: var(--tema-principal);
 }
 
 
@@ -86,7 +86,7 @@ button:hover {
     margin: 10px;
     font-weight: bolder;
     transition: all 0.3s ease;
-    background-color: #006bff;
+    background-color: var(--tema-principal);
     color: white;
     border-radius: 10px;
     border:1px transparent solid;
@@ -100,13 +100,13 @@ button:hover {
 
 .botones button:nth-child(2) {
   background-color: transparent;
-  color: #006bff;
-  border: 1px #006bff solid;
+  color: var(--tema-principal);
+  border: 1px var(--tema-principal) solid;
 }
 
 .botones button:nth-child(2):hover{
     color: white;
-    background-color: #006bff;
+    background-color: var(--tema-principal);
     border: 1px solid transparent;
 }
 
@@ -168,11 +168,11 @@ button:hover {
 }
 
 #ventana-editarfoto-oculta .botones-editar-foto button:nth-child(2) {
-    background-color: rgb(0, 107, 255);
+    background-color: var(--tema-principal);
 }
 
 #fotoDePerfil:hover {
-    border: 3px rgb(0, 107, 255) solid;
+    border: 3px var(--tema-principal) solid;
 }
 
 .contendor-foto {
@@ -186,7 +186,7 @@ button:hover {
 }
 
 .contenedor-editar {
-    background-color: rgb(0, 107, 255);
+    background-color:var(--tema-principal);
     border-radius: 50%;
     width: 30px;
     height: 30px;

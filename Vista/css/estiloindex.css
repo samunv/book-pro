@@ -68,7 +68,7 @@ h1 {
 
 
 .contenedor-img {
-    background-color: #BFE8FF;
+    background-color: var(--color-secundario-complementario);
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -79,13 +79,14 @@ h1 {
 }
 
 
-.contenedor-img img {
+.contenedor-img svg{
     width: 40px;
     height: 40px;
+    fill:var(--tema-principal);
 }
 
 .contenedor-txt {
-    color: rgb(0, 107, 255);
+    color: var(--tema-principal);
     font-weight: bold;
     font-size: 23px;
     margin-left: 10px;
@@ -102,7 +103,7 @@ h1 {
 }
 
 #cuenta-notificaciones {
-    background-color: rgb(0, 107, 255);
+    background-color: var(--tema-principal);
     color: white;
     font-weight: bold;
     width: 20px;

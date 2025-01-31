@@ -1,5 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
   let url = "./../Controlador/reservarcontrolador.php";
+
+  const ROOT_CSS = document.documentElement;  // El elemento :root
   comprobarSesion();
   
   function comprobarSesion() {
@@ -228,8 +230,8 @@ window.addEventListener("DOMContentLoaded", function () {
     desactivarBoton(btnContinuar1);
     if (btnDia) {
       if (seleccionar) {
-        btnDia.style.backgroundColor = "#BFE8FF";
-        btnDia.style.color = "rgb(0, 107, 255)";
+        btnDia.style.backgroundColor = obtenerTemaComplementario(ROOT_CSS);
+        btnDia.style.color = obtenerTemaPrincipal(ROOT_CSS);
         btnDia.style.fontWeight = "bold";
       } else {
         btnDia.style.backgroundColor = "";
@@ -332,9 +334,9 @@ window.addEventListener("DOMContentLoaded", function () {
     let btnHora = document.getElementById(hora);
     if (btnHora) {
       if (seleccionar) {
-        btnHora.style.backgroundColor = "rgb(0, 107, 255)";
+        btnHora.style.backgroundColor = obtenerTemaPrincipal(ROOT_CSS);
         btnHora.style.color = "#fff";
-        btnHora.style.border = "2px solid rgb(0, 107, 255)";
+        btnHora.style.border = "2px solid " + obtenerTemaPrincipal(ROOT_CSS);
       } else {
         btnHora.style.backgroundColor = "";
         btnHora.style.color = "";
@@ -419,12 +421,26 @@ window.addEventListener("DOMContentLoaded", function () {
     let divProfesional = document.getElementById(id);
     if (divProfesional) {
       if (seleccionar) {
-        divProfesional.style.border = "2px solid rgb(0, 107, 255)";
-        divProfesional.style.backgroundColor = "rgba(0, 107, 255, 0.1)";
+        divProfesional.style.border = "2px solid "+obtenerTemaPrincipal(ROOT_CSS);
+        divProfesional.style.backgroundColor = obtenerTemaComplementario(ROOT_CSS);
       } else {
         divProfesional.style.border = "";
         divProfesional.style.backgroundColor = "";
       }
     }
+  }
+
+  
+
+  function obtenerTemaPrincipal(root) {
+    const estilo = getComputedStyle(root);  // Obtener el estilo computado
+    const temaPrincipal = estilo.getPropertyValue('--tema-principal');  // Obtener el valor de la propiedad
+    return temaPrincipal;
+  }
+  function obtenerTemaComplementario(root) {
+   
+    const estilo = getComputedStyle(root);  // Obtener el estilo computado
+    const temaPrincipal = estilo.getPropertyValue('--color-secundario-complementario');  // Obtener el valor de la propiedad
+    return temaPrincipal;
   }
 });

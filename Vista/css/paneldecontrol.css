@@ -274,18 +274,14 @@ input:nth-child(1) {
 }
 
 
-
-
-.icono-texto.editar {}
-
 .icono-texto.eliminar {
-    background-color: #006bff;
+    background-color: var(--tema-principal);
     color: white;
 }
 .icono-texto.eliminar:hover{
     background-color: transparent;
-    border: 1px #006bff solid ;
-    color: #006bff;
+    border: 1px var(--tema-principal) solid ;
+    color: var(--tema-principal);
 }
 
 .overlay {

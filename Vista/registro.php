@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse</title>
     <link rel="stylesheet" href="css/estilologin.css?v=<?php echo time() ?>">
+    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
     <script src="js/registro.js?v=<?php echo time() ?>"></script>
 </head>
 

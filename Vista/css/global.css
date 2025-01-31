@@ -1,13 +1,21 @@
+:root {
+    --tema-principal: #006bff
+     !important;
+    /*#006bff: Color de la App Modelo de BookPro*/
+    --color-texto-complementario: white !important;
+    /*No definido aún*/
+    --color-secundario-complementario: #BFE8FF !important;
+    /*#BFE8FF: Color de la App Modelo de BookPro*/
+    --color-fondo:#f4f4f4;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: var(--color-fondo);
+    color: black;
+    /*Color global del texto*/
     margin: 0;
     padding: 0;
     overflow-x: hidden;
     width: 100%;
-}
-
-
-@media (max-width: 600px) {
-
 }

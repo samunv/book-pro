@@ -1,6 +1,7 @@
 {
     "propietario": "Samuel Navasardyan Vardanyan",
     "cif": "B-12345678",
+    "nif":"",
     "nombre": "BookPro",
     "direccion": "Moncloa, Madrid",
     "hora_apertura":"12:00",
@@ -21,3 +22,4 @@
 
     
 }
+

@@ -7,6 +7,7 @@
     <title>Iniciar sesión</title>
     <link rel="stylesheet" href="css/estilologin.css?v=<?php echo time() ?>">
     <script type="module" src="js/login.js?v=<?php echo time() ?>"></script>
+    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
 </head>
 
 <body>

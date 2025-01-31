@@ -69,7 +69,14 @@ window.addEventListener("DOMContentLoaded", function () {
 
   function activarBoton(boton) {
     boton.disabled = false;
-    boton.style.backgroundColor = "#006bff";
+    
+    boton.style.backgroundColor = obtenerTemaPrincipal();
+  }
+  function obtenerTemaPrincipal() {
+    const root = document.documentElement;  // El elemento :root
+    const estilo = getComputedStyle(root);  // Obtener el estilo computado
+    const temaPrincipal = estilo.getPropertyValue('--tema-principal');  // Obtener el valor de la propiedad
+    return temaPrincipal;
   }
 
   // Lógica de activación/desactivación de botones en base a la validación

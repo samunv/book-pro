@@ -27,10 +27,10 @@
     <div id="overlay" class="overlay"></div>
     <div id="seleccionar-pago">
         Elige un forma de Pago
-        <p>El pago en persona podrá realizarse en efectivo o tarjeta.</p>
+        <p>El pago en persona podrá realizarse en efectivo o tarjeta. Podrás pagar online posteriormente desde Tus Citas.</p>
         <div class="botones-pago">
             <button type="button" id="btnPersona">En persona</button>
-            <button type="button" id="btnOnline">Online (Tarjeta)</button>
+            <button type="button" id="btnOnline">Online (Ahora)</button>
         </div>
 
     </div>
