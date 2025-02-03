@@ -1,4 +1,4 @@
-**BookPro**
+#BookPro
 
 Consiste en un modelo de aplicación web o software de gestión de citas para negocios locales como peluquerías, salones de belleza, veterinarios, o cualquiera que tenga un sistema de reserva de citas con los clientes para ofrecer un servicio.
 
