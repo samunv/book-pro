@@ -1,299 +1,370 @@
 * {
-    transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .seccion-principal {
-    width: 100%;
-    padding-top: 50px;
-    border-radius: 25px 25px 0 0;
-    background-color: #f4f4f4;
-    transform: translateY(-20px);
-    display: flex;
-    justify-content: center;
+	width: 100%;
+	padding-top: 50px;
+	border-radius: 25px 25px 0 0;
+	background-color: #f4f4f4;
+	transform: translateY(-20px);
+	display: flex;
+	justify-content: center;
 }
 
 .contenedor-cita {
-    background-color: white;
-    border-radius: 15px;
-    width: 40%;
-    margin: 20px;
-    padding: 25px;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+	background-color: white;
+	border-radius: 15px;
+	margin: 20px;
+	padding: 20px 25px;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	cursor: grab;
 
 
 }
 
+.contenedor-cita.seleccionado{
+	transform: scale(1.02);
+}
+
 #lista-citas {
-    display: none;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 
 }
 
 .conjunto-foto-texto {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .conjunto-foto-texto img {
-    border-radius: 7px;
+	border-radius: 7px;
 }
 
 .contenedor-iconos {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
 }
 
 .contenedor-iconos img,
 .contenedor-iconos svg {
-    border-radius: 5px;
-    width: 30px;
-    height: 30px;
-    transition: all 0.3s ease;
+	border-radius: 5px;
+	width: 30px;
+	height: 30px;
+	transition: all 0.3s ease;
 }
 
 .contenedor-iconos img:hover {
-    background-color: #BFE8FF;
-    cursor: pointer;
+	background-color: #BFE8FF;
+	cursor: pointer;
 }
 
 .contenedor-iconos svg:hover {
-    background-color: #ebebeb;
-    cursor: pointer;
+	background-color: #ebebeb;
+	cursor: pointer;
 
 }
 
 #ventana-eliminar {
-    background-color: white;
-    border-radius: 20px;
-    z-index: 999;
-    width: 30%;
-    padding: 40px;
-    position: fixed;
-    /* Posición absoluta */
-    top: 50%;
-    /* 50% desde la parte superior */
-    left: 50%;
-    /* 50% desde la izquierda */
-    transform: translate(-50%, -50%);
+	background-color: white;
+	border-radius: 20px;
+	z-index: 999;
+	width: 30%;
+	padding: 40px;
+	position: fixed;
+	/* Posición absoluta */
+	top: 50%;
+	/* 50% desde la parte superior */
+	left: 50%;
+	/* 50% desde la izquierda */
+	transform: translate(-50%, -50%);
 
 }
 
 #ventana-eliminar p {
-    color: gray;
-    text-align: center;
+	color: gray;
+	text-align: center;
 }
 
 #icono-accion {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .overlay {
-    position: fixed;
-    /* Fijo en la pantalla */
-    top: 0;
-    /* Arriba */
-    left: 0;
-    /* Izquierda */
-    width: 100%;
-    /* Ancho completo */
-    height: 100%;
-    /* Alto completo */
-    background-color: rgba(0, 0, 0, 0.7);
-    /* Fondo oscuro con transparencia */
-    z-index: 998;
+	position: fixed;
+	/* Fijo en la pantalla */
+	top: 0;
+	/* Arriba */
+	left: 0;
+	/* Izquierda */
+	width: 100%;
+	/* Ancho completo */
+	height: 100%;
+	/* Alto completo */
+	background-color: rgba(0, 0, 0, 0.7);
+	/* Fondo oscuro con transparencia */
+	z-index: 998;
 }
 
 #ventana-recordatorio {
-    z-index: 1001;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border-radius: 20px;
-    padding: 30px;
-    text-align: center;
+	z-index: 1001;
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background-color: white;
+	border-radius: 20px;
+	padding: 30px;
+	text-align: center;
 }
 
 #ventana-recordatorio h3 {
-    margin-top: 0px;
+	margin-top: 0px;
 }
 
 #ventana-recordatorio button {
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px 30px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px 30px;
 }
 
 #ventana-recordatorio .input-rec {
-    margin: 15px;
+	margin: 15px;
 }
 
 .caja-botones {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
 }
 
 button {
 
-    margin: 10px;
-    padding: 20px;
-    font-size: 15px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: bold;
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    border: 1px transparent solid;
+	margin: 10px;
+	padding: 20px;
+	font-size: 15px;
+	background-color: black;
+	color: white;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-weight: bold;
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	border: 1px transparent solid;
 
 }
 
 
 #btn-eliminar {
-    background-color: var(--tema-principal);
+	background-color: var(--tema-principal);
 }
 
 #btn-eliminar:hover {
-    color: var(--tema-principal);
-    background-color: transparent;
-    border: 1px var(--tema-principal) solid;
+	color: var(--tema-principal);
+	background-color: transparent;
+	border: 1px var(--tema-principal) solid;
 }
 
 h2 {
-    text-align: center;
+	text-align: center;
 
 }
 
 .foto-servicio {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 7px;
+	width: 170px;
+	height: 170px;
+	object-fit: cover;
+	border-radius: 7px;
 }
 
 .apartado-texto {
-    margin: 20px;
+	margin: 20px;
 
 }
 
 .apartado-texto p,
 .apartado-texto h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
+	margin-top: 0;
+	margin-bottom: 10px;
 }
 
 #loader {
-    margin-top: 100px;
-    width: 120px;
-    height: 20px;
-    border-radius: 10px;
-    background:
-        linear-gradient(#000000 0 0) 0/0% no-repeat #ddd;
-    animation: l1 0.6s infinite linear;
+	margin-top: 100px;
+	width: 120px;
+	height: 20px;
+	border-radius: 10px;
+	background:
+		linear-gradient(#000000 0 0) 0/0% no-repeat #ddd;
+	animation: l1 0.6s infinite linear;
 }
 
 @keyframes l1 {
-    100% {
-        background-size: 100%
-    }
+	100% {
+		background-size: 100%
+	}
 }
 
 .contenedor-loader {
-    width: 100%;
+	width: 100%;
 
 }
+
+.pago {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.pago span,
+.pago button {
+	margin-left: 5px;
+}
+
+.pagado {
+	color: rgb(0, 208, 0);
+	background-color: rgb(238, 255, 238);
+	padding: 5px 10px;
+	border-radius: 20px;
+	border: 1px rgb(238, 255, 238) solid;
+}
+
+.pendiente {
+	color: rgb(53, 53, 53);
+	background-color: #f4f4f4;
+	padding: 5px 10px;
+	border-radius: 20px;
+	border: 1px #f4f4f4 solid;
+}
+
+.btn-pagar-ahora {
+	padding: 5px 10px;
+	background-color: #000000;
+	color: white;
+	font-weight: normal;
+	margin: 0;
+	border-radius: 20px;
+	transition: all 0.3s ease;
+}
+
+.btn-pagar-ahora:hover {
+
+	background-color: transparent;
+	border: 1px black solid;
+	color: black;
+}
+
+
 
 @media (max-width: 600px) {
 
 
-    .contenedor-cita {
-        background-color: white;
-        border-radius: 15px;
-        width: 80%;
-        margin: 20px;
-        padding: 15px;
+	.contenedor-cita {
+		background-color: white;
+		border-radius: 15px;
+		margin: 20px;
+		padding: 15px;
 
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-        font-size: smaller;
-
-
-    }
-
-    .apartado-texto {
-        margin: 0px;
-        margin-left: 10px;
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: flex-end;
+		font-size: 12px;
 
 
-    }
+	}
 
-    .apartado-texto p {
-        margin-bottom: 0px;
-        font-size: 10px;
-    }
+	.apartado-texto {
+		margin: 0px;
+		margin-left: 10px;
 
-    .apartado-texto h3 {
-        font-size: 12px;
-        margin-bottom: 5px;
-    }
 
-    .foto-servicio {
-        width: 70px;
-        height: 70px;
-        object-fit: cover;
-        border-radius: 7px;
-    }
+	}
 
-    .conjunto-foto-texto {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start
-    }
+	.apartado-texto p {
+		margin-bottom: 5px;
+		font-size: 12px;
+	}
 
-    .contenedor-iconos {
-        margin-top: 10px;
-    }
+	.apartado-texto h3 {
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
 
-    .contenedor-iconos img,
-    .contenedor-iconos svg {
+	.foto-servicio {
+		width: 70px;
+		height: 70px;
+		object-fit: cover;
+		border-radius: 7px;
+	}
 
-        width: 25px;
-        height: 25px;
-        margin: 1px;
+	.conjunto-foto-texto {
+		display: flex;
+		flex-direction: row;
+		align-items: flex-start
+	}
 
-    }
 
-    #ventana-eliminar {
-        width: 70%;
-        padding: 20px;
-    }
+	.contenedor-iconos img,
+	.contenedor-iconos svg {
 
-    #ventana-eliminar h2 {
-        font-size: 16px;
-        margin-bottom: 0px;
-    }
+		width: 25px;
+		height: 25px;
+		margin: 1px;
 
-    #ventana-eliminar button {
-        padding: 10px;
-    }
+	}
+
+	#ventana-eliminar {
+		width: 70%;
+		padding: 20px;
+	}
+
+	#ventana-eliminar h2 {
+		font-size: 16px;
+		margin-bottom: 0px;
+	}
+
+	#ventana-eliminar button {
+		padding: 10px;
+	}
+
+	.pagado {
+		color: rgb(0, 208, 0);
+		background-color: rgb(238, 255, 238);
+		padding: 3px 5px;
+		border-radius: 10px;
+		font-size: 12px;
+	}
+
+	.pendiente {
+		color: rgb(89, 89, 89);
+		background-color: #f4f4f4;
+		padding: 3px 5px;
+		border-radius: 10px;
+		font-size: 12px;
+	}
+
+	.btn-pagar-ahora {
+		padding: 3px 5px;
+		border-radius: 10px;
+
+		font-size: 12px;
+	}
+
+	.pago {
+		font-size: 12px;
+	}
 
 }

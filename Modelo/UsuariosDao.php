@@ -20,6 +20,23 @@ class UsuariosDao
         return $datosArray;
     }
 
+    public function leerContraseñaPorCorreo($correo)
+    {
+        // Evitar inyecciones SQL usando una variable escape
+        $conexion = $this->conexion->getConexion();
+        $correoEscapado = mysqli_real_escape_string($conexion, $correo);
+
+        $consulta = mysqli_query($conexion, "SELECT contrasena FROM usuarios WHERE correo = '$correoEscapado'");
+
+        // Verificamos si se obtuvo algún resultado
+        if ($reg = mysqli_fetch_assoc($consulta)) {
+            return $reg['contrasena']; 
+        } else {
+            return null;  // Si no se encuentra el correo
+        }
+    }
+
+
     public function leerUsuarioPorId($id)
     {
         $consulta = mysqli_query($this->conexion->getConexion(), "SELECT * FROM usuarios WHERE idUsuario='$id'") or die("Error en consulta: " . mysqli_error($this->conexion->getConexion()));

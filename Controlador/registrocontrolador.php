@@ -22,6 +22,9 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["tele
     $inputTelefono = $_POST["telefono"];
     $inputCorreo = $_POST["correo"];
 
+    // Encriptar la constraseña del usuario para que no pueda ser vista desde la BBDD por protección de datos del usuario
+    $contrasena_encriptada = password_hash($inputContrasena, PASSWORD_BCRYPT);
+
     // Verificar si el teléfono o el correo ya están en uso
     $verificarTelefono = $usuarioDAO->leerUsuarioPorTelefono($inputTelefono);
     $verificarCorreo = $usuarioDAO->leerUsuarioPorCorreo($inputCorreo);
@@ -44,7 +47,7 @@ if (isset($_POST["nombre"]) && isset($_POST["contrasena"]) && isset($_POST["tele
             $inputNombre,
             0,
             $inputTelefono,
-            $inputContrasena,
+            $contrasena_encriptada,
             "./img/perfil-default.png",
             $inputCorreo,
             $token
@@ -80,7 +83,7 @@ if (isset($_GET["token"]) && isset($_GET["correoToken"])) {
             echo json_encode(["mensaje" => "Usuario verificado y registrado con éxito."]);
         } else {
             unset($_SESSION['usuarioProvisional']); // Eliminar el usuario provisional tras guardarlo
-            echo json_encode(["mensaje" => "Token inválido para ". $_GET["correoToken"]]);
+            echo json_encode(["mensaje" => "Token inválido para " . $_GET["correoToken"]]);
         }
     } else {
         echo json_encode(["mensaje" => "No hay un usuario provisional almacenado."]);

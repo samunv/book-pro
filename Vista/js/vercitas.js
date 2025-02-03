@@ -74,6 +74,10 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
   function HTMLcitas(cita) {
+    let citaPagada = false;
+    if (cita.pagado === "1") {
+      citaPagada = true;
+    }
     let html = "";
     html += "<div class='contenedor-cita' id='contenedor" + cita.idCita + "'>";
 
@@ -102,12 +106,18 @@ window.addEventListener("DOMContentLoaded", function () {
       cita.duracion +
       "min.</p>";
     html += "<p> Profesional: " + cita.nombreProfesional + "</p>";
+    html +=
+      "<div class='pago'>Pago: " +
+      (citaPagada == true
+        ? "<span class='pagado'>Pagado</span>"
+        : "<span class='pendiente'>Pendiente </span><button type='button' class='btn-pagar-ahora'>Pagar Ahora</button>") +
+      "</div>";
     html += "</div>";
     html += "</div>";
     html += "<div class='contenedor-iconos'>";
     html += `<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' class='papelera' id='papelera-${
-        cita.idCita
-      }' data-cita='${JSON.stringify(
+      cita.idCita
+    }' data-cita='${JSON.stringify(
       cita
     )}'><path d='M304.62-160q-26.85 0-45.74-18.88Q240-197.77 240-224.62V-720h-40v-40h160v-30.77h240V-760h160v40h-40v495.38q0 27.62-18.5 46.12Q683-160 655.38-160H304.62ZM680-720H280v495.38q0 10.77 6.92 17.7 6.93 6.92 17.7 6.92h350.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93V-720ZM392.31-280h40v-360h-40v360Zm135.38 0h40v-360h-40v360ZM280-720v520-520Z'/><title>Cancelar Reserva</title></path></svg>`;
     html += `<img src='img/googlecalendar.webp' title='Añadir a Google Calendar' id='btn-google-calendar-${
@@ -163,7 +173,6 @@ window.addEventListener("DOMContentLoaded", function () {
           });
         }
       }
-
     } else {
       html = "No has reservado ninguna cita.";
       listaCitas.innerHTML = html;
@@ -332,4 +341,10 @@ window.addEventListener("DOMContentLoaded", function () {
 
     return fechaGoogle;
   }
+
+
+  Sortable.create(listaCitas, {
+    animation: 150,
+    choosenClass: "seleccionado",
+  });
 });

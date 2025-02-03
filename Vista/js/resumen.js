@@ -39,6 +39,31 @@ window.addEventListener("DOMContentLoaded", function () {
   let correoProfesional = obtenerDatoTemporal("correoProfesional");
   let nombreCliente = obtenerDatoTemporal("nombre");
 
+  verificarDatos(
+    nombreServicio,
+    duracion,
+    precio,
+    idProfesional,
+    idUsuario,
+    idServicio,
+    horaFinal,
+    diaFinal,
+    mesFinal,
+    añoFinal,
+    correoProfesional,
+    nombreCliente
+  );
+
+  function verificarDatos(...datos) {
+    let datosInvalidos = datos.some((dato) => dato == null || dato === "");
+
+    if (datosInvalidos) {
+      //Redirigir al inicio si el usuario intenta acceder sin los datos guardados, 
+      // para evitar réplicas de reservas.
+      window.location.href = "index.php";
+    }
+  }
+
   let datosParaPagar = {
     servicio: nombreServicio,
     precio: precio,
@@ -177,6 +202,7 @@ window.addEventListener("DOMContentLoaded", function () {
       añoFinal,
       nombreServicio
     );
+    seleccionarPago.style.display = "none";
   }
 
   function enviarNotificacion(
@@ -249,12 +275,12 @@ window.addEventListener("DOMContentLoaded", function () {
       .then((idCita) => {
         console.log("Reserva realizada con éxito.");
         guardarDatoTemporal("idCita", idCita);
-        seleccionarPago.style.display = "none";
         mostrarElementos(divConfirmado, overlay);
         setTimeout(() => {
           window.location.href = "index.php";
           window.open(URLsiguientePagina + "&idCita=" + idCita, "_blank");
-        }, 3000);
+          borrarDatos();
+        }, 2000);
       });
   }
 

@@ -26,7 +26,7 @@
         <input type="text" id="apellidos-titular" class="input" required placeholder="Ejemplo: Martínez" name="apellido" maxlength="200">
 
         <label for="direccion-facturacion-titular">Dirección de facturación (Opcional)</label>
-        <input type="text" id="direccion-facturacion-titular" class="input" placeholder="C/Sol, 1, Bajo A" maxlength="200">
+        <input type="text" id="direccion-facturacion-titular" class="input" placeholder="C/Sol, 1, Bajo A, Madrid, España" maxlength="200">
 
         <label for="correo-input">Correo para recibir info.</label>
         <input type="mail" id="correo-input" required class="input" value="">

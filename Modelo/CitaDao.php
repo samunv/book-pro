@@ -216,4 +216,28 @@ HAVING COUNT(DISTINCT hora) = (SELECT COUNT(*) FROM horarios)") or die("Error en
 
         return false;  // Error en la consulta
     }
+
+    public function actualizarEstadoDePago($id)
+    {
+        $sql = "UPDATE citas SET pagado = ? WHERE idCita = ?";
+        $stmt = $this->conexion->getConexion()->prepare($sql);
+        $pagado = 1;
+
+        if ($stmt) {
+            // Vincular parámetros
+            $stmt->bind_param("ii", $pagado, $id);
+
+            // Ejecutar la consulta
+            $stmt->execute();
+
+            // Verificar si se ha actualizado alguna fila
+            if ($stmt->affected_rows > 0) {
+                return true;  // Se actualizó correctamente
+            } else {
+                return false; // No se actualizó nada (probablemente no encontró la cita)
+            }
+        }
+
+        return false;  // Error al preparar la consulta
+    }
 }

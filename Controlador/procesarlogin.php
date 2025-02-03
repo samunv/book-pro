@@ -28,7 +28,8 @@ if (isset($_POST["contrasenaLogin"]) && isset($_POST["correo"])) {
         $response["nombre"] = $usuario;
     } else {
         // Verificar si el usuario existe
-        $usuarioVerificado = $usuarioDAO->leerUsuario($inputCorreo, $inputContrasena);
+        $contrasenaFinal = obtenerContraseñaEncriptada($inputContrasena, $inputCorreo);
+        $usuarioVerificado = $usuarioDAO->leerUsuario($inputCorreo, $contrasenaFinal);
 
         if (!empty($usuarioVerificado)) {
             // Iniciar sesión y enviar correo
@@ -42,6 +43,20 @@ if (isset($_POST["contrasenaLogin"]) && isset($_POST["correo"])) {
     echo json_encode($response);  // Enviar una única respuesta JSON
 }
 
+function obtenerContraseñaEncriptada($contrasenaRecibida, $correoRecibido)
+{
+    $usuarioDAO = new UsuariosDao();
+    // Recuperamos el hash almacenado en la base de datos
+    $encriptado = $usuarioDAO->leerContraseñaPorCorreo($correoRecibido);
+
+    // Verificar la contraseña ingresada con el hash almacenado
+    if (password_verify($contrasenaRecibida, $encriptado)) {
+        return $encriptado;
+        // Continuar con el proceso de autenticación
+    } else {
+        return null;
+    }
+}
 
 if (isset($_GET["correoRecuperar"])) {
     $sesion->setUsuarioProvisional($_GET["correoRecuperar"]);
