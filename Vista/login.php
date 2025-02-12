@@ -27,7 +27,7 @@
 
 
         </div>
-        <button type="submit" class="btn-registrarse">Continuar</button>
+        <button type="submit" class="btn-registrarse">Iniciar sesión</button>
     </form>
 
     <a href="registro.php" id="enlace-registro" class="enlace-azul">¿No tienes una cuenta? Registrate aquí.</a>

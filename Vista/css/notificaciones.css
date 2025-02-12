@@ -12,7 +12,7 @@
     flex-direction: row;
     align-items: center;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 20px;
 
     max-width: 800px;
 }
@@ -42,7 +42,7 @@
 .imagen-notificacion {
     width: 50px;
     height: 50px;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 #no-notificaciones {
@@ -66,7 +66,7 @@
 
 @media (max-width: 600px) {
     #notificaciones {
-        width: 75%;
+        width: 90%;
     }
 
     #btn-borrar-notificaciones {

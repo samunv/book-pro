@@ -1,0 +1,15 @@
+{
+    "name": "BookPro",
+    "short_name": "BookPro",
+    "start_url": "http://localhost/barbershopWebApp/Vista/index.php",
+    "display": "standalone",
+    "background_color": "#f4f4f4",
+    "theme_color": "#006bff",
+    "icons": [
+      {
+        "src": "Vista/img/B-logo-bpro.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

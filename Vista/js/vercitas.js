@@ -96,7 +96,7 @@ window.addEventListener("DOMContentLoaded", function () {
       cita.año +
       "</h3>";
 
-    html += "<p> Hora: " + cita.hora.substring(0, 5) + "</p>";
+    html += "<p> Hora: " + cita.hora.substring(0, 5) + "H</p>";
     html +=
       "<p> Detalles: " +
       "<span id='span-precio'>" +
@@ -343,8 +343,4 @@ window.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  Sortable.create(listaCitas, {
-    animation: 150,
-    choosenClass: "seleccionado",
-  });
 });

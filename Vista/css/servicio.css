@@ -1,88 +1,97 @@
 h1 {
-    text-align: center;
-    font-size: 35px;
+	text-align: center;
+	font-size: 35px;
 }
 
 
 
 .seccion-servicios {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 }
 
 .contenedor-servicio {
-    background-size: cover;
-    background-position: center;
-    padding: 30px;
-    border-radius: 10px;
-    width: 40%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: white;
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
+	background-size: cover;
+	background-position: center;
+	padding: 30px;
+	border-radius: 20px;
+	width: 40%;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	margin: 25px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	color: white;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
 }
 
 .contenedor-servicio:hover {
-    transform: scale(1.05);
+	transform: scale(1.05);
 }
 
 .caja-texto-servicios {
-    border: 1px red solid;
+	border: 1px red solid;
 }
 
 
 .texto-servicios {
-    width: 35%;
-    background-color: rgba(255, 255, 255, 0.2);
-    /* Fondo blanco semi-transparente */
-    backdrop-filter: blur(20px);
-    /* Efecto borroso */
-    -webkit-backdrop-filter: blur(20px);
-    /* Compatibilidad con navegadores WebKit */
-    border-radius: 8px;
-    /* Bordes redondeados */
-    padding: 15px 30px;
-    /* Espaciado interno */
+	width: 35%;
+	background-color: rgba(255, 255, 255, 0.2);
+	/* Fondo blanco semi-transparente */
+	backdrop-filter: blur(20px);
+	/* Efecto borroso */
+	-webkit-backdrop-filter: blur(20px);
+	/* Compatibilidad con navegadores WebKit */
+	border-radius: 8px;
+	/* Bordes redondeados */
+	padding: 15px 30px;
+	/* Espaciado interno */
 
 }
 
 #icono-accion {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 @media (max-width: 600px) {
 
-    .contenedor-servicio {
-        width: 80%;
-        padding: 10px;
-        height: 120px;
-        margin: 10px;
-    }
+	.contenedor-servicio {
+		width: 80%;
+		padding: 10px;
+		height: 140px;
+		margin: 20px;
+	}
 
-    .contenedor-servicio:hover {
-        transform: none;
-    }
+	.contenedor-servicio:hover {
+		transform: none;
+	}
 
-    .texto-servicios {
-        
-        transform: scale(0.6) translate(-50px, 60px);
-        width: 100%;
+	.texto-servicios {
+		
+		
+		height: 70%;
+		width: 60%;
+		padding: 15px;
+		font-size: 12px;
+		font-weight: normal;
 
 
-    }
+	}
+	
+	.texto-servicios h2 {
+		font-size: 14px;
+		margin: 0%;
+	}
 
-    .icono-anadir {
-        width: 30px;
-        height: 30px;
-    }
+	.icono-anadir {
+		width: 30px;
+		height: 30px;
+	}
 
 }

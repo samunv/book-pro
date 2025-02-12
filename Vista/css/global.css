@@ -1,9 +1,9 @@
 :root {
-	--tema-principal: #006bff !important;
+	--tema-principal: #0048ff !important;
 	/*#006bff: Color de la App Modelo de BookPro*/
 	--color-texto-complementario: white !important;
 	/*No definido aún*/
-	--color-secundario-complementario: #dff3ff !important;
+	--color-secundario-complementario: #fde8ff !important;
 	/*#BFE8FF: Color de la App Modelo de BookPro*/
 	--color-fondo: #f4f4f4;
 	/*#F4F4F4F4 es el color de fondo de la App Modelo de BookPro*/

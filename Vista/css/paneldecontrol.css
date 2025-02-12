@@ -13,10 +13,7 @@ table {
     margin-right: auto;
     border-radius: 20px;
     border-collapse: collapse;
-    /* Une los bordes de las celdas */
     overflow: hidden;
-    /* Esconde el contenido que se sale del borde */
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
     width: 60%;
 
 }

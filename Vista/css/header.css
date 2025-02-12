@@ -107,7 +107,7 @@ header a{
     }
 
     header .elementos-header1{
-        font-size: 18px;
+        font-size: 20px;
         margin: 20px;
     }
 
@@ -123,7 +123,7 @@ header a{
         display: none;
     }
     .elementos-header2 #nombre-usuario{
-        font-size: 13px;
+        font-size: 14px;
     }
 
     .elementos-header1 #icono-accion{

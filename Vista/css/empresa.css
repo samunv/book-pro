@@ -1,7 +1,7 @@
 #contenedor-datos {
     background-color: white;
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 20px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -17,7 +17,7 @@
 
 #contenedor-datos iframe {
     width: 60%;
-    border-radius: 5px;
+    border-radius: 10px;
 
 }
 
@@ -36,7 +36,7 @@
 
 
 #contenedor-info img {
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 

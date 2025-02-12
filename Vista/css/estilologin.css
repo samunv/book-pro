@@ -17,6 +17,10 @@ body {
 	margin: 30px;
 }
 
+.btn-registrarse {
+	margin: 0;
+}
+
 .logo-app h1{
 	margin: 0;
 	width: auto;
@@ -284,6 +288,11 @@ h2 {
 	font-size: small;
 }
 
+#btn-recuperar {
+	background-color: var(--tema-principal);
+	color: white;
+}
+
 @media (max-width: 600px) {
 
 	h1 {
@@ -306,9 +315,6 @@ h2 {
 		text-align: center;
 	}
 
-	.btn-registrarse {
-		margin: 0;
-	}
 
 	.logo-app img{
 		height: 70px;

@@ -74,12 +74,11 @@ window.addEventListener("DOMContentLoaded", function () {
     "cuenta-notificaciones"
   );
   function imprimirCuentaDeNotificaciones(longitudNotificaciones) {
-    if(longitudNotificaciones>0){
+    if (longitudNotificaciones > 0) {
       cuentaNotificaciones.innerHTML = "" + longitudNotificaciones;
-    }else{
+    } else {
       cuentaNotificaciones.style.display = "none";
     }
-    
   }
 
   // Actualizar elementos de la interfaz con los datos del usuario
@@ -120,9 +119,9 @@ window.addEventListener("DOMContentLoaded", function () {
         throw new Error(`Error al comprobar sesión: ${response.status}`);
 
       const data = await response.json();
-      if(!data.sesion){
+      if (!data.sesion) {
         alert("No hay sesión");
-        window.location.href="login.php";
+        window.location.href = "login.php";
       }
 
       console.log("Sesión encontrada:", data.sesion);
@@ -160,4 +159,36 @@ window.addEventListener("DOMContentLoaded", function () {
 
   // Ejecutar inicialización
   inicializar();
+
+	let deferredPrompt;
+	const btnInstall = document.getElementById("instalar-app"); // Usa document.getElementById directamente
+	
+	window.addEventListener("beforeinstallprompt", (e) => {
+			e.preventDefault();
+			deferredPrompt = e; // Guarda el evento
+			btnInstall.style.display = "block"; // Muestra el botón
+			console.log("Evento beforeinstallprompt capturado");
+	});
+	
+	btnInstall.addEventListener("click", () => {
+			console.log("Botón de instalación clickeado");
+			if (deferredPrompt) {
+					console.log("deferredPrompt existe, mostrando banner");
+					deferredPrompt.prompt();
+	
+					deferredPrompt.userChoice.then((choiceResult) => {
+							if (choiceResult.outcome === 'accepted') {
+									console.log('Usuario aceptó la instalación');
+							} else {
+									console.log('Usuario rechazó la instalación');
+							}
+							deferredPrompt = null; // Limpia deferredPrompt después de usarlo
+					}).catch(error => {
+							console.error("Error con userChoice:", error);
+							deferredPrompt = null; // Limpia deferredPrompt incluso si hay un error
+					});
+			} else {
+					console.log("deferredPrompt es null, no se puede mostrar el banner");
+			}
+	});
 });
