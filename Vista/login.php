@@ -2,46 +2,50 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="css/estilologin.css?v=<?php echo time() ?>">
-    <script type="module" src="js/login.js?v=<?php echo time() ?>"></script>
-    <link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Iniciar sesión</title>
+	<link rel="stylesheet" href="css/estilologin.css?v=<?php echo time() ?>">
+	<script type="module" src="js/login.js?v=<?php echo time() ?>"></script>
+	<link rel="stylesheet" href="css/global.css?v=<?php echo time() ?>">
 </head>
 
 <body>
-    <div class="logo-app">
-        <img src="img/B-logo-bpro.png" alt="">
-        <h1>ookPro</h1>
-    </div>
+	<div class="logo-app">
+		<img src="img/B-logo-bpro.png" alt="">
+		<h1>BookPro</h1>
+	</div>
 
-    <form class="formulario" id="formularioLogin">
+	<form class="formulario" id="formularioLogin">
 
-        <label for="correo">Correo</label>
-        <input type="email" name="correo" id="correo" required maxlength="40">
-
-
-        <label for="contrasena">Contraseña</label>
-        <input type="password" id="contrasena" name="contrasenaLogin" required maxlength="15" /><br />
+		<label for="correo">Correo</label>
+		<input type="email" name="correo" id="correo" required maxlength="40">
 
 
-        </div>
-        <button type="submit" class="btn-registrarse">Iniciar sesión</button>
-    </form>
-
-    <a href="registro.php" id="enlace-registro" class="enlace-azul">¿No tienes una cuenta? Registrate aquí.</a>
-    <p id="recordar-contrasena" class="enlace-azul">¿Has olvidado tu contraseña?</p>
-    <p id="texto-autor">Desarrollado por <span id="texto-morado">Samuel Navasardyan</span></p>
+		<label for="contrasena">Contraseña</label>
+		<input type="password" id="contrasena" name="contrasenaLogin" required maxlength="15" /><br />
 
 
-    <div id="ventana-recordar-contrasena">
-        <h3>Introduce tu correo electrónico</h3>
-        <input type="mail" name="correo-recuperar" id="input-correo-recuperar" placeholder="ejemplo@email.com">
-        <button type="button" id="btn-enviar">Enviar</button>
-    </div>
+		</div>
+		<button type="submit" class="btn-registrarse">Iniciar sesión</button>
+	</form>
 
-    <div id="overlay" class="overlay"></div>
+	<a href="registro.php" id="enlace-registro" class="enlace-azul">¿No tienes una cuenta? Registrate aquí.</a>
+	<p id="recordar-contrasena" class="enlace-azul">¿Has olvidado tu contraseña?</p>
+	<p id="texto-autor">Desarrollado por <span id="texto-morado">Samuel Navasardyan</span></p>
+
+
+	<div id="ventana-recordar-contrasena">
+		<h3>Introduce tu correo electrónico</h3>
+		<input type="mail" name="correo-recuperar" id="input-correo-recuperar" placeholder="ejemplo@email.com">
+		<button type="button" id="btn-enviar">Enviar</button>
+	</div>
+
+	<div id="overlay" class="overlay"></div>
 </body>
 
 </html>
+
+<style>
+	
+</style>

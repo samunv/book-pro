@@ -9,14 +9,14 @@ window.addEventListener("DOMContentLoaded", function () {
     //Crear un objeto datos de la clase FormData con los datos del formulario como parámetro
     let datos = new FormData(formularioLogin);
 
-    fetch("./../Controlador/procesarlogin.php", {
+    fetch("http://localhost/backend-bookpro/Controlador/procesarlogin.php", {
       method: "POST",
       body: datos,
     })
       .then((response) => response.json())
       .then((data) => {
         if (data.usuario) {
-          window.location.href = "index.php";
+         window.location.href = "index.php";
         } else if (data.error) {
           alert(data.error);
         }
@@ -25,7 +25,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 
   function comprobarSesion() {
-    fetch("./../Controlador/procesarsesion.php")
+    fetch("http://localhost/backend-bookpro/Controlador/procesarsesion.php")
       .then((response) => response.json())
       .then((data) => {
         if (data.sesion) {
@@ -55,7 +55,7 @@ window.addEventListener("DOMContentLoaded", function () {
   });
 
   function enviarCorreo(correo) {
-    fetch(`./../Controlador/procesarlogin.php?correoRecuperar=${correo}`)
+    fetch(`http://localhost/backend-bookpro/Controlador/procesarlogin.php?correoRecuperar=${correo}`)
       .then((response) => response.json())
       .then((data) => {
         alert(data);
